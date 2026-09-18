@@ -1,0 +1,80 @@
+# Noctalia v5 plugin manifest.
+#
+# EXPERIMENTAL / UNTESTED: the Luau port (widget.luau, panel.luau) has not been
+# run on a real Noctalia v5 shell yet and is not published to the community
+# store. Keep the JSON v4 manifest authoritative.
+[plugin]
+id = "alpzy/deepseek-peak"
+name = "DeepSeek Peak Hours"
+version = "1.0.0"
+plugin_api = 3
+description = "DeepSeek peak/off-peak bar widget for Noctalia. Green off-peak, red peak."
+author = "Alpzy"
+license = "MIT"
+repository = "https://github.com/Alpzy/noctalia-deepseek-peak"
+
+[entries]
+widget = "widget.luau"
+panel = "panel.luau"
+
+[settings.displayMode]
+type = "enum"
+default = "compact"
+options = ["compact", "icon", "full"]
+label = "Display Mode"
+description = "How to show the widget"
+
+[settings.offPeakColor]
+type = "color"
+default = "#4ade80"
+label = "Off-peak Color"
+description = "Widget color during off-peak"
+
+[settings.peakColor]
+type = "color"
+default = "#f87171"
+label = "Peak Color"
+description = "Widget color during peak"
+
+[settings.driftColor]
+type = "color"
+default = "#fbbf24"
+label = "Drift Color"
+description = "Widget color when policy drift is detected"
+
+[settings.showTooltip]
+type = "boolean"
+default = true
+label = "Show Tooltip"
+description = "Show state tooltip on hover"
+
+[settings.weekendMode]
+type = "enum"
+default = "beijing-anchored"
+options = ["beijing-anchored", "utc"]
+label = "Weekend Mode"
+description = "Weekend off-peak anchoring"
+
+[settings.autoCheck]
+type = "boolean"
+default = true
+label = "Auto Check"
+description = "Periodically check the official pricing page for policy drift"
+
+[settings.checkIntervalH]
+type = "integer"
+default = 6
+label = "Check Interval (hours)"
+description = "Hours between policy-drift checks"
+
+[settings.customSourceUrl]
+type = "string"
+default = ""
+label = "Custom Source URL"
+description = "Override for the official pricing page"
+
+[settings.offlineOnly]
+type = "boolean"
+default = false
+label = "Offline Only"
+description = "Disable network checks"
