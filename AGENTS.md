@@ -16,9 +16,9 @@ do not publish it.
 - **`opencode.json`, `.opencode/`, `.superpowers/`, `.dev/`** are local-only
   and git-ignored. Never commit AI/session artifacts or a dev harness.
 - **Peak logic has one source: `deepseek-peak/peak.js`.** It is inlined into
-  `BarWidget.qml` and `Panel.qml` between generated markers by
-  `python tools/sync_peak.py`. After editing `peak.js`, run the sync tool.
-  Never hand-edit the generated block; `pytest` fails if it drifts.
+  `Main.qml` between generated markers by `python tools/sync_peak.py`. After
+  editing `peak.js`, run the sync tool. Never hand-edit the generated block;
+  `pytest` fails if it drifts.
 - **i18n has one source: `deepseek-peak/i18n/en.json`** (nested keys). Add a
   key to `en.json` and all locales, then `python tools/sync_i18n.py` for the
   v5 `translations/` mirror. Only languages in Noctalia's
@@ -43,11 +43,15 @@ python tools/sync_i18n.py --check       # translations/ mirror in sync
 
 ## Architecture
 
-- `deepseek-peak/BarWidget.qml` — bar capsule (dot + `HH:MM:SS`), reads
-  settings every tick, **owns the policy-drift checker** so checks run
-  whenever the widget is on the bar.
-- `deepseek-peak/Panel.qml` — info-only, dynamic height, reads state shared
-  through `pluginSettings`.
+- `deepseek-peak/Main.qml` — shared state owner (schedule/time state, the
+  **policy-drift checker**, translated display strings, IPC). Components read
+  it through `pluginApi.mainInstance`; the checker runs while the plugin is
+  enabled, not only while the panel is open.
+- `deepseek-peak/BarWidget.qml` — bar capsule (dot + `HH:MM:SS`), display
+  settings, tooltip, left-click toggles the panel, right-click opens settings.
+- `deepseek-peak/Panel.qml` — info-only, dynamic height, renders Main's
+  strings (`anchors.fill`, `geometryPlaceholder`, `allowAttach` per registry
+  panel contract).
 - `deepseek-peak/Settings.qml` + `SettingsControls.qml` — the only settings
   surface (Plugins window → Configure).
 - `deepseek-peak/peak.js` — pure schedule/time functions (tested in node).

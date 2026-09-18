@@ -7,6 +7,12 @@
         "nextFlip": "sonraki geçiş",
         "driftSuffix": "ilke değişmiş olabilir"
     },
+    "menu": {
+        "settings": "Widget ayarları"
+    },
+    "notice": {
+        "policyChanged": "DeepSeek fiyat ilkesi değişmiş olabilir"
+    },
     "panel": {
         "peak": "ZİRVE (2x)",
         "offPeak": "ZİRVE DIŞI",

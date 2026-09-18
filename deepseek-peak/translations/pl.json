@@ -7,6 +7,12 @@
         "nextFlip": "następna zmiana za",
         "driftSuffix": "polityka mogła się zmienić"
     },
+    "menu": {
+        "settings": "Ustawienia widżetu"
+    },
+    "notice": {
+        "policyChanged": "Polityka cen DeepSeek mogła się zmienić"
+    },
     "panel": {
         "peak": "SZCZYT (2x)",
         "offPeak": "POZA SZCZYTEM",

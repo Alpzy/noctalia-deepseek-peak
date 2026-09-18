@@ -7,6 +7,12 @@
         "nextFlip": "次の切替まで",
         "driftSuffix": "料金体系が変更された可能性"
     },
+    "menu": {
+        "settings": "ウィジェット設定"
+    },
+    "notice": {
+        "policyChanged": "DeepSeekの料金体系が変更された可能性"
+    },
     "panel": {
         "peak": "ピーク (2x)",
         "offPeak": "オフピーク",

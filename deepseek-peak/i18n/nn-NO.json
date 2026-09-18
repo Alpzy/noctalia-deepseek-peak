@@ -7,6 +7,12 @@
         "nextFlip": "neste byte om",
         "driftSuffix": "retningslinjene kan ha endra seg"
     },
+    "menu": {
+        "settings": "Innstillingar for widget"
+    },
+    "notice": {
+        "policyChanged": "DeepSeek-prisretningslinjene kan ha endra seg"
+    },
     "panel": {
         "peak": "TOPP (2x)",
         "offPeak": "OFF-PEAK",

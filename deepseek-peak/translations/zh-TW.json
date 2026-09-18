@@ -7,6 +7,12 @@
         "nextFlip": "距下次切換",
         "driftSuffix": "計費策略可能已變更"
     },
+    "menu": {
+        "settings": "元件設定"
+    },
+    "notice": {
+        "policyChanged": "DeepSeek 計費策略可能已變更"
+    },
     "panel": {
         "peak": "尖峰 (2x)",
         "offPeak": "離峰",

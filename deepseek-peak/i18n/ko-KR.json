@@ -7,6 +7,12 @@
         "nextFlip": "다음 전환까지",
         "driftSuffix": "정책이 변경되었을 수 있음"
     },
+    "menu": {
+        "settings": "위젯 설정"
+    },
+    "notice": {
+        "policyChanged": "DeepSeek 요금 정책이 변경되었을 수 있음"
+    },
     "panel": {
         "peak": "피크 (2x)",
         "offPeak": "오프피크",

@@ -7,6 +7,12 @@
         "nextFlip": "következő váltás",
         "driftSuffix": "a szabályzat megváltozhatott"
     },
+    "menu": {
+        "settings": "Widget beállításai"
+    },
+    "notice": {
+        "policyChanged": "A DeepSeek árazási szabályzata megváltozhatott"
+    },
     "panel": {
         "peak": "CSÚCS (2x)",
         "offPeak": "CSÚCSON KÍVÜL",

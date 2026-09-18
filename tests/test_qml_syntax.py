@@ -1,6 +1,7 @@
 import pathlib
 
 QML_FILES = [
+    "deepseek-peak/Main.qml",
     "deepseek-peak/BarWidget.qml",
     "deepseek-peak/Panel.qml",
     "deepseek-peak/Settings.qml",
@@ -16,12 +17,12 @@ def test_qml_braces_balanced():
         )
 
 
-def test_bar_tryurl_closed_before_helpers():
-    text = pathlib.Path("deepseek-peak/BarWidget.qml").read_text()
+def test_main_tryurl_closed_before_helpers():
+    text = pathlib.Path("deepseek-peak/Main.qml").read_text()
     idx = text.find("function tryUrl")
     assert idx != -1
     tail = text[idx:]
-    marker = tail.find("function update()")
+    marker = tail.find("function checkDrift()")
     assert marker != -1
     segment = tail[:marker]
     assert segment.count("{") == segment.count("}"), (

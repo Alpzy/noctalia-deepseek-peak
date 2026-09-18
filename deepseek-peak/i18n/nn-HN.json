@@ -7,6 +7,12 @@
         "nextFlip": "neste skifte om",
         "driftSuffix": "retningslinene kann ha vorte endra"
     },
+    "menu": {
+        "settings": "Innstillingar for widget"
+    },
+    "notice": {
+        "policyChanged": "DeepSeek-prisretningslinene kann ha vorte endra"
+    },
     "panel": {
         "peak": "TOPP (2x)",
         "offPeak": "OFF-PEAK",

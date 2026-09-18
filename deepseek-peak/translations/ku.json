@@ -7,6 +7,12 @@
         "nextFlip": "guhertina din di",
         "driftSuffix": "dibe ku siyaset guherîbe"
     },
+    "menu": {
+        "settings": "Mîhengên wîgetê"
+    },
+    "notice": {
+        "policyChanged": "Dibe ku siyasetnameya bihayê ya DeepSeek guherîbe"
+    },
     "panel": {
         "peak": "LUTKE (2x)",
         "offPeak": "DERVEYÎ LUTKE",

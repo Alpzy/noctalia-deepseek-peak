@@ -7,6 +7,12 @@
         "nextFlip": "prossimo cambio tra",
         "driftSuffix": "la politica potrebbe essere cambiata"
     },
+    "menu": {
+        "settings": "Impostazioni widget"
+    },
+    "notice": {
+        "policyChanged": "La politica dei prezzi DeepSeek potrebbe essere cambiata"
+    },
     "panel": {
         "peak": "ORA DI PUNTA (2x)",
         "offPeak": "FUORI PUNTA",

@@ -7,6 +7,12 @@
         "nextFlip": "volgende wissel over",
         "driftSuffix": "beleid is mogelijk gewijzigd"
     },
+    "menu": {
+        "settings": "Widgetinstellingen"
+    },
+    "notice": {
+        "policyChanged": "DeepSeek-prijsbeleid is mogelijk gewijzigd"
+    },
     "panel": {
         "peak": "PIEK (2x)",
         "offPeak": "DAL",

@@ -7,6 +7,12 @@
         "nextFlip": "nächster Wechsel in",
         "driftSuffix": "Preisrichtlinie evtl. geändert"
     },
+    "menu": {
+        "settings": "Widget-Einstellungen"
+    },
+    "notice": {
+        "policyChanged": "DeepSeek-Preisrichtlinie evtl. geändert"
+    },
     "panel": {
         "peak": "HAUPTZEIT (2x)",
         "offPeak": "NEBENZEIT",

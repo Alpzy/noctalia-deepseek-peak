@@ -7,6 +7,12 @@
         "nextFlip": "next flip in",
         "driftSuffix": "policy may have changed"
     },
+    "menu": {
+        "settings": "Widget settings"
+    },
+    "notice": {
+        "policyChanged": "DeepSeek pricing policy may have changed"
+    },
     "panel": {
         "peak": "PEAK (2x)",
         "offPeak": "OFF-PEAK",

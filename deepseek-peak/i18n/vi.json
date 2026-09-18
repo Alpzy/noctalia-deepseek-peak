@@ -7,6 +7,12 @@
         "nextFlip": "lần chuyển tiếp theo sau",
         "driftSuffix": "chính sách có thể đã thay đổi"
     },
+    "menu": {
+        "settings": "Cài đặt tiện ích"
+    },
+    "notice": {
+        "policyChanged": "Chính sách giá của DeepSeek có thể đã thay đổi"
+    },
     "panel": {
         "peak": "CAO ĐIỂM (2x)",
         "offPeak": "THẤP ĐIỂM",

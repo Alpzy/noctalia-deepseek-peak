@@ -7,6 +7,12 @@
         "nextFlip": "další změna za",
         "driftSuffix": "pravidla se možná změnila"
     },
+    "menu": {
+        "settings": "Nastavení widgetu"
+    },
+    "notice": {
+        "policyChanged": "Pravidla cen DeepSeek se možná změnila"
+    },
     "panel": {
         "peak": "ŠPIČKA (2x)",
         "offPeak": "MIMO ŠPIČKU",

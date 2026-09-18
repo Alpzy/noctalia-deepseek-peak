@@ -7,6 +7,12 @@
         "nextFlip": "nästa växling om",
         "driftSuffix": "policyn kan ha ändrats"
     },
+    "menu": {
+        "settings": "Widgetinställningar"
+    },
+    "notice": {
+        "policyChanged": "DeepSeeks prispolicy kan ha ändrats"
+    },
     "panel": {
         "peak": "TOPP (2x)",
         "offPeak": "LÅGLAST",

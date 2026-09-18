@@ -16,8 +16,9 @@ countdown; clicking opens a small info panel.
 
 ```
 deepseek-peak/
-  BarWidget.qml        bar capsule, 1s timer, policy-drift checker
-  Panel.qml            info-only popup (dynamic height)
+  Main.qml             shared state, policy-drift checker, display strings, IPC
+  BarWidget.qml        bar capsule (dot + countdown), tooltip, click/right-click
+  Panel.qml            info-only popup (dynamic height, registry panel contract)
   Settings.qml         Plugins > Configure entry point
   SettingsControls.qml shared settings controls used by Settings.qml
   peak.js              single source of schedule + time math
@@ -26,7 +27,7 @@ deepseek-peak/
   translations/<lang>.json  generated mirror for the experimental v5 port
   plugin.toml, widget.luau, panel.luau   experimental v5 port (untested)
 tools/
-  sync_peak.py         inlines peak.js into the QML components
+  sync_peak.py         inlines peak.js into Main.qml
   sync_i18n.py         mirrors i18n/ into translations/
 tests/                 pytest suite + node logic tests
 ```
@@ -80,8 +81,8 @@ backend.
 ## Editing rules
 
 - **Schedule/time logic changes go in `peak.js` only**, then
-  `python tools/sync_peak.py` inlines it into `BarWidget.qml` and
-  `Panel.qml`. `tests/test_logic.js` fails if the inline drifts.
+  `python tools/sync_peak.py` inlines it into `Main.qml`.
+  `tests/test_logic.js` fails if the inline drifts.
 - **Keep functions at the component root.** QML bindings cannot call
   functions nested inside child layouts (this caused a real bug where the
   panel silently rendered nothing).
@@ -91,9 +92,10 @@ backend.
   manual offset math (`peak.js` shows how).
 - **Icon names must exist** in `Commons/IconsTabler.qml`; unknown names render
   the `skull` fallback glyph (`circle-filled` is the dot used here).
-- **Transient UI state must not be persisted.** `drift` and `checkedAtMs` are
-  shared in memory through `pluginApi.pluginSettings`; the settings save path
-  deletes them before writing `settings.json`.
+- **Transient UI state must not be persisted.** `drift` and `checkedAtMs` live
+  only on the `Main.qml` instance, shared with the bar/panel through
+  `pluginApi.mainInstance`; the settings save path also deletes any legacy
+  copies from `settings.json`.
 
 ## Translations
 
