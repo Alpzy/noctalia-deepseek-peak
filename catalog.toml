@@ -1,0 +1,10 @@
+[registry]
+version = 1
+
+[[plugins]]
+id = "alpzy/deepseek-peak"
+name = "DeepSeek Peak Hours"
+path = "deepseek-peak"
+version = "1.0.0"
+plugin_api = 3
+description = "DeepSeek peak/off-peak bar widget for Noctalia."

@@ -1,0 +1,21 @@
+# AI workflow - local only, never commit
+opencode.json
+opencode.jsonc
+.opencode/
+.agents/
+.claude/
+.opencode-cache/
+
+# superpowers working artifacts
+PLAN.md
+DESIGN.md
+*.worktree
+.worktrees/
+.superpowers/
+
+# python bytecode
+__pycache__/
+.pytest_cache/
+
+# local dev harness + scratch
+.dev/
