@@ -16,9 +16,13 @@ do not publish it.
 - **`opencode.json`, `.opencode/`, `.superpowers/`, `.dev/`** are local-only
   and git-ignored. Never commit AI/session artifacts or a dev harness.
 - **Peak logic has one source: `deepseek-peak/peak.js`.** It is inlined into
-  `Main.qml` between generated markers by `python tools/sync_peak.py`. After
-  editing `peak.js`, run the sync tool. Never hand-edit the generated block;
-  `pytest` fails if it drifts.
+  `Main.qml`, `BarWidget.qml` and `Panel.qml` between generated markers by
+  `python tools/sync_peak.py`. After editing `peak.js`, run the sync tool.
+  Never hand-edit the generated block; `pytest` fails if it drifts. Bar and
+  panel compute tier/countdown locally so a missing `Main` cannot blank the
+  UI; `Main` owns the checker and shares drift/checked-at via `mainInstance`.
+- **Hot reload never re-reads `manifest.json`.** Changing entry points or
+  manifest fields needs a shell restart; file/timer edits do not.
 - **i18n has one source: `deepseek-peak/i18n/en.json`** (nested keys). Add a
   key to `en.json` and all locales, then `python tools/sync_i18n.py` for the
   v5 `translations/` mirror. Only languages in Noctalia's

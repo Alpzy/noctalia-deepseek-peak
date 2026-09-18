@@ -20,6 +20,8 @@ ROOT = Path(__file__).resolve().parent.parent
 PEAK = ROOT / "deepseek-peak" / "peak.js"
 TARGETS = [
     ROOT / "deepseek-peak" / "Main.qml",
+    ROOT / "deepseek-peak" / "BarWidget.qml",
+    ROOT / "deepseek-peak" / "Panel.qml",
 ]
 BEGIN = "// BEGIN peak.js (generated - edit peak.js and run tools/sync_peak.py)"
 END = "// END peak.js (generated)"

@@ -81,8 +81,13 @@ backend.
 ## Editing rules
 
 - **Schedule/time logic changes go in `peak.js` only**, then
-  `python tools/sync_peak.py` inlines it into `Main.qml`.
-  `tests/test_logic.js` fails if the inline drifts.
+  `python tools/sync_peak.py` inlines it into `Main.qml`, `BarWidget.qml`
+  and `Panel.qml`. `tests/test_logic.js` fails if any inline drifts.
+  Bar and panel compute their own tier/countdown so a missing or failed
+  `Main` can never blank the UI; `Main` owns the drift checker.
+- **Hot reload does not re-read manifests.** Adding or removing an entry
+  point, or editing `manifest.json` fields, requires a shell restart; QML/JS
+  and timer edits reload fine (with debug + development mode enabled).
 - **Keep functions at the component root.** QML bindings cannot call
   functions nested inside child layouts (this caused a real bug where the
   panel silently rendered nothing).

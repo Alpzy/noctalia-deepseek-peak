@@ -24,7 +24,7 @@ def test_peak_js_exists_and_inlined_in_sync():
     peak = pathlib.Path("deepseek-peak/peak.js")
     assert peak.exists()
     body = peak.read_text().strip("\n")
-    for rel in ("deepseek-peak/Main.qml",):
+    for rel in ("deepseek-peak/Main.qml", "deepseek-peak/BarWidget.qml", "deepseek-peak/Panel.qml"):
         text = pathlib.Path(rel).read_text()
         assert "// BEGIN peak.js (generated" in text and "// END peak.js (generated)" in text, (
             f"{rel} must carry the generated peak.js block"
