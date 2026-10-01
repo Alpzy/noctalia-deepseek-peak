@@ -1,124 +1,107 @@
-local panel = {}
+--!nonstrict
+-- DeepSeek Peak Hours - Noctalia v5 panel entry.
+-- Info-only panel: state, countdown, schedule, provider, drift status.
+-- Schedule logic lives in lib/schedule.luau (v4 peak.js semantics).
 
-panel.sourceUrl = "https://api-docs.deepseek.com/quick_start/pricing/"
-panel.fallbackUrls = {
-	"https://api-docs.deepseek.com/quick_start/pricing/",
-	"https://www.deepseek.com/en/pricing",
-}
-panel.checkedAt = "2026-09-14T00:00:00Z"
-panel.bundledPeak = "01:00-04:00, 06:00-10:00 UTC"
-panel.checkTimeoutS = 10
-panel.windows = { { "01:00", "04:00" }, { "06:00", "10:00" } }
-
-local settings = {
-	weekendMode = "beijing-anchored",
-	customSourceUrl = "",
-	offlineOnly = false,
-	autoCheck = true,
-	checkIntervalH = 6,
-}
+local schedule = require("./lib/schedule.luau")
 
 local drift = false
+local checkedAt = "never"
+local source = schedule.sourceUrl("deepseek")
 
-local function isPeakAt(now)
-	local utc = os.date("!*t", now)
-	local bj = os.date("!*t", now + 8 * 3600)
-	if settings.weekendMode == "utc" then
-		if utc.wday == 1 or utc.wday == 7 then
-			return false
-		end
-	else
-		if bj.wday == 1 or bj.wday == 7 then
-			return false
-		end
-		if utc.wday == 7 then
-			return false
-		end
-		if utc.wday == 6 and utc.hour >= 16 then
-			return false
-		end
-		if utc.wday == 1 and utc.hour < 16 then
-			return false
-		end
-	end
-	local h = utc.hour + utc.min / 60
-	return (h >= 1 and h < 4) or (h >= 6 and h < 10)
+local function config(key, fallback)
+  local value = noctalia.getConfig(key)
+  if value == nil then
+    return fallback
+  end
+  return value
 end
 
-local function secondsUntilNext(now)
-	local peak = isPeakAt(now)
-	local coarse = 0
-	for s = 60, 7 * 86400, 60 do
-		if isPeakAt(now + s) ~= peak then
-			coarse = s
-			break
-		end
-	end
-	if coarse == 0 then
-		return 0
-	end
-	for t = coarse - 59, coarse, 1 do
-		if isPeakAt(now + t) ~= peak then
-			return t
-		end
-	end
-	return coarse
+local function provider()
+  if config("provider", "deepseek") == "ollama" then
+    return "ollama"
+  end
+  return "deepseek"
 end
 
-local function formatHMS(s)
-	s = math.max(0, math.floor(s))
-	local h = math.floor(s / 3600)
-	local m = math.floor((s % 3600) / 60)
-	local sec = s % 60
-	return string.format("%02d:%02d:%02d", h, m, sec)
+local function row(label, value, color)
+  return ui.row({ gap = 8, justify = "space_between" }, {
+    ui.label({ text = label, color = "on_surface_variant", fontSize = 12 }),
+    ui.label({ text = value, color = color or "on_surface", fontSize = 12,
+               fontWeight = "bold" }),
+  })
 end
 
-function panel.getState(now)
-	now = now or os.time()
-	local peak = isPeakAt(now)
-	local secs = secondsUntilNext(now)
-	return {
-		isPeak = peak,
-		state = peak and "PEAK 2x" or "OFF-PEAK",
-		countdown = secs,
-		countdownHMS = formatHMS(secs),
-		windows = panel.windows,
-		source = panel.getSourceUrl(),
-		checkedAt = panel.checkedAt,
-		drift = drift,
-	}
+local function render()
+  local now = os.time()
+  local which = provider()
+  local peak = schedule.isPeakAt(now, which)
+  local state = peak and noctalia.tr("panel.peak") or noctalia.tr("panel.offPeak")
+  local stateColor = peak and config("peakColor", "#f87171") or config("offPeakColor", "#4ade80")
+  if drift then
+    stateColor = config("driftColor", "#fbbf24")
+  end
+
+  panel.render(ui.column({ gap = 10, padding = 14 }, {
+    ui.row({ gap = 8, align = "center" }, {
+      ui.glyph({ name = "circle-filled", size = 12, color = stateColor }),
+      ui.label({ text = state, fontWeight = "bold", color = stateColor, flexGrow = 1 }),
+    }),
+    row(noctalia.tr("panel.provider"), schedule.providerName(which)),
+    row(peak and noctalia.tr("panel.peakIn") or noctalia.tr("panel.offPeakIn"),
+        schedule.formatHMS(schedule.secondsUntilNext(now, which))),
+    ui.separator({}),
+    row(noctalia.tr("panel.schedule"), schedule.scheduleText(which)),
+    row(noctalia.tr("panel.checked"), checkedAt),
+    drift and ui.label({ text = noctalia.tr("panel.drift"), color = "error", fontSize = 11 }) or ui.spacer({}),
+    ui.button({
+      text = noctalia.tr("menu.refresh"),
+      glyph = "refresh",
+      variant = "ghost",
+      onClick = function()
+        noctalia.state.set("deepseek-peak.cmd", "CHECK")
+      end,
+    }),
+    ui.button({
+      text = noctalia.tr("menu.settings"),
+      glyph = "settings",
+      variant = "ghost",
+      onClick = function()
+        noctalia.openSettings()
+      end,
+    }),
+    ui.label({ text = source, color = "on_surface_variant", fontSize = 10, maxLines = 2 }),
+  }))
 end
 
-function panel.getSourceUrl()
-	if settings.customSourceUrl ~= nil and settings.customSourceUrl ~= "" then
-		return settings.customSourceUrl
-	end
-	return panel.sourceUrl
+function onOpen(_context)
+  render()
 end
 
-function panel.isDrift()
-	return drift
+function onClose()
 end
 
-function panel.setDrift(value)
-	drift = value == true
-	return drift
+function update()
+  render()
 end
 
-function panel.configure(newSettings)
-	for k, v in pairs(newSettings) do
-		settings[k] = v
-	end
-	if newSettings.drift ~= nil then
-		drift = newSettings.drift == true
-	end
-end
+drift = noctalia.state.get("deepseek-peak.drift") == true
+checkedAt = noctalia.state.get("deepseek-peak.checkedAt") or "never"
+source = noctalia.state.get("deepseek-peak.source") or schedule.sourceUrl(provider())
 
-function panel.checkDrift()
-	if settings.autoCheck == false or settings.offlineOnly == true then
-		return false
-	end
-	return drift
-end
+noctalia.state.watch("deepseek-peak.drift", function(value)
+  drift = value == true
+  render()
+end)
 
-return panel
+noctalia.state.watch("deepseek-peak.checkedAt", function(value)
+  checkedAt = value or "never"
+  render()
+end)
+
+noctalia.state.watch("deepseek-peak.source", function(value)
+  source = value or source
+  render()
+end)
+
+panel.setWantsSecondTicks(true)

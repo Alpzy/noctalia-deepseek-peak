@@ -38,3 +38,13 @@ def test_widget_uses_v5_api_not_v4_objects():
     assert "setUpdateInterval" in text
     assert 'require("./lib/schedule.luau")' in text, "widget must use the shared schedule module"
     assert "schedule.isPeakAt" in text and "schedule.secondsUntilNext" in text
+
+
+def test_panel_uses_v5_panel_api():
+    text = pathlib.Path("deepseek-peak/panel.luau").read_text()
+    assert "panel.render" in text
+    assert "function onOpen" in text
+    assert "noctalia.getConfig" in text
+    assert 'require("./lib/schedule.luau")' in text, "panel must use the shared schedule module"
+    assert "panel.openContextMenu" not in text or "onRightClick" in text
+    assert "provider" in text
