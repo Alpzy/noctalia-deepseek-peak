@@ -8,6 +8,7 @@ LUAU_FILES = [
     "deepseek-peak/widget.luau",
     "deepseek-peak/panel.luau",
     "deepseek-peak/checker.luau",
+    "deepseek-peak/lib/schedule.luau",
 ]
 
 
@@ -35,4 +36,5 @@ def test_widget_uses_v5_api_not_v4_objects():
     assert "noctalia.getConfig" in text
     assert "pluginApi" not in text, "v4 plugin object must not leak into v5 script"
     assert "setUpdateInterval" in text
-    assert "weekendMode" in text, "weekendMode setting must still affect the schedule"
+    assert 'require("./lib/schedule.luau")' in text, "widget must use the shared schedule module"
+    assert "schedule.isPeakAt" in text and "schedule.secondsUntilNext" in text

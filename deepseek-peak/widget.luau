@@ -1,7 +1,9 @@
 --!nonstrict
 -- DeepSeek Peak Hours - Noctalia v5 bar widget entry.
--- API: global update()/onClick()/onConfigChanged(); noctalia.*; barWidget.*
--- Settings are read with noctalia.getConfig (declared in plugin.toml).
+-- API: global update()/onClick(); noctalia.*; barWidget.*; ui.*
+-- Schedule logic lives in lib/schedule.luau (mirrors v4 peak.js semantics).
+
+local schedule = require("./lib/schedule.luau")
 
 local isPeakNow = false
 local secondsToNext = 0
@@ -15,58 +17,11 @@ local function config(key, fallback)
   return value
 end
 
-local function isPeakAt(now)
-  local utc = os.date("!*t", now)
-  local bj = os.date("!*t", now + 8 * 3600)
-  if config("weekendMode", "beijing-anchored") == "utc" then
-    if utc.wday == 1 or utc.wday == 7 then
-      return false
-    end
-  else
-    if bj.wday == 1 or bj.wday == 7 then
-      return false
-    end
-    if utc.wday == 7 then
-      return false
-    end
-    if utc.wday == 6 and utc.hour >= 16 then
-      return false
-    end
-    if utc.wday == 1 and utc.hour < 16 then
-      return false
-    end
+local function provider()
+  if config("provider", "deepseek") == "ollama" then
+    return "ollama"
   end
-  local h = utc.hour + utc.min / 60
-  return (h >= 1 and h < 4) or (h >= 6 and h < 10)
-end
-
-local function secondsUntilNext(now)
-  local peak = isPeakAt(now)
-  local coarse = 0
-  for s = 60, 7 * 86400, 60 do
-    if isPeakAt(now + s) ~= peak then
-      coarse = s
-      break
-    end
-  end
-  if coarse == 0 then
-    return 0
-  end
-  for t = coarse - 59, coarse do
-    if isPeakAt(now + t) ~= peak then
-      return t
-    end
-  end
-  return coarse
-end
-
-local function formatCountdown(s)
-  local h = math.floor(s / 3600)
-  local m = math.floor((s % 3600) / 60)
-  if h > 0 then
-    return h .. "h" .. m .. "m"
-  end
-  return m .. "m"
+  return "deepseek"
 end
 
 local function color()
@@ -81,7 +36,7 @@ end
 
 local function label()
   local mode = config("displayMode", "compact")
-  local countdown = formatCountdown(secondsToNext)
+  local countdown = schedule.formatCountdown(secondsToNext)
   if mode == "icon" then
     return ""
   elseif mode == "full" then
@@ -93,7 +48,8 @@ end
 
 local function render()
   local mode = config("displayMode", "compact")
-  barWidget.render(ui.row({ gap = 6, align = "center" }, {
+  local container = barWidget.isVertical() and ui.column or ui.row
+  barWidget.render(container({ gap = 6, align = "center" }, {
     ui.glyph({ name = "circle-filled", size = 10, color = color() }),
     ui.label({
       text = label(),
@@ -106,7 +62,7 @@ local function render()
     local state = isPeakNow and noctalia.tr("bar.tooltipPeak") or noctalia.tr("bar.tooltipOffPeak")
     local suffix = drift and (" — " .. noctalia.tr("bar.driftSuffix")) or ""
     barWidget.setTooltip(state .. " — " .. noctalia.tr("bar.nextFlip") .. " "
-      .. formatCountdown(secondsToNext) .. suffix)
+      .. schedule.formatCountdown(secondsToNext) .. suffix)
   else
     barWidget.clearTooltip()
   end
@@ -114,12 +70,8 @@ end
 
 function update()
   local now = os.time()
-  isPeakNow = isPeakAt(now)
-  secondsToNext = secondsUntilNext(now)
-  render()
-end
-
-function onConfigChanged()
+  isPeakNow = schedule.isPeakAt(now, provider())
+  secondsToNext = schedule.secondsUntilNext(now, provider())
   render()
 end
 
@@ -127,6 +79,7 @@ function onClick()
   noctalia.togglePanel("alpzy/deepseek-peak:panel")
 end
 
+drift = noctalia.state.get("deepseek-peak.drift") == true
 noctalia.state.watch("deepseek-peak.drift", function(value)
   drift = value == true
   render()
