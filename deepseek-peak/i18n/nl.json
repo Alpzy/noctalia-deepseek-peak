@@ -10,7 +10,8 @@
     "menu": {
         "settings": "Widgetinstellingen",
         "useDeepSeek": "DeepSeek gebruiken",
-        "useOllama": "Ollama gebruiken"
+        "useOllama": "Ollama gebruiken",
+        "refresh": "Nu verversen"
     },
     "notice": {
         "policyChanged": "DeepSeek-prijsbeleid is mogelijk gewijzigd"
@@ -23,12 +24,15 @@
         "local": "Lokaal",
         "utc": "UTC",
         "beijing": "Peking",
-        "cost": "Piek = 2x dal",
         "checked": "Gecontroleerd",
         "drift": "Beleid is mogelijk gewijzigd — controleer de bron",
         "weekendAllDay": "hele dag dal",
         "provider": "Aanbieder",
-        "holidayOffPeak": "Feestdag — hele dag dal"
+        "schedule": "Piek",
+        "offPeakLine": "Dal: weekend (UTC)",
+        "offPeakLineHolidays": "Dal: weekend + Chinese feestdagen",
+        "holidayEnds": "Feestdag eindigt {date}",
+        "nextHoliday": "Volgende feestdag {range} · over {n} d"
     },
     "checked": {
         "justNow": "zojuist",

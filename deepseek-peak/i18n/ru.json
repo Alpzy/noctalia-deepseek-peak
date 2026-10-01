@@ -10,7 +10,8 @@
     "menu": {
         "settings": "Настройки виджета",
         "useDeepSeek": "Использовать DeepSeek",
-        "useOllama": "Использовать Ollama"
+        "useOllama": "Использовать Ollama",
+        "refresh": "Обновить сейчас"
     },
     "notice": {
         "policyChanged": "Ценовая политика DeepSeek могла измениться"
@@ -23,12 +24,15 @@
         "local": "Местное",
         "utc": "UTC",
         "beijing": "Пекин",
-        "cost": "Пик = 2x вне пика",
         "checked": "Проверено",
         "drift": "Правила могли измениться — проверьте источник",
         "weekendAllDay": "вне пика весь день",
         "provider": "Провайдер",
-        "holidayOffPeak": "Праздник — вне пика весь день"
+        "schedule": "Пик",
+        "offPeakLine": "Вне пика: выходные (UTC)",
+        "offPeakLineHolidays": "Вне пика: выходные + китайские праздники",
+        "holidayEnds": "Праздник заканчивается {date}",
+        "nextHoliday": "Следующий праздник {range} · через {n} дн."
     },
     "checked": {
         "justNow": "только что",

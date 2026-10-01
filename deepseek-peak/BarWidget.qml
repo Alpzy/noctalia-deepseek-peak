@@ -27,14 +27,19 @@ Item {
     readonly property bool showTooltip: cfg.showTooltip ?? defaults.showTooltip ?? true
     readonly property string provider: (cfg.provider ?? defaults.provider ?? "deepseek") === "ollama" ? "ollama" : "deepseek"
 
-    // Optional shared state from Main.qml: used for drift only. Tier/countdown
-    // are computed locally so the bar keeps working even if Main is missing.
-    readonly property bool drift: pluginApi?.mainInstance?.drift ?? false
+    // Optional shared state from Main.qml: used for drift/progress only.
+    // Tier/countdown are computed locally so the bar keeps working even if
+    // Main is missing.
+    readonly property var main: pluginApi?.mainInstance
+    readonly property bool drift: main ? main.drift : false
 
     // Local schedule state (peak.js is inlined below; see tools/sync_peak.py)
     property bool isPeak: false
     property int secondsToNext: 0
     property int _ticks: 999
+    property string _lastProvider: ""
+    property var _block: null
+    property real blockProgress: 0
     property string countdownText: formatHMS(0)
     property string stateText: ""
     property string tooltipFormat: ""
@@ -221,6 +226,109 @@ function sameWindows(a, b) {
             return false;
     return true;
 }
+
+// Bounds of the current peak/off-peak block. Coarse 15-minute scan backwards
+// (max 10 days) refined to the second. Peak blocks are hours long, so a
+// 15-minute probe never skips a transition. Callers cache the result and
+// recompute only when the tier changes or the block ends.
+function blockBounds(now, provider) {
+    var peak = isPeakAt(now, provider);
+    var maxBack = 10 * 86400;
+    var step = 900;
+    var back = 0;
+    for (var s = step; s <= maxBack; s += step) {
+        if (isPeakAt(new Date(now.getTime() - s * 1000), provider) !== peak) {
+            back = s;
+            break;
+        }
+    }
+    var startMs = now.getTime() - back * 1000;
+    if (back > 0) {
+        for (var t = back - (step - 1); t <= back; t++) {
+            if (isPeakAt(new Date(now.getTime() - t * 1000), provider) !== peak) {
+                // now - t is the last instant of the previous tier, so the
+                // block starts one second later.
+                startMs = now.getTime() - (t - 1) * 1000;
+                break;
+            }
+        }
+    }
+    var forward = secondsUntilNext(now, provider);
+    var endMs = forward > 0 ? now.getTime() + forward * 1000 : now.getTime() + maxBack * 1000;
+    return {provider: provider, isPeak: peak, startMs: startMs, endMs: endMs};
+}
+
+// One provider's live state. `block` is the caller's cached blockBounds result;
+// when it is still valid the countdown is derived from its end, avoiding a
+// full forward scan every tick (holiday blocks can span a week).
+function providerSnapshot(now, provider, block) {
+    var peak = isPeakAt(now, provider);
+    var b = block;
+    if (!b || b.provider !== provider || b.isPeak !== peak || now.getTime() >= b.endMs) {
+        b = blockBounds(now, provider);
+    } else {
+        return {
+            isPeak: peak,
+            secondsToNext: Math.max(0, Math.round((b.endMs - now.getTime()) / 1000)),
+            onHoliday: isHoliday(now, provider),
+            progress: (b.endMs - b.startMs) > 0 ? Math.min(1, Math.max(0, (now.getTime() - b.startMs) / (b.endMs - b.startMs))) : 0,
+            block: b
+        };
+    }
+    var total = b.endMs - b.startMs;
+    return {
+        isPeak: peak,
+        secondsToNext: Math.max(0, Math.round((b.endMs - now.getTime()) / 1000)),
+        onHoliday: isHoliday(now, provider),
+        progress: total > 0 ? Math.min(1, Math.max(0, (now.getTime() - b.startMs) / total)) : 0,
+        block: b
+    };
+}
+
+function dateKeyToMs(key) {
+    var parts = key.split("-");
+    return Date.UTC(parseInt(parts[0], 10), parseInt(parts[1], 10) - 1, parseInt(parts[2], 10), 12);
+}
+
+function isNextDay(a, b) {
+    return Math.round((dateKeyToMs(b) - dateKeyToMs(a)) / 86400000) === 1;
+}
+
+// Current or next Chinese holiday range (contiguous bundled dates), but only
+// when it is active or starts within a week. Returns null otherwise.
+function holidayRangeInfo(now, provider) {
+    if (!getProfile(provider).holidayOffPeak)
+        return null;
+    var byYear = holidayDates();
+    var all = [];
+    for (var year in byYear)
+        for (var i = 0; i < byYear[year].length; i++)
+            all.push(byYear[year][i]);
+    all.sort();
+    var bj = new Date(now.getTime() + 8 * 3600 * 1000);
+    var todayKey = bj.getUTCFullYear() + "-" + pad(bj.getUTCMonth() + 1) + "-" + pad(bj.getUTCDate());
+    var todayMs = Date.UTC(bj.getUTCFullYear(), bj.getUTCMonth(), bj.getUTCDate());
+    var idx = 0;
+    while (idx < all.length && all[idx] < todayKey)
+        idx++;
+    if (idx >= all.length)
+        return null;
+    var start = idx;
+    var end = idx;
+    if (all[idx] === todayKey) {
+        while (start - 1 >= 0 && isNextDay(all[start - 1], all[start]))
+            start--;
+        while (end + 1 < all.length && isNextDay(all[end], all[end + 1]))
+            end++;
+        return {active: true, startMs: dateKeyToMs(all[start]), endMs: dateKeyToMs(all[end]), inDays: 0};
+    }
+    while (end + 1 < all.length && isNextDay(all[end], all[end + 1]))
+        end++;
+    var inDays = Math.round((dateKeyToMs(all[start]) - todayMs) / 86400000);
+    if (inDays > 7)
+        return null;
+    return {active: false, startMs: dateKeyToMs(all[start]), endMs: dateKeyToMs(all[end]), inDays: inDays};
+}
 // END peak.js (generated)
 
     // Per-screen bar properties (multi-monitor and vertical bar support)
@@ -248,8 +356,35 @@ function sameWindows(a, b) {
         stateText = isPeak ? t("bar.peak") : t("bar.offPeak");
         tooltipFormat = providerName(provider) + " · " + (isPeak ? t("bar.tooltipPeak") : t("bar.tooltipOffPeak")) + " — " + t("bar.nextFlip") + " " + countdownText + (drift ? " — " + t("bar.driftSuffix") : "");
     }
+    // Dual-provider tooltip grid (active provider marked with ●).
+    function tooltipGrid() {
+        var states = main ? main.providerStates : null;
+        var rows = [];
+        if (!states) {
+            rows.push(["● " + providerName(provider), isPeak ? t("bar.tooltipPeak") : t("bar.tooltipOffPeak"), countdownText]);
+            return rows;
+        }
+        var keys = ["deepseek", "ollama"];
+        for (var i = 0; i < keys.length; i++) {
+            var k = keys[i];
+            var s = states[k];
+            if (!s)
+                continue;
+            rows.push([
+                (k === provider ? "● " : "○ ") + providerName(k),
+                s.isPeak ? t("bar.tooltipPeak") : t("bar.tooltipOffPeak"),
+                formatHMS(s.secondsToNext),
+                Math.round(s.progress * 100) + "%"
+            ]);
+        }
+        return rows;
+    }
     function update() {
         var now = new Date();
+        if (provider !== _lastProvider) {
+            _lastProvider = provider;
+            _ticks = 999;
+        }
         isPeak = isPeakAt(now, provider);
         if (_ticks >= 30 || secondsToNext <= 1) {
             secondsToNext = secondsUntilNext(now, provider);
@@ -258,7 +393,17 @@ function sameWindows(a, b) {
             secondsToNext = Math.max(0, secondsToNext - 1);
             _ticks += 1;
         }
+        // Progress comes from Main when available; local fallback otherwise.
+        if (main && main.providerStates && main.providerStates[provider]) {
+            blockProgress = main.providerStates[provider].progress;
+        } else {
+            var snap = providerSnapshot(now, provider, _block);
+            _block = snap.block;
+            blockProgress = snap.progress;
+        }
         refreshTexts();
+        if (mouseArea.containsMouse && showTooltip)
+            TooltipService.show(root, tooltipGrid(), "auto");
     }
 
     Component.onCompleted: update()
@@ -291,12 +436,25 @@ function sameWindows(a, b) {
                 icon: "circle-filled"
                 color: root.stateColor
             }
-            NText {
+            ColumnLayout {
                 Layout.alignment: Qt.AlignVCenter
                 visible: root.displayMode !== "icon"
-                text: root.displayMode === "full" ? root.stateText + " " + root.countdownText : root.countdownText
-                pointSize: root.barFontSize
-                color: Color.mOnSurface
+                spacing: Math.max(1, Math.round(1 * Style.uiScaleRatio))
+
+                NText {
+                    Layout.alignment: Qt.AlignHCenter
+                    text: root.displayMode === "full" ? root.stateText + " " + root.countdownText : root.countdownText
+                    pointSize: root.barFontSize
+                    color: Color.mOnSurface
+                }
+                NLinearGauge {
+                    Layout.alignment: Qt.AlignHCenter
+                    orientation: Qt.Horizontal
+                    ratio: root.blockProgress
+                    fillColor: root.stateColor
+                    Layout.preferredWidth: 32 * Style.uiScaleRatio
+                    Layout.preferredHeight: Math.max(2, Math.round(3 * Style.uiScaleRatio))
+                }
             }
         }
     }
@@ -316,6 +474,11 @@ function sameWindows(a, b) {
                 "icon": "circle-letter-o"
             },
             {
+                "label": pluginApi?.tr("menu.refresh"),
+                "action": "refresh",
+                "icon": "refresh"
+            },
+            {
                 "label": pluginApi?.tr("menu.settings"),
                 "action": "settings",
                 "icon": "settings"
@@ -328,7 +491,10 @@ function sameWindows(a, b) {
                 return;
             if (action === "settings")
                 BarService.openPluginSettings(screen, pluginApi.manifest);
-            else if (action === "use-deepseek" || action === "use-ollama") {
+            else if (action === "refresh") {
+                if (pluginApi.mainInstance)
+                    pluginApi.mainInstance.refresh();
+            } else if (action === "use-deepseek" || action === "use-ollama") {
                 pluginApi.pluginSettings.provider = action === "use-ollama" ? "ollama" : "deepseek";
                 pluginApi.saveSettings();
             }

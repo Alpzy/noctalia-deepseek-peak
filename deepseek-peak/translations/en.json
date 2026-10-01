@@ -10,7 +10,8 @@
     "menu": {
         "settings": "Widget settings",
         "useDeepSeek": "Use DeepSeek",
-        "useOllama": "Use Ollama"
+        "useOllama": "Use Ollama",
+        "refresh": "Refresh now"
     },
     "notice": {
         "policyChanged": "DeepSeek pricing policy may have changed"
@@ -23,12 +24,15 @@
         "local": "Local",
         "utc": "UTC",
         "beijing": "Beijing",
-        "cost": "Peak = 2x off-peak",
         "checked": "Checked",
         "drift": "Policy may have changed — see source",
         "weekendAllDay": "off-peak all day",
         "provider": "Provider",
-        "holidayOffPeak": "Holiday — off-peak all day"
+        "schedule": "Peak",
+        "offPeakLine": "Off-peak: weekends (UTC)",
+        "offPeakLineHolidays": "Off-peak: weekends + Chinese holidays",
+        "holidayEnds": "Holiday ends {date}",
+        "nextHoliday": "Next holiday {range} · in {n}d"
     },
     "checked": {
         "justNow": "just now",

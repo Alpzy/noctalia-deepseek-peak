@@ -10,7 +10,8 @@
     "menu": {
         "settings": "Widget-Einstellungen",
         "useDeepSeek": "DeepSeek verwenden",
-        "useOllama": "Ollama verwenden"
+        "useOllama": "Ollama verwenden",
+        "refresh": "Jetzt aktualisieren"
     },
     "notice": {
         "policyChanged": "DeepSeek-Preisrichtlinie evtl. geändert"
@@ -23,12 +24,15 @@
         "local": "Lokal",
         "utc": "UTC",
         "beijing": "Peking",
-        "cost": "Hauptzeit = 2x Nebenzeit",
         "checked": "Geprüft",
         "drift": "Preisrichtlinie evtl. geändert — Quelle prüfen",
         "weekendAllDay": "ganztägig Nebenzeit",
         "provider": "Anbieter",
-        "holidayOffPeak": "Feiertag — ganztägig Nebenzeit"
+        "schedule": "Hauptzeit",
+        "offPeakLine": "Nebenzeit: Wochenenden (UTC)",
+        "offPeakLineHolidays": "Nebenzeit: Wochenenden + chinesische Feiertage",
+        "holidayEnds": "Feiertag endet {date}",
+        "nextHoliday": "Nächster Feiertag {range} · in {n} T"
     },
     "checked": {
         "justNow": "gerade eben",

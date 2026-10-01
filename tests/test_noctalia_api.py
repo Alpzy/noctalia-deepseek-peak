@@ -142,3 +142,19 @@ def test_no_halfx_wording():
         "deepseek-peak/translations/en.json",
     ):
         assert "0.5x" not in pathlib.Path(rel).read_text(), f"{rel} still shows 0.5x"
+
+
+def test_provider_switch_resets_throttle():
+    """Regression: switching provider must not show the old countdown."""
+    for rel in ("deepseek-peak/BarWidget.qml", "deepseek-peak/Panel.qml"):
+        text = pathlib.Path(rel).read_text()
+        assert "_lastProvider" in text, f"{rel} must track provider changes"
+        assert "provider !== _lastProvider" in text, f"{rel} must force a rescan"
+
+
+def test_main_keeps_both_provider_states():
+    main = pathlib.Path("deepseek-peak/Main.qml").read_text()
+    assert "providerStates" in main
+    assert 'keys = ["deepseek", "ollama"]' in main
+    assert "checkProvider(\"deepseek\"" in main and "checkProvider(\"ollama\"" in main
+    assert "function refresh()" in main, "manual refresh must exist"

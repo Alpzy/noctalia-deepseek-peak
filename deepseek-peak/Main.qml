@@ -27,13 +27,21 @@ Item {
     readonly property var fallbackUrls: getProfile(provider).fallbackUrls
     property int checkTimeoutMs: 10000
 
+    // Per-provider live state, refreshed every tick so switching providers is
+    // instant and the tooltip can show both at once. Keys: deepseek, ollama.
+    property var providerStates: ({})
+    property var providerCheckMeta: ({}) // { provider: {drift, checkedAtMs} }
+    property var holidayInfo: null
+
     property bool isPeak: false
     property int secondsToNext: 0
     property bool onHoliday: false
+    property real blockProgress: 0
     property bool drift: false
     property double checkedAtMs: 0
     property var nowDate: new Date()
     property int _ticks: 999
+    property var _blocks: ({}) // cached blockBounds per provider
 
     // Display strings rebuilt every tick so late-arriving translations are used.
     property string countdownHMS: formatHMS(0)
@@ -228,6 +236,109 @@ function sameWindows(a, b) {
             return false;
     return true;
 }
+
+// Bounds of the current peak/off-peak block. Coarse 15-minute scan backwards
+// (max 10 days) refined to the second. Peak blocks are hours long, so a
+// 15-minute probe never skips a transition. Callers cache the result and
+// recompute only when the tier changes or the block ends.
+function blockBounds(now, provider) {
+    var peak = isPeakAt(now, provider);
+    var maxBack = 10 * 86400;
+    var step = 900;
+    var back = 0;
+    for (var s = step; s <= maxBack; s += step) {
+        if (isPeakAt(new Date(now.getTime() - s * 1000), provider) !== peak) {
+            back = s;
+            break;
+        }
+    }
+    var startMs = now.getTime() - back * 1000;
+    if (back > 0) {
+        for (var t = back - (step - 1); t <= back; t++) {
+            if (isPeakAt(new Date(now.getTime() - t * 1000), provider) !== peak) {
+                // now - t is the last instant of the previous tier, so the
+                // block starts one second later.
+                startMs = now.getTime() - (t - 1) * 1000;
+                break;
+            }
+        }
+    }
+    var forward = secondsUntilNext(now, provider);
+    var endMs = forward > 0 ? now.getTime() + forward * 1000 : now.getTime() + maxBack * 1000;
+    return {provider: provider, isPeak: peak, startMs: startMs, endMs: endMs};
+}
+
+// One provider's live state. `block` is the caller's cached blockBounds result;
+// when it is still valid the countdown is derived from its end, avoiding a
+// full forward scan every tick (holiday blocks can span a week).
+function providerSnapshot(now, provider, block) {
+    var peak = isPeakAt(now, provider);
+    var b = block;
+    if (!b || b.provider !== provider || b.isPeak !== peak || now.getTime() >= b.endMs) {
+        b = blockBounds(now, provider);
+    } else {
+        return {
+            isPeak: peak,
+            secondsToNext: Math.max(0, Math.round((b.endMs - now.getTime()) / 1000)),
+            onHoliday: isHoliday(now, provider),
+            progress: (b.endMs - b.startMs) > 0 ? Math.min(1, Math.max(0, (now.getTime() - b.startMs) / (b.endMs - b.startMs))) : 0,
+            block: b
+        };
+    }
+    var total = b.endMs - b.startMs;
+    return {
+        isPeak: peak,
+        secondsToNext: Math.max(0, Math.round((b.endMs - now.getTime()) / 1000)),
+        onHoliday: isHoliday(now, provider),
+        progress: total > 0 ? Math.min(1, Math.max(0, (now.getTime() - b.startMs) / total)) : 0,
+        block: b
+    };
+}
+
+function dateKeyToMs(key) {
+    var parts = key.split("-");
+    return Date.UTC(parseInt(parts[0], 10), parseInt(parts[1], 10) - 1, parseInt(parts[2], 10), 12);
+}
+
+function isNextDay(a, b) {
+    return Math.round((dateKeyToMs(b) - dateKeyToMs(a)) / 86400000) === 1;
+}
+
+// Current or next Chinese holiday range (contiguous bundled dates), but only
+// when it is active or starts within a week. Returns null otherwise.
+function holidayRangeInfo(now, provider) {
+    if (!getProfile(provider).holidayOffPeak)
+        return null;
+    var byYear = holidayDates();
+    var all = [];
+    for (var year in byYear)
+        for (var i = 0; i < byYear[year].length; i++)
+            all.push(byYear[year][i]);
+    all.sort();
+    var bj = new Date(now.getTime() + 8 * 3600 * 1000);
+    var todayKey = bj.getUTCFullYear() + "-" + pad(bj.getUTCMonth() + 1) + "-" + pad(bj.getUTCDate());
+    var todayMs = Date.UTC(bj.getUTCFullYear(), bj.getUTCMonth(), bj.getUTCDate());
+    var idx = 0;
+    while (idx < all.length && all[idx] < todayKey)
+        idx++;
+    if (idx >= all.length)
+        return null;
+    var start = idx;
+    var end = idx;
+    if (all[idx] === todayKey) {
+        while (start - 1 >= 0 && isNextDay(all[start - 1], all[start]))
+            start--;
+        while (end + 1 < all.length && isNextDay(all[end], all[end + 1]))
+            end++;
+        return {active: true, startMs: dateKeyToMs(all[start]), endMs: dateKeyToMs(all[end]), inDays: 0};
+    }
+    while (end + 1 < all.length && isNextDay(all[end], all[end + 1]))
+        end++;
+    var inDays = Math.round((dateKeyToMs(all[start]) - todayMs) / 86400000);
+    if (inDays > 7)
+        return null;
+    return {active: false, startMs: dateKeyToMs(all[start]), endMs: dateKeyToMs(all[end]), inDays: inDays};
+}
 // END peak.js (generated)
 
     function t(key, params) {
@@ -251,18 +362,29 @@ function sameWindows(a, b) {
         checkedText = t("panel.checked") + "   " + relative;
         driftText = t("panel.drift");
     }
+    // Refreshes both providers' snapshots and republishes the active one.
     function update() {
         var now = new Date();
         nowDate = now;
-        isPeak = isPeakAt(now, provider);
-        onHoliday = isHoliday(now, provider);
-        if (_ticks >= 30 || secondsToNext <= 1) {
-            secondsToNext = secondsUntilNext(now, provider);
-            _ticks = 0;
-        } else {
-            secondsToNext = Math.max(0, secondsToNext - 1);
-            _ticks += 1;
+        var states = {};
+        var blocks = {};
+        var keys = ["deepseek", "ollama"];
+        for (var i = 0; i < keys.length; i++) {
+            var snap = providerSnapshot(now, keys[i], _blocks[keys[i]]);
+            blocks[keys[i]] = snap.block;
+            states[keys[i]] = snap;
         }
+        _blocks = blocks;
+        providerStates = states;
+        holidayInfo = holidayRangeInfo(now, provider);
+        var active = states[provider];
+        isPeak = active.isPeak;
+        secondsToNext = active.secondsToNext;
+        onHoliday = active.onHoliday;
+        blockProgress = active.progress;
+        var meta = providerCheckMeta[provider] || ({});
+        drift = meta.drift === true;
+        checkedAtMs = meta.checkedAtMs || 0;
         refreshTexts();
     }
 
@@ -279,7 +401,12 @@ function sameWindows(a, b) {
             return [o[1] + "-" + o[2]];
         return null;
     }
-    function tryUrl(idx, urls) {
+    function setCheckMeta(providerId, patch) {
+        var meta = Object.assign({}, providerCheckMeta);
+        meta[providerId] = Object.assign({}, meta[providerId] || {}, patch);
+        providerCheckMeta = meta;
+    }
+    function tryUrl(providerId, idx, urls) {
         if (idx >= urls.length)
             return;
         var xhr = new XMLHttpRequest();
@@ -287,7 +414,7 @@ function sameWindows(a, b) {
         function fail() {
             if (!settled) {
                 settled = true;
-                tryUrl(idx + 1, urls);
+                tryUrl(providerId, idx + 1, urls);
             }
         }
         xhr.onreadystatechange = function () {
@@ -296,15 +423,20 @@ function sameWindows(a, b) {
             if (xhr.status === 200) {
                 settled = true;
                 var found = windowsFromPage(xhr.responseText);
-                if (found && !sameWindows(found, extractWindows(scheduleText(provider)))) {
-                    drift = true;
-                    ToastService.showNotice(t("notice.policyChanged"), found.join(", ") + " UTC");
+                if (found && !sameWindows(found, extractWindows(scheduleText(providerId)))) {
+                    setCheckMeta(providerId, {drift: true, checkedAtMs: Date.now()});
+                    if (providerId === provider)
+                        ToastService.showNotice(t("notice.policyChanged"), providerName(providerId) + " · " + found.join(", ") + " UTC");
                 } else if (found) {
                     // DeepSeek bundles holidays; warn if the page stops saying so.
-                    drift = provider === "deepseek" && !/holiday/i.test(xhr.responseText);
+                    setCheckMeta(providerId, {
+                        drift: providerId === "deepseek" && !/holiday/i.test(xhr.responseText),
+                        checkedAtMs: Date.now()
+                    });
                 }
-                checkedAtMs = Date.now();
-                refreshTexts();
+                if (providerId === provider) {
+                    update();
+                }
             } else {
                 fail();
             }
@@ -322,15 +454,28 @@ function sameWindows(a, b) {
             fail();
         }
     }
+    function checkProvider(providerId, customUrl) {
+        var profile = getProfile(providerId);
+        var primary = customUrl && customUrl !== "" ? customUrl : profile.sourceUrl;
+        var urls = [primary];
+        var fallbacks = profile.fallbackUrls;
+        for (var i = 0; i < fallbacks.length; i++) {
+            if (urls.indexOf(fallbacks[i]) === -1)
+                urls.push(fallbacks[i]);
+        }
+        tryUrl(providerId, 0, urls);
+    }
     function checkDrift() {
         if (!autoCheck || offlineOnly)
             return;
-        var urls = [sourceUrl];
-        for (var i = 0; i < fallbackUrls.length; i++) {
-            if (urls.indexOf(fallbackUrls[i]) === -1)
-                urls.push(fallbackUrls[i]);
-        }
-        tryUrl(0, urls);
+        checkProvider("deepseek", customSourceUrl);
+        checkProvider("ollama", customSourceUrl);
+    }
+    // Manual refresh from the panel button, the right-click menu or IPC.
+    // Ignores autoCheck/offlineOnly since the user asked explicitly.
+    function refresh() {
+        checkProvider("deepseek", customSourceUrl);
+        checkProvider("ollama", customSourceUrl);
     }
 
     Component.onCompleted: update()
@@ -359,7 +504,7 @@ function sameWindows(a, b) {
         target: "plugin:deepseek-peak"
 
         function refresh(): string {
-            root.checkDrift();
+            root.refresh();
             return "policy check triggered";
         }
         function status(): string {

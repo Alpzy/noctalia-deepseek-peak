@@ -10,7 +10,8 @@
     "menu": {
         "settings": "Widget beállításai",
         "useDeepSeek": "DeepSeek használata",
-        "useOllama": "Ollama használata"
+        "useOllama": "Ollama használata",
+        "refresh": "Frissítés most"
     },
     "notice": {
         "policyChanged": "A DeepSeek árazási szabályzata megváltozhatott"
@@ -23,12 +24,15 @@
         "local": "Helyi",
         "utc": "UTC",
         "beijing": "Peking",
-        "cost": "Csúcs = 2x csúcson kívül",
         "checked": "Ellenőrizve",
         "drift": "A szabályzat megváltozhatott — nézd meg a forrást",
         "weekendAllDay": "egész nap csúcson kívül",
         "provider": "Szolgáltató",
-        "holidayOffPeak": "Ünnepnap — egész nap csúcson kívül"
+        "schedule": "Csúcs",
+        "offPeakLine": "Csúcson kívül: hétvégék (UTC)",
+        "offPeakLineHolidays": "Csúcson kívül: hétvégék + kínai ünnepek",
+        "holidayEnds": "Az ünnep vége: {date}",
+        "nextHoliday": "Következő ünnep: {range} · {n} nap múlva"
     },
     "checked": {
         "justNow": "épp most",

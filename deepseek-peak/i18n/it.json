@@ -10,7 +10,8 @@
     "menu": {
         "settings": "Impostazioni widget",
         "useDeepSeek": "Usa DeepSeek",
-        "useOllama": "Usa Ollama"
+        "useOllama": "Usa Ollama",
+        "refresh": "Aggiorna ora"
     },
     "notice": {
         "policyChanged": "La politica dei prezzi DeepSeek potrebbe essere cambiata"
@@ -23,12 +24,15 @@
         "local": "Locale",
         "utc": "UTC",
         "beijing": "Pechino",
-        "cost": "Punta = 2x fuori punta",
         "checked": "Verificato",
         "drift": "La politica potrebbe essere cambiata — controlla la fonte",
         "weekendAllDay": "fuori punta tutto il giorno",
         "provider": "Provider",
-        "holidayOffPeak": "Festivo — fuori punta tutto il giorno"
+        "schedule": "Punta",
+        "offPeakLine": "Fuori punta: fine settimana (UTC)",
+        "offPeakLineHolidays": "Fuori punta: fine settimana + festività cinesi",
+        "holidayEnds": "La festività termina il {date}",
+        "nextHoliday": "Prossima festività {range} · tra {n} g"
     },
     "checked": {
         "justNow": "proprio ora",

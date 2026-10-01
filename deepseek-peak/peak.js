@@ -179,3 +179,106 @@ function sameWindows(a, b) {
             return false;
     return true;
 }
+
+// Bounds of the current peak/off-peak block. Coarse 15-minute scan backwards
+// (max 10 days) refined to the second. Peak blocks are hours long, so a
+// 15-minute probe never skips a transition. Callers cache the result and
+// recompute only when the tier changes or the block ends.
+function blockBounds(now, provider) {
+    var peak = isPeakAt(now, provider);
+    var maxBack = 10 * 86400;
+    var step = 900;
+    var back = 0;
+    for (var s = step; s <= maxBack; s += step) {
+        if (isPeakAt(new Date(now.getTime() - s * 1000), provider) !== peak) {
+            back = s;
+            break;
+        }
+    }
+    var startMs = now.getTime() - back * 1000;
+    if (back > 0) {
+        for (var t = back - (step - 1); t <= back; t++) {
+            if (isPeakAt(new Date(now.getTime() - t * 1000), provider) !== peak) {
+                // now - t is the last instant of the previous tier, so the
+                // block starts one second later.
+                startMs = now.getTime() - (t - 1) * 1000;
+                break;
+            }
+        }
+    }
+    var forward = secondsUntilNext(now, provider);
+    var endMs = forward > 0 ? now.getTime() + forward * 1000 : now.getTime() + maxBack * 1000;
+    return {provider: provider, isPeak: peak, startMs: startMs, endMs: endMs};
+}
+
+// One provider's live state. `block` is the caller's cached blockBounds result;
+// when it is still valid the countdown is derived from its end, avoiding a
+// full forward scan every tick (holiday blocks can span a week).
+function providerSnapshot(now, provider, block) {
+    var peak = isPeakAt(now, provider);
+    var b = block;
+    if (!b || b.provider !== provider || b.isPeak !== peak || now.getTime() >= b.endMs) {
+        b = blockBounds(now, provider);
+    } else {
+        return {
+            isPeak: peak,
+            secondsToNext: Math.max(0, Math.round((b.endMs - now.getTime()) / 1000)),
+            onHoliday: isHoliday(now, provider),
+            progress: (b.endMs - b.startMs) > 0 ? Math.min(1, Math.max(0, (now.getTime() - b.startMs) / (b.endMs - b.startMs))) : 0,
+            block: b
+        };
+    }
+    var total = b.endMs - b.startMs;
+    return {
+        isPeak: peak,
+        secondsToNext: Math.max(0, Math.round((b.endMs - now.getTime()) / 1000)),
+        onHoliday: isHoliday(now, provider),
+        progress: total > 0 ? Math.min(1, Math.max(0, (now.getTime() - b.startMs) / total)) : 0,
+        block: b
+    };
+}
+
+function dateKeyToMs(key) {
+    var parts = key.split("-");
+    return Date.UTC(parseInt(parts[0], 10), parseInt(parts[1], 10) - 1, parseInt(parts[2], 10), 12);
+}
+
+function isNextDay(a, b) {
+    return Math.round((dateKeyToMs(b) - dateKeyToMs(a)) / 86400000) === 1;
+}
+
+// Current or next Chinese holiday range (contiguous bundled dates), but only
+// when it is active or starts within a week. Returns null otherwise.
+function holidayRangeInfo(now, provider) {
+    if (!getProfile(provider).holidayOffPeak)
+        return null;
+    var byYear = holidayDates();
+    var all = [];
+    for (var year in byYear)
+        for (var i = 0; i < byYear[year].length; i++)
+            all.push(byYear[year][i]);
+    all.sort();
+    var bj = new Date(now.getTime() + 8 * 3600 * 1000);
+    var todayKey = bj.getUTCFullYear() + "-" + pad(bj.getUTCMonth() + 1) + "-" + pad(bj.getUTCDate());
+    var todayMs = Date.UTC(bj.getUTCFullYear(), bj.getUTCMonth(), bj.getUTCDate());
+    var idx = 0;
+    while (idx < all.length && all[idx] < todayKey)
+        idx++;
+    if (idx >= all.length)
+        return null;
+    var start = idx;
+    var end = idx;
+    if (all[idx] === todayKey) {
+        while (start - 1 >= 0 && isNextDay(all[start - 1], all[start]))
+            start--;
+        while (end + 1 < all.length && isNextDay(all[end], all[end + 1]))
+            end++;
+        return {active: true, startMs: dateKeyToMs(all[start]), endMs: dateKeyToMs(all[end]), inDays: 0};
+    }
+    while (end + 1 < all.length && isNextDay(all[end], all[end + 1]))
+        end++;
+    var inDays = Math.round((dateKeyToMs(all[start]) - todayMs) / 86400000);
+    if (inDays > 7)
+        return null;
+    return {active: false, startMs: dateKeyToMs(all[start]), endMs: dateKeyToMs(all[end]), inDays: inDays};
+}

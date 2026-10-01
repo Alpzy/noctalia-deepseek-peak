@@ -10,7 +10,8 @@
     "menu": {
         "settings": "元件設定",
         "useDeepSeek": "使用 DeepSeek",
-        "useOllama": "使用 Ollama"
+        "useOllama": "使用 Ollama",
+        "refresh": "立即重新整理"
     },
     "notice": {
         "policyChanged": "DeepSeek 計費策略可能已變更"
@@ -23,12 +24,15 @@
         "local": "本地",
         "utc": "UTC",
         "beijing": "北京",
-        "cost": "尖峰 = 離峰的 2 倍",
         "checked": "已檢查",
         "drift": "計費策略可能已變更 — 請查看來源",
         "weekendAllDay": "全天離峰",
         "provider": "服務商",
-        "holidayOffPeak": "假日 — 全天離峰"
+        "schedule": "尖峰",
+        "offPeakLine": "離峰：週末（UTC）",
+        "offPeakLineHolidays": "離峰：週末 + 中國假日",
+        "holidayEnds": "假日結束 {date}",
+        "nextHoliday": "下個假日 {range} · {n} 天後"
     },
     "checked": {
         "justNow": "剛剛",

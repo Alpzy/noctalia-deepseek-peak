@@ -10,7 +10,8 @@
     "menu": {
         "settings": "组件设置",
         "useDeepSeek": "使用 DeepSeek",
-        "useOllama": "使用 Ollama"
+        "useOllama": "使用 Ollama",
+        "refresh": "立即刷新"
     },
     "notice": {
         "policyChanged": "DeepSeek 计费策略可能已变更"
@@ -23,12 +24,15 @@
         "local": "本地",
         "utc": "UTC",
         "beijing": "北京",
-        "cost": "高峰 = 非高峰的 2 倍",
         "checked": "已检查",
         "drift": "计费策略可能已变更 — 请查看来源",
         "weekendAllDay": "全天非高峰",
         "provider": "服务商",
-        "holidayOffPeak": "节假日 — 全天非高峰"
+        "schedule": "高峰",
+        "offPeakLine": "非高峰：周末（UTC）",
+        "offPeakLineHolidays": "非高峰：周末 + 中国节假日",
+        "holidayEnds": "节假日结束 {date}",
+        "nextHoliday": "下个节假日 {range} · {n} 天后"
     },
     "checked": {
         "justNow": "刚刚",

@@ -10,7 +10,8 @@
     "menu": {
         "settings": "Paramètres du widget",
         "useDeepSeek": "Utiliser DeepSeek",
-        "useOllama": "Utiliser Ollama"
+        "useOllama": "Utiliser Ollama",
+        "refresh": "Actualiser"
     },
     "notice": {
         "policyChanged": "La politique tarifaire DeepSeek a peut-être changé"
@@ -23,12 +24,15 @@
         "local": "Local",
         "utc": "UTC",
         "beijing": "Pékin",
-        "cost": "Pointe = 2x heures creuses",
         "checked": "Vérifié",
         "drift": "La politique a peut-être changé — voir la source",
         "weekendAllDay": "heures creuses toute la journée",
         "provider": "Fournisseur",
-        "holidayOffPeak": "Jour férié — heures creuses toute la journée"
+        "schedule": "Pointe",
+        "offPeakLine": "Creuses : week-ends (UTC)",
+        "offPeakLineHolidays": "Creuses : week-ends + jours fériés chinois",
+        "holidayEnds": "Fin du jour férié {date}",
+        "nextHoliday": "Prochain jour férié {range} · dans {n} j"
     },
     "checked": {
         "justNow": "à l'instant",

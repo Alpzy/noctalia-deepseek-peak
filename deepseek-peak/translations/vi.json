@@ -10,7 +10,8 @@
     "menu": {
         "settings": "Cài đặt tiện ích",
         "useDeepSeek": "Dùng DeepSeek",
-        "useOllama": "Dùng Ollama"
+        "useOllama": "Dùng Ollama",
+        "refresh": "Làm mới ngay"
     },
     "notice": {
         "policyChanged": "Chính sách giá của DeepSeek có thể đã thay đổi"
@@ -23,12 +24,15 @@
         "local": "Cục bộ",
         "utc": "UTC",
         "beijing": "Bắc Kinh",
-        "cost": "Cao điểm = 2x thấp điểm",
         "checked": "Đã kiểm tra",
         "drift": "Chính sách có thể đã thay đổi — xem nguồn",
         "weekendAllDay": "thấp điểm cả ngày",
         "provider": "Nhà cung cấp",
-        "holidayOffPeak": "Ngày lễ — thấp điểm cả ngày"
+        "schedule": "Cao điểm",
+        "offPeakLine": "Thấp điểm: cuối tuần (UTC)",
+        "offPeakLineHolidays": "Thấp điểm: cuối tuần + ngày lễ Trung Quốc",
+        "holidayEnds": "Ngày lễ kết thúc {date}",
+        "nextHoliday": "Ngày lễ tới {range} · sau {n} ngày"
     },
     "checked": {
         "justNow": "vừa xong",

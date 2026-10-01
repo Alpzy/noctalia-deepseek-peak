@@ -10,7 +10,8 @@
     "menu": {
         "settings": "Nastavení widgetu",
         "useDeepSeek": "Použít DeepSeek",
-        "useOllama": "Použít Ollama"
+        "useOllama": "Použít Ollama",
+        "refresh": "Obnovit nyní"
     },
     "notice": {
         "policyChanged": "Pravidla cen DeepSeek se možná změnila"
@@ -23,12 +24,15 @@
         "local": "Místní",
         "utc": "UTC",
         "beijing": "Peking",
-        "cost": "Špička = 2x mimo špičku",
         "checked": "Zkontrolováno",
         "drift": "Pravidla se možná změnila — zkontrolujte zdroj",
         "weekendAllDay": "celý den mimo špičku",
         "provider": "Poskytovatel",
-        "holidayOffPeak": "Svátek — celý den mimo špičku"
+        "schedule": "Špička",
+        "offPeakLine": "Mimo špičku: víkendy (UTC)",
+        "offPeakLineHolidays": "Mimo špičku: víkendy + čínské svátky",
+        "holidayEnds": "Svátek končí {date}",
+        "nextHoliday": "Další svátek {range} · za {n} d"
     },
     "checked": {
         "justNow": "právě teď",

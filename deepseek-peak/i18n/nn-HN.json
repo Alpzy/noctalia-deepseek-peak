@@ -10,7 +10,8 @@
     "menu": {
         "settings": "Innstillingar for widget",
         "useDeepSeek": "Bruk DeepSeek",
-        "useOllama": "Bruk Ollama"
+        "useOllama": "Bruk Ollama",
+        "refresh": "Oppdater no"
     },
     "notice": {
         "policyChanged": "DeepSeek-prisretningslinene kann ha vorte endra"
@@ -23,12 +24,15 @@
         "local": "Stadleg",
         "utc": "UTC",
         "beijing": "Beijing",
-        "cost": "Topp = 2x off-peak",
         "checked": "Kontrollert",
         "drift": "Retningslinene kann ha vorte endra — sjå kjelda",
         "weekendAllDay": "off-peak heile dagen",
         "provider": "Tilbydar",
-        "holidayOffPeak": "Heilagdag — off-peak heile dagen"
+        "schedule": "Topp",
+        "offPeakLine": "Off-peak: helgar (UTC)",
+        "offPeakLineHolidays": "Off-peak: helgar + kinesiske heilagdagar",
+        "holidayEnds": "Heilagdagen endar {date}",
+        "nextHoliday": "Neste heilagdag {range} · om {n} d"
     },
     "checked": {
         "justNow": "nett no",

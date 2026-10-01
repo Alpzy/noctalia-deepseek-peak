@@ -10,7 +10,8 @@
     "menu": {
         "settings": "Mîhengên wîgetê",
         "useDeepSeek": "DeepSeek bikar bîne",
-        "useOllama": "Ollama bikar bîne"
+        "useOllama": "Ollama bikar bîne",
+        "refresh": "Niha nûve bike"
     },
     "notice": {
         "policyChanged": "Dibe ku siyasetnameya bihayê ya DeepSeek guherîbe"
@@ -23,12 +24,15 @@
         "local": "Herêmî",
         "utc": "UTC",
         "beijing": "Beijing",
-        "cost": "Lutke = 2x derveyî lutke",
         "checked": "Hat kontrolkirin",
         "drift": "Dibe ku siyaset guherîbe — çavkaniyê binêre",
         "weekendAllDay": "tewra rojê derveyî lutke",
         "provider": "Pêşkêşkar",
-        "holidayOffPeak": "Cejn — tewra rojê derveyî lutke"
+        "schedule": "Lutke",
+        "offPeakLine": "Derveyî lutke: dawiya hefteyê (UTC)",
+        "offPeakLineHolidays": "Derveyî lutke: dawiya hefteyê + cejnên Çînê",
+        "holidayEnds": "Cejn diqede {date}",
+        "nextHoliday": "Cejna bê {range} · di {n} rojan de"
     },
     "checked": {
         "justNow": "niha",

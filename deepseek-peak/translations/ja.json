@@ -10,7 +10,8 @@
     "menu": {
         "settings": "ウィジェット設定",
         "useDeepSeek": "DeepSeek を使う",
-        "useOllama": "Ollama を使う"
+        "useOllama": "Ollama を使う",
+        "refresh": "今すぐ更新"
     },
     "notice": {
         "policyChanged": "DeepSeekの料金体系が変更された可能性"
@@ -23,12 +24,15 @@
         "local": "ローカル",
         "utc": "UTC",
         "beijing": "北京",
-        "cost": "ピーク = オフピークの2倍",
         "checked": "確認済み",
         "drift": "料金体系が変更された可能性 — 情報源を確認",
         "weekendAllDay": "終日オフピーク",
         "provider": "プロバイダー",
-        "holidayOffPeak": "祝日 — 終日オフピーク"
+        "schedule": "ピーク",
+        "offPeakLine": "オフピーク：週末（UTC）",
+        "offPeakLineHolidays": "オフピーク：週末＋中国の祝日",
+        "holidayEnds": "祝日終了 {date}",
+        "nextHoliday": "次の祝日 {range} · {n}日後"
     },
     "checked": {
         "justNow": "たった今",

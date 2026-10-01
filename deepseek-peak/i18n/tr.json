@@ -10,7 +10,8 @@
     "menu": {
         "settings": "Widget ayarları",
         "useDeepSeek": "DeepSeek kullan",
-        "useOllama": "Ollama kullan"
+        "useOllama": "Ollama kullan",
+        "refresh": "Şimdi yenile"
     },
     "notice": {
         "policyChanged": "DeepSeek fiyat ilkesi değişmiş olabilir"
@@ -23,12 +24,15 @@
         "local": "Yerel",
         "utc": "UTC",
         "beijing": "Pekin",
-        "cost": "Zirve = zirve dışının 2 katı",
         "checked": "Kontrol edildi",
         "drift": "İlke değişmiş olabilir — kaynağa bakın",
         "weekendAllDay": "tüm gün zirve dışı",
         "provider": "Sağlayıcı",
-        "holidayOffPeak": "Tatil — tüm gün zirve dışı"
+        "schedule": "Zirve",
+        "offPeakLine": "Zirve dışı: hafta sonları (UTC)",
+        "offPeakLineHolidays": "Zirve dışı: hafta sonları + Çin tatilleri",
+        "holidayEnds": "Tatil bitiyor {date}",
+        "nextHoliday": "Sonraki tatil {range} · {n} gün içinde"
     },
     "checked": {
         "justNow": "az önce",

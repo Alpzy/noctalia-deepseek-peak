@@ -6,7 +6,7 @@ const assert = require("assert");
 
 const src = fs.readFileSync(path.join(__dirname, "..", "deepseek-peak", "peak.js"), "utf8");
 const Peak = new Function(
-    src + "\nreturn { pad, formatHMS, isPeakAt, secondsUntilNext, isWeekendOffDay, isHoliday, fmtHM, windowLine, extractWindows, sameWindows, checkedInfo, scheduleWindows, scheduleText, providerName, providerProfiles, holidayDates };"
+    src + "\nreturn { pad, formatHMS, isPeakAt, secondsUntilNext, isWeekendOffDay, isHoliday, fmtHM, windowLine, extractWindows, sameWindows, checkedInfo, scheduleWindows, scheduleText, providerName, providerProfiles, holidayDates, blockBounds, providerSnapshot, holidayRangeInfo };"
 )();
 
 // --- schedule.json <-> peak.js cross-check (single source of data) ---
@@ -117,4 +117,42 @@ assert.strictEqual(Peak.sameWindows(Peak.extractWindows(dsLive), Peak.extractWin
 const changed = "02:00 - 05:00 and 06:00 - 10:00 UTC, Monday through Friday.";
 assert.strictEqual(Peak.sameWindows(Peak.extractWindows(changed), Peak.extractWindows(dsBundled)), false);
 
+// --- block bounds / progress / snapshots ---
+const dsPeak = d("2026-09-14T02:00:00Z"); // 1h into the 01:00-04:00 window
+const b = Peak.blockBounds(dsPeak, "deepseek");
+assert.strictEqual(new Date(b.startMs).toISOString(), "2026-09-14T01:00:00.000Z");
+assert.strictEqual(new Date(b.endMs).toISOString(), "2026-09-14T04:00:00.000Z");
+const snap = Peak.providerSnapshot(dsPeak, "deepseek", null);
+assert.strictEqual(snap.isPeak, true);
+assert.strictEqual(snap.secondsToNext, 7200);
+assert.strictEqual(Math.round(snap.progress * 3), 1); // 1 of 3 hours elapsed
+// Cached block avoids a rescan and still ticks correctly
+const snap2 = Peak.providerSnapshot(d("2026-09-14T03:30:00Z"), "deepseek", b);
+assert.strictEqual(snap2.secondsToNext, 1800);
+assert.strictEqual(Math.round(snap2.progress * 6), 5); // 2.5 of 3 hours
+// Holiday block spans days: snapshot derives the countdown from the block end
+const hol = Peak.blockBounds(d("2026-10-02T02:00:00Z"), "deepseek");
+assert.strictEqual(Peak.isHoliday(d("2026-10-02T02:00:00Z"), "deepseek"), true);
+assert.ok(hol.endMs > hol.startMs);
+assert.ok(Peak.providerSnapshot(d("2026-10-02T02:00:00Z"), "deepseek", hol).secondsToNext > 0);
+// Block bounds agree with the tier for both providers on a weekday
+for (const provider of ["deepseek", "ollama"]) {
+    for (const iso of ["2026-09-14T02:00:00Z", "2026-09-14T13:00:00Z", "2026-09-14T23:00:00Z"]) {
+        const bb = Peak.blockBounds(d(iso), provider);
+        assert.strictEqual(bb.isPeak, Peak.isPeakAt(d(iso), provider), provider + " " + iso);
+        assert.ok(bb.startMs < d(iso).getTime() && bb.endMs > d(iso).getTime(), provider + " " + iso);
+    }
+}
+
+// --- holiday range info (only current or within 7 days) ---
+const duringHoliday = Peak.holidayRangeInfo(d("2026-10-02T02:00:00Z"), "deepseek");
+assert.strictEqual(duringHoliday.active, true);
+assert.strictEqual(new Date(duringHoliday.endMs).toISOString().substring(0, 10), "2026-10-07");
+const beforeHoliday = Peak.holidayRangeInfo(d("2026-09-26T02:00:00Z"), "deepseek"); // 1 day before 09-27 holiday start
+assert.ok(beforeHoliday && beforeHoliday.inDays <= 7);
+const farFromHoliday = Peak.holidayRangeInfo(d("2026-06-01T02:00:00Z"), "deepseek"); // next: 06-19..21 (18 days) then 09-25
+assert.strictEqual(farFromHoliday, null);
+assert.strictEqual(Peak.holidayRangeInfo(d("2026-10-02T02:00:00Z"), "ollama"), null);
+
 console.log("test_logic.js: all assertions passed");
+

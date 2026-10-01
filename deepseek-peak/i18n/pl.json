@@ -10,7 +10,8 @@
     "menu": {
         "settings": "Ustawienia widżetu",
         "useDeepSeek": "Użyj DeepSeek",
-        "useOllama": "Użyj Ollama"
+        "useOllama": "Użyj Ollama",
+        "refresh": "Odśwież teraz"
     },
     "notice": {
         "policyChanged": "Polityka cen DeepSeek mogła się zmienić"
@@ -23,12 +24,15 @@
         "local": "Lokalny",
         "utc": "UTC",
         "beijing": "Pekin",
-        "cost": "Szczyt = 2x poza szczytem",
         "checked": "Sprawdzono",
         "drift": "Polityka mogła się zmienić — sprawdź źródło",
         "weekendAllDay": "cały dzień poza szczytem",
         "provider": "Dostawca",
-        "holidayOffPeak": "Święto — cały dzień poza szczytem"
+        "schedule": "Szczyt",
+        "offPeakLine": "Poza szczytem: weekendy (UTC)",
+        "offPeakLineHolidays": "Poza szczytem: weekendy + chińskie święta",
+        "holidayEnds": "Święto kończy się {date}",
+        "nextHoliday": "Następne święto {range} · za {n} d"
     },
     "checked": {
         "justNow": "właśnie teraz",

@@ -10,7 +10,8 @@
     "menu": {
         "settings": "Widgetinställningar",
         "useDeepSeek": "Använd DeepSeek",
-        "useOllama": "Använd Ollama"
+        "useOllama": "Använd Ollama",
+        "refresh": "Uppdatera nu"
     },
     "notice": {
         "policyChanged": "DeepSeeks prispolicy kan ha ändrats"
@@ -23,12 +24,15 @@
         "local": "Lokal",
         "utc": "UTC",
         "beijing": "Peking",
-        "cost": "Topp = 2x låglast",
         "checked": "Kontrollerad",
         "drift": "Policyn kan ha ändrats — kontrollera källan",
         "weekendAllDay": "låglast hela dagen",
         "provider": "Leverantör",
-        "holidayOffPeak": "Helgdag — låglast hela dagen"
+        "schedule": "Topp",
+        "offPeakLine": "Låglast: helger (UTC)",
+        "offPeakLineHolidays": "Låglast: helger + kinesiska helgdagar",
+        "holidayEnds": "Helgdagen slutar {date}",
+        "nextHoliday": "Nästa helgdag {range} · om {n} d"
     },
     "checked": {
         "justNow": "nyss",
