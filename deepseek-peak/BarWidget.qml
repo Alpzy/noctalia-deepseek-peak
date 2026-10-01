@@ -343,7 +343,10 @@ function holidayRangeInfo(now, provider) {
 
     // Content dimensions follow the bar capsule: the loader extends the
     // click area to full bar height, the visual stays at content size.
-    readonly property real contentWidth: contentRow.implicitWidth + Style.marginM * 2
+    // icon mode: just the dot; otherwise the text (above) sets the width and
+    // the gauge spans from the dot to the capsule's right inner edge.
+    readonly property real gaugeHeight: Math.max(2, Math.round(3 * Style.uiScaleRatio))
+    readonly property real contentWidth: Style.marginM * 2 + capsuleDot.implicitWidth + (displayMode === "icon" ? 0 : Style.marginS + capsuleText.implicitWidth)
     readonly property real contentHeight: capsuleHeight
 
     implicitWidth: isBarVertical ? capsuleHeight : contentWidth
@@ -427,35 +430,40 @@ function holidayRangeInfo(now, provider) {
         border.color: mouseArea.containsMouse ? root.stateColor : Style.capsuleBorderColor
         border.width: Style.capsuleBorderWidth
 
-        RowLayout {
-            id: contentRow
-            anchors.centerIn: parent
-            anchors.verticalCenterOffset: root.gaugeVisible ? -Math.round(4 * Style.uiScaleRatio) : 0
-            spacing: Style.marginS
-
-            NIcon {
-                Layout.alignment: Qt.AlignVCenter
-                icon: "circle-filled"
-                color: root.stateColor
-            }
-            NText {
-                Layout.alignment: Qt.AlignVCenter
-                visible: root.displayMode !== "icon"
-                text: root.displayMode === "full" ? root.stateText + " " + root.countdownText : root.countdownText
-                pointSize: root.barFontSize
-                color: Color.mOnSurface
-            }
+        // Shape (O_____): dot on the left, vertically centered; the text sits
+        // above the progress gauge, which starts where the dot ends.
+        NIcon {
+            id: capsuleDot
+            anchors.left: parent.left
+            anchors.leftMargin: Style.marginM
+            anchors.verticalCenter: parent.verticalCenter
+            icon: "circle-filled"
+            color: root.stateColor
         }
 
-        // Full-width progress gauge under the content, inset from the capsule
-        // edges. Hidden on vertical bars and in icon-only mode.
+        NText {
+            id: capsuleText
+            visible: root.displayMode !== "icon"
+            anchors.left: capsuleDot.right
+            anchors.leftMargin: Style.marginS
+            anchors.top: parent.top
+            anchors.topMargin: Math.max(1, Math.round(1 * Style.uiScaleRatio))
+            text: root.displayMode === "full" ? root.stateText + " " + root.countdownText : root.countdownText
+            pointSize: root.barFontSize
+            color: Color.mOnSurface
+        }
+
+        // Progress gauge: starts at the dot's right edge, ends at the capsule's
+        // right inner edge. Hidden on vertical bars and in icon-only mode.
         NLinearGauge {
             visible: root.gaugeVisible
-            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.left: capsuleDot.right
+            anchors.leftMargin: Style.marginS
+            anchors.right: parent.right
+            anchors.rightMargin: Style.marginM
             anchors.bottom: parent.bottom
             anchors.bottomMargin: Math.max(2, Math.round(3 * Style.uiScaleRatio))
-            width: root.contentWidth - 2 * Style.marginS
-            height: Math.max(2, Math.round(3 * Style.uiScaleRatio))
+            height: root.gaugeHeight
             orientation: Qt.Horizontal
             ratio: root.blockProgress
             fillColor: root.stateColor
