@@ -9,6 +9,7 @@ LUAU_FILES = [
     "deepseek-peak/panel.luau",
     "deepseek-peak/checker.luau",
     "deepseek-peak/lib/schedule.luau",
+    "deepseek-peak/lib/settings.luau",
 ]
 
 
@@ -32,21 +33,23 @@ def test_luau_entry_scripts_parse():
 
 def test_widget_uses_v5_api_not_v4_objects():
     text = pathlib.Path("deepseek-peak/widget.luau").read_text()
-    assert "barWidget.setGlyph" in text or "barWidget.render" in text
-    assert "noctalia.getConfig" in text
+    assert "barWidget.render" in text
     assert "pluginApi" not in text, "v4 plugin object must not leak into v5 script"
     assert "setUpdateInterval" in text
     assert 'require("./lib/schedule.luau")' in text, "widget must use the shared schedule module"
     assert "schedule.isPeakAt" in text and "schedule.secondsUntilNext" in text
+    assert "settings.get" in text, "widget must read through the settings overlay"
+    assert "schedule.progress" in text, "widget must render block progress"
 
 
 def test_panel_uses_v5_panel_api():
     text = pathlib.Path("deepseek-peak/panel.luau").read_text()
     assert "panel.render" in text
     assert "function onOpen" in text
-    assert "noctalia.getConfig" in text
+    assert "settings.get" in text, "panel must read through the settings overlay"
     assert 'require("./lib/schedule.luau")' in text, "panel must use the shared schedule module"
-    assert "panel.openContextMenu" not in text or "onRightClick" in text
+    assert 'require("./lib/settings.luau")' in text
+    assert "schedule.countdownLabelKey" in text, "countdown label semantics live in the module"
     assert "provider" in text
 
 

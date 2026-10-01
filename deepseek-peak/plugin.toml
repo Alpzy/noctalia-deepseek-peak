@@ -106,11 +106,14 @@ default = ""
 id = "peak"
 entry = "widget.luau"
 
+  [widget.actions]
+  right = "settings-open-plugin alpzy/deepseek-peak"
+
 [[panel]]
 id = "panel"
 entry = "panel.luau"
 width = 340
-height = 420
+height = 520
 placement = "attached"
 position = "auto"
 open_near_click = true

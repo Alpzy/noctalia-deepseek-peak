@@ -74,6 +74,31 @@ check("ollama page window", ol[1], "12:00-18:00")
 check("unknown page nil", schedule.windowsFromPage("no schedule here"), nil)
 check("sameWindows order free", schedule.sameWindows({"06:00-10:00","01:00-04:00"}, {"01:00-04:00","06:00-10:00"}), true)
 check("sameWindows mismatch", schedule.sameWindows({"01:00-04:00"}, {"12:00-18:00"}), false)
+
+-- blockBounds/progress: Wed 2026-09-30 02:00 UTC sits 1h into the 01:00-04:00 block.
+local p1, b1 = schedule.progress(at(2026,9,30,2,0), "deepseek")
+check("block isPeak", b1.isPeak, true)
+check("block end", b1.endMs - at(2026,9,30,2,0), 7200)
+check("block start", at(2026,9,30,2,0) - b1.startMs, 3600)
+check("progress third", math.floor(p1 * 100 + 0.5), 33)
+-- windowLine: canonical windows in a zone; nil on weekends.
+check("window utc", schedule.windowLine(at(2026,9,30,2,0), "deepseek", "utc"), "01:00-04:00 · 06:00-10:00")
+check("window weekend nil", schedule.windowLine(at(2026,10,3,2,0), "deepseek", "utc"), nil)
+-- checkedInfo: semantic relative keys for the "Checked" row.
+local nowMs = 1700000000000
+local ci = schedule.checkedInfo(nowMs, nowMs - 40000)
+check("checked just now", ci.key, "checked.justNow")
+ci = schedule.checkedInfo(nowMs, nowMs - 300000)
+check("checked minutes", ci.key .. ":" .. ci.n, "checked.minutesAgo:5")
+ci = schedule.checkedInfo(nowMs, nowMs - 7200000)
+check("checked hours", ci.key .. ":" .. ci.n, "checked.hoursAgo:2")
+-- holidayRangeInfo: 2026-10-01 starts a bundled range; Ollama has no holidays.
+local hr = schedule.holidayRangeInfo(at(2026,10,1,12,0), "deepseek")
+check("holiday active", hr.active, true)
+check("holiday provider none", schedule.holidayRangeInfo(at(2026,10,1,12,0), "ollama"), nil)
+-- countdown label semantics: while peak, the count shows time until off-peak.
+check("label peak", schedule.countdownLabelKey(true), "panel.offPeakIn")
+check("label off", schedule.countdownLabelKey(false), "panel.peakIn")
 print("ALL PASS")
 """
 

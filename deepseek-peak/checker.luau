@@ -3,27 +3,17 @@
 -- Runs while the plugin is enabled (not only while the panel is open), fetches
 -- the provider's pricing page at the configured interval, and publishes drift
 -- state for the bar and panel. Offline-first: publishing "no drift" is the
--- default. Schedule/profile/extraction logic lives in lib/schedule.luau.
+-- default. Schedule/profile/extraction logic lives in lib/schedule.luau;
+-- provider overrides live in lib/settings.luau.
 
 local schedule = require("./lib/schedule.luau")
+local settings = require("./lib/settings.luau")
 
-local lastChecked = "never"
 local drift = false
 local timerElapsedH = 0
 
-local function config(key, fallback)
-  local value = noctalia.getConfig(key)
-  if value == nil then
-    return fallback
-  end
-  return value
-end
-
 local function provider()
-  if config("provider", "deepseek") == "ollama" then
-    return "ollama"
-  end
-  return "deepseek"
+  return settings.provider()
 end
 
 local function publish(value)
@@ -51,8 +41,7 @@ local function tryUrls(urls, index)
   end
   noctalia.http({ url = urls[index], method = "GET" }, function(response)
     if response.ok and response.body then
-      lastChecked = noctalia.formatTime("%H:%M")
-      noctalia.state.set("deepseek-peak.checkedAt", lastChecked)
+      noctalia.state.set("deepseek-peak.checkedAtMs", noctalia.nowMs())
       applyPage(response.body)
     else
       tryUrls(urls, index + 1)
@@ -61,14 +50,14 @@ local function tryUrls(urls, index)
 end
 
 local function check(force)
-  if not force and config("offlineOnly", false) then
+  if not force and settings.get("offlineOnly", false) then
     return
   end
-  if not force and not config("autoCheck", true) then
+  if not force and not settings.get("autoCheck", true) then
     return
   end
   local which = provider()
-  local sourceUrl = config("customSourceUrl", "")
+  local sourceUrl = settings.get("customSourceUrl", "")
   if sourceUrl == nil or sourceUrl == "" then
     sourceUrl = schedule.sourceUrl(which)
   end
@@ -101,7 +90,7 @@ noctalia.setUpdateInterval(60000)
 
 function update()
   timerElapsedH = timerElapsedH + 1 / 60
-  local interval = math.max(1, config("checkIntervalH", 6))
+  local interval = math.max(1, settings.get("checkIntervalH", 6))
   if timerElapsedH >= interval then
     timerElapsedH = 0
     check(false)

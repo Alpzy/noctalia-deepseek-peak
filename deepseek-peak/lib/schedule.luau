@@ -206,4 +206,179 @@ function M.sameWindows(left, right)
   return key(left) == key(right)
 end
 
+local function toMinutes(hhmm)
+  local h, m = string.match(hhmm, "^(%d%d):(%d%d)$")
+  return tonumber(h) * 60 + tonumber(m)
+end
+
+-- Bounds of the current peak/off-peak block. Coarse 15-minute scan backwards
+-- (max 10 days) refined to the second; peaks are hours long, so a 15-minute
+-- probe never skips a transition. Mirrors v4 peak.js blockBounds.
+function M.blockBounds(now, provider)
+  local peak = M.isPeakAt(now, provider)
+  local maxBack = 10 * 86400
+  local step = 900
+  local back = 0
+  for s = step, maxBack, step do
+    if M.isPeakAt(now - s, provider) ~= peak then
+      back = s
+      break
+    end
+  end
+  local startMs = now - back
+  if back > 0 then
+    for t = back - (step - 1), back do
+      if M.isPeakAt(now - t, provider) ~= peak then
+        startMs = now - (t - 1)
+        break
+      end
+    end
+  end
+  local forward = M.secondsUntilNext(now, provider)
+  local endMs = forward > 0 and (now + forward) or (now + maxBack)
+  return { provider = provider, isPeak = peak, startMs = startMs, endMs = endMs }
+end
+
+-- Fraction (0..1) of the current block elapsed, plus the block itself.
+function M.progress(now, provider)
+  local block = M.blockBounds(now, provider)
+  local total = block.endMs - block.startMs
+  local ratio = 0
+  if total > 0 then
+    ratio = math.min(1, math.max(0, (now - block.startMs) / total))
+  end
+  return ratio, block
+end
+
+local function pad2(n)
+  return string.format("%02d", n)
+end
+
+-- Canonical windows in a display zone: "utc" | "beijing" | "local". Mirrors
+-- v4 fmtHM/windowLine. Returns nil on weekend days (host shows "all day").
+function M.windowLine(now, provider, tz)
+  local p = profile(provider)
+  local weekend
+  if p.weekendMode == "utc" then
+    local w = os.date("!*t", now).wday
+    weekend = w == 1 or w == 7
+  else
+    local w = os.date("!*t", now + 8 * 3600).wday
+    weekend = w == 1 or w == 7
+  end
+  if weekend then
+    return nil
+  end
+  local function hm(minutes)
+    local h = math.floor(minutes / 60) % 24
+    local m = minutes % 60
+    if tz == "utc" then
+      return pad2(h) .. ":" .. pad2(m)
+    end
+    if tz == "beijing" then
+      h = (h + 8) % 24
+      return pad2(h) .. ":" .. pad2(m)
+    end
+    -- local: convert from the UTC wall time using the process timezone
+    local utc = os.date("!*t", now)
+    local localTs = os.time({ year = utc.year, month = utc.month, day = utc.day,
+                              hour = h, min = m, sec = 0, isdst = false })
+    local lt = os.date("*t", localTs)
+    return pad2(lt.hour) .. ":" .. pad2(lt.min)
+  end
+  local parts = {}
+  for _, w in ipairs(p.peakWindowsUtc) do
+    table.insert(parts, hm(toMinutes(w[1])) .. "-" .. hm(toMinutes(w[2])))
+  end
+  return table.concat(parts, " · ")
+end
+
+-- Semantic relative "last checked" info. Keys live under "checked" in i18n.
+function M.checkedInfo(nowMs, checkedMs)
+  if checkedMs == nil or checkedMs <= 0 then
+    return { key = "", n = 0, text = "" }
+  end
+  local diff = math.max(0, math.floor((nowMs - checkedMs) / 1000))
+  if diff < 60 then
+    return { key = "checked.justNow", n = 0, text = "" }
+  end
+  if diff < 3600 then
+    return { key = "checked.minutesAgo", n = math.floor(diff / 60), text = "" }
+  end
+  if diff < 86400 then
+    return { key = "checked.hoursAgo", n = math.floor(diff / 3600), text = "" }
+  end
+  return { key = "checked.date", n = 0, text = os.date("%m-%d %H:%M", checkedMs) }
+end
+
+local function dateKeyToMs(key)
+  local y, mo, d = string.match(key, "^(%d%d%d%d)-(%d%d)-(%d%d)$")
+  return os.time({ year = tonumber(y), month = tonumber(mo), day = tonumber(d),
+                   hour = 12, min = 0, sec = 0, isdst = false })
+end
+
+local function isNextDay(a, b)
+  return math.floor((dateKeyToMs(b) - dateKeyToMs(a)) / 86400 + 0.5) == 1
+end
+
+-- Current or next bundled holiday range when active or starting within a
+-- week. nil for providers without holidayOffPeak or outside that window.
+function M.holidayRangeInfo(now, provider)
+  local p = profile(provider)
+  if not p.holidayOffPeak then
+    return nil
+  end
+  local byYear = load().holidays or {}
+  local all = {}
+  for _, days in pairs(byYear) do
+    for _, d in ipairs(days) do
+      table.insert(all, d)
+    end
+  end
+  if #all == 0 then
+    return nil
+  end
+  table.sort(all)
+  local bj = os.date("!*t", now + 8 * 3600)
+  local todayKey = string.format("%04d-%02d-%02d", bj.year, bj.month, bj.day)
+  local todayMs = os.time({ year = bj.year, month = bj.month, day = bj.day,
+                            hour = 0, min = 0, sec = 0, isdst = false })
+  local idx = 1
+  while idx <= #all and all[idx] < todayKey do
+    idx = idx + 1
+  end
+  if idx > #all then
+    return nil
+  end
+  local startIdx, endIdx = idx, idx
+  if all[idx] == todayKey then
+    while startIdx - 1 >= 1 and isNextDay(all[startIdx - 1], all[startIdx]) do
+      startIdx = startIdx - 1
+    end
+    while endIdx + 1 <= #all and isNextDay(all[endIdx], all[endIdx + 1]) do
+      endIdx = endIdx + 1
+    end
+    return { active = true, startMs = dateKeyToMs(all[startIdx]),
+             endMs = dateKeyToMs(all[endIdx]), inDays = 0 }
+  end
+  while endIdx + 1 <= #all and isNextDay(all[endIdx], all[endIdx + 1]) do
+    endIdx = endIdx + 1
+  end
+  local inDays = math.floor((dateKeyToMs(all[startIdx]) - todayMs) / 86400 + 0.5)
+  if inDays > 7 then
+    return nil
+  end
+  return { active = false, startMs = dateKeyToMs(all[startIdx]),
+           endMs = dateKeyToMs(all[endIdx]), inDays = inDays }
+end
+
+-- The countdown label semantics: while peak, count down to off-peak and
+-- vice versa. Mirrors v4 (isPeak ? offPeakIn : peakIn).
+function M.countdownLabelKey(isPeak)
+  if isPeak then
+    return "panel.offPeakIn"
+  end
+  return "panel.peakIn"
+end
+
 return M

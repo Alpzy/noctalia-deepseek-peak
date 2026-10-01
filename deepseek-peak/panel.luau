@@ -1,27 +1,19 @@
 --!nonstrict
 -- DeepSeek Peak Hours - Noctalia v5 panel entry.
--- Info-only panel: state, countdown, schedule, provider, drift status.
--- Schedule logic lives in lib/schedule.luau (v4 peak.js semantics).
+-- Info panel: state, countdown, schedule, per-timezone windows, holidays,
+-- drift status, plus actions (provider switch, refresh, settings).
+-- Schedule logic lives in lib/schedule.luau; provider overrides in
+-- lib/settings.luau.
 
 local schedule = require("./lib/schedule.luau")
+local settings = require("./lib/settings.luau")
 
 local drift = false
-local checkedAt = "never"
+local checkedAtMs = 0
 local source = schedule.sourceUrl("deepseek")
 
-local function config(key, fallback)
-  local value = noctalia.getConfig(key)
-  if value == nil then
-    return fallback
-  end
-  return value
-end
-
 local function provider()
-  if config("provider", "deepseek") == "ollama" then
-    return "ollama"
-  end
-  return "deepseek"
+  return settings.provider()
 end
 
 local function row(label, value, color)
@@ -32,15 +24,59 @@ local function row(label, value, color)
   })
 end
 
+local function checkedText(nowMs)
+  local info = schedule.checkedInfo(nowMs, checkedAtMs)
+  if info.key == "" then
+    return "never"
+  end
+  if info.key == "checked.date" then
+    return info.text
+  end
+  return noctalia.tr(info.key, { n = info.n })
+end
+
+local function windowLine(now, which, tz)
+  local line = schedule.windowLine(now, which, tz)
+  if line == nil then
+    return noctalia.tr("panel.weekendAllDay")
+  end
+  return line
+end
+
+local function holidayText(now, which)
+  local info = schedule.holidayRangeInfo(now, which)
+  if not info then
+    return nil
+  end
+  if info.active then
+    return noctalia.tr("panel.holidayEnds", { date = os.date("%b %d", info.endMs) })
+  end
+  return noctalia.tr("panel.nextHoliday", {
+    range = os.date("%b %d", info.startMs) .. "–" .. os.date("%b %d", info.endMs),
+    n = info.inDays,
+  })
+end
+
+local function offPeakLineText(which)
+  -- Mirrors v4: providers with holiday off-peak mention holidays.
+  if which == "deepseek" then
+    return noctalia.tr("panel.offPeakLineHolidays")
+  end
+  return noctalia.tr("panel.offPeakLine")
+end
+
 local function render()
   local now = os.time()
   local which = provider()
   local peak = schedule.isPeakAt(now, which)
   local state = peak and noctalia.tr("panel.peak") or noctalia.tr("panel.offPeak")
-  local stateColor = peak and config("peakColor", "#f87171") or config("offPeakColor", "#4ade80")
+  local stateColor = peak and settings.get("peakColor", "#f87171")
+    or settings.get("offPeakColor", "#4ade80")
   if drift then
-    stateColor = config("driftColor", "#fbbf24")
+    stateColor = settings.get("driftColor", "#fbbf24")
   end
+  local progress = schedule.progress(now, which)
+  local holiday = holidayText(now, which)
 
   panel.render(ui.column({ gap = 10, padding = 14 }, {
     ui.row({ gap = 8, align = "center" }, {
@@ -48,12 +84,38 @@ local function render()
       ui.label({ text = state, fontWeight = "bold", color = stateColor, flexGrow = 1 }),
     }),
     row(noctalia.tr("panel.provider"), schedule.providerName(which)),
-    row(peak and noctalia.tr("panel.peakIn") or noctalia.tr("panel.offPeakIn"),
+    -- While peak, the countdown runs to off-peak and vice versa (v4 semantics).
+    row(noctalia.tr(schedule.countdownLabelKey(peak)),
         schedule.formatHMS(schedule.secondsUntilNext(now, which))),
+    ui.progress({
+      progress = progress,
+      fill = stateColor,
+      track = "surface_variant",
+      radius = 2,
+      height = 4,
+    }),
+    holiday and ui.label({ text = holiday, color = "primary", fontSize = 12 })
+      or ui.spacer({}),
     ui.separator({}),
     row(noctalia.tr("panel.schedule"), schedule.scheduleText(which)),
-    row(noctalia.tr("panel.checked"), checkedAt),
-    drift and ui.label({ text = noctalia.tr("panel.drift"), color = "error", fontSize = 11 }) or ui.spacer({}),
+    ui.label({ text = offPeakLineText(which), color = "on_surface_variant", fontSize = 11 }),
+    ui.separator({}),
+    row(noctalia.tr("panel.local"), windowLine(now, which, "local")),
+    row(noctalia.tr("panel.utc"), windowLine(now, which, "utc")),
+    row(noctalia.tr("panel.beijing"), windowLine(now, which, "beijing")),
+    row(noctalia.tr("panel.checked"), checkedText(noctalia.nowMs())),
+    drift and ui.label({ text = noctalia.tr("panel.drift"), color = "error", fontSize = 11 })
+      or ui.spacer({}),
+    ui.separator({}),
+    ui.button({
+      text = noctalia.tr("panel.provider") .. ": " .. schedule.providerName(which),
+      glyph = "switch-horizontal",
+      variant = "ghost",
+      onClick = function()
+        settings.toggleProvider()
+        render()
+      end,
+    }),
     ui.button({
       text = noctalia.tr("menu.refresh"),
       glyph = "refresh",
@@ -86,7 +148,7 @@ function update()
 end
 
 drift = noctalia.state.get("deepseek-peak.drift") == true
-checkedAt = noctalia.state.get("deepseek-peak.checkedAt") or "never"
+checkedAtMs = noctalia.state.get("deepseek-peak.checkedAtMs") or 0
 source = noctalia.state.get("deepseek-peak.source") or schedule.sourceUrl(provider())
 
 noctalia.state.watch("deepseek-peak.drift", function(value)
@@ -94,13 +156,17 @@ noctalia.state.watch("deepseek-peak.drift", function(value)
   render()
 end)
 
-noctalia.state.watch("deepseek-peak.checkedAt", function(value)
-  checkedAt = value or "never"
+noctalia.state.watch("deepseek-peak.checkedAtMs", function(value)
+  checkedAtMs = value or 0
   render()
 end)
 
 noctalia.state.watch("deepseek-peak.source", function(value)
   source = value or source
+  render()
+end)
+
+settings.watch(function()
   render()
 end)
 
