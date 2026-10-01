@@ -8,7 +8,9 @@
         "driftSuffix": "policyn kan ha ändrats"
     },
     "menu": {
-        "settings": "Widgetinställningar"
+        "settings": "Widgetinställningar",
+        "useDeepSeek": "Använd DeepSeek",
+        "useOllama": "Använd Ollama"
     },
     "notice": {
         "policyChanged": "DeepSeeks prispolicy kan ha ändrats"
@@ -24,7 +26,9 @@
         "cost": "Topp = 2x låglast",
         "checked": "Kontrollerad",
         "drift": "Policyn kan ha ändrats — kontrollera källan",
-        "weekendAllDay": "låglast hela dagen"
+        "weekendAllDay": "låglast hela dagen",
+        "provider": "Leverantör",
+        "holidayOffPeak": "Helgdag — låglast hela dagen"
     },
     "checked": {
         "justNow": "nyss",
@@ -72,11 +76,13 @@
             "description": "Ersätter den officiella prissidan",
             "placeholder": "https://…"
         },
-        "weekendMode": {
-            "label": "Helgläge",
-            "description": "Förankring av låglast på helgen",
-            "beijing": "Peking (fre 16:00 UTC – sön 16:00 UTC)",
-            "utc": "UTC-midnatt"
+        "provider": {
+            "label": "Leverantör",
+            "description": "Vilken taxa som följs"
         }
+    },
+    "provider": {
+        "deepseek": "DeepSeek",
+        "ollama": "Ollama"
     }
 }

@@ -8,7 +8,9 @@
         "driftSuffix": "beleid is mogelijk gewijzigd"
     },
     "menu": {
-        "settings": "Widgetinstellingen"
+        "settings": "Widgetinstellingen",
+        "useDeepSeek": "DeepSeek gebruiken",
+        "useOllama": "Ollama gebruiken"
     },
     "notice": {
         "policyChanged": "DeepSeek-prijsbeleid is mogelijk gewijzigd"
@@ -24,7 +26,9 @@
         "cost": "Piek = 2x dal",
         "checked": "Gecontroleerd",
         "drift": "Beleid is mogelijk gewijzigd — controleer de bron",
-        "weekendAllDay": "hele dag dal"
+        "weekendAllDay": "hele dag dal",
+        "provider": "Aanbieder",
+        "holidayOffPeak": "Feestdag — hele dag dal"
     },
     "checked": {
         "justNow": "zojuist",
@@ -72,11 +76,13 @@
             "description": "Vervangt de officiële prijspagina",
             "placeholder": "https://…"
         },
-        "weekendMode": {
-            "label": "Weekendmodus",
-            "description": "Verankering van daluren in het weekend",
-            "beijing": "Peking (vr 16:00 UTC – zo 16:00 UTC)",
-            "utc": "UTC-middernacht"
+        "provider": {
+            "label": "Aanbieder",
+            "description": "Welk tarief gevolgd wordt"
         }
+    },
+    "provider": {
+        "deepseek": "DeepSeek",
+        "ollama": "Ollama"
     }
 }

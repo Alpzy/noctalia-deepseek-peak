@@ -8,7 +8,9 @@
         "driftSuffix": "pravidla se možná změnila"
     },
     "menu": {
-        "settings": "Nastavení widgetu"
+        "settings": "Nastavení widgetu",
+        "useDeepSeek": "Použít DeepSeek",
+        "useOllama": "Použít Ollama"
     },
     "notice": {
         "policyChanged": "Pravidla cen DeepSeek se možná změnila"
@@ -24,7 +26,9 @@
         "cost": "Špička = 2x mimo špičku",
         "checked": "Zkontrolováno",
         "drift": "Pravidla se možná změnila — zkontrolujte zdroj",
-        "weekendAllDay": "celý den mimo špičku"
+        "weekendAllDay": "celý den mimo špičku",
+        "provider": "Poskytovatel",
+        "holidayOffPeak": "Svátek — celý den mimo špičku"
     },
     "checked": {
         "justNow": "právě teď",
@@ -72,11 +76,13 @@
             "description": "Nahradí oficiální ceník",
             "placeholder": "https://…"
         },
-        "weekendMode": {
-            "label": "Režim víkendu",
-            "description": "Ukotvení víkendu mimo špičku",
-            "beijing": "Peking (pá 16:00 UTC – ne 16:00 UTC)",
-            "utc": "UTC půlnoc"
+        "provider": {
+            "label": "Poskytovatel",
+            "description": "Který tarifní plán sledovat"
         }
+    },
+    "provider": {
+        "deepseek": "DeepSeek",
+        "ollama": "Ollama"
     }
 }

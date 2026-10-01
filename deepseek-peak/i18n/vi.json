@@ -8,7 +8,9 @@
         "driftSuffix": "chính sách có thể đã thay đổi"
     },
     "menu": {
-        "settings": "Cài đặt tiện ích"
+        "settings": "Cài đặt tiện ích",
+        "useDeepSeek": "Dùng DeepSeek",
+        "useOllama": "Dùng Ollama"
     },
     "notice": {
         "policyChanged": "Chính sách giá của DeepSeek có thể đã thay đổi"
@@ -24,7 +26,9 @@
         "cost": "Cao điểm = 2x thấp điểm",
         "checked": "Đã kiểm tra",
         "drift": "Chính sách có thể đã thay đổi — xem nguồn",
-        "weekendAllDay": "thấp điểm cả ngày"
+        "weekendAllDay": "thấp điểm cả ngày",
+        "provider": "Nhà cung cấp",
+        "holidayOffPeak": "Ngày lễ — thấp điểm cả ngày"
     },
     "checked": {
         "justNow": "vừa xong",
@@ -72,11 +76,13 @@
             "description": "Thay thế trang giá chính thức",
             "placeholder": "https://…"
         },
-        "weekendMode": {
-            "label": "Chế độ cuối tuần",
-            "description": "Mốc thấp điểm cuối tuần",
-            "beijing": "Bắc Kinh (T6 16:00 UTC – CN 16:00 UTC)",
-            "utc": "Nửa đêm UTC"
+        "provider": {
+            "label": "Nhà cung cấp",
+            "description": "Theo bảng giá nào"
         }
+    },
+    "provider": {
+        "deepseek": "DeepSeek",
+        "ollama": "Ollama"
     }
 }

@@ -8,7 +8,9 @@
         "driftSuffix": "Preisrichtlinie evtl. geändert"
     },
     "menu": {
-        "settings": "Widget-Einstellungen"
+        "settings": "Widget-Einstellungen",
+        "useDeepSeek": "DeepSeek verwenden",
+        "useOllama": "Ollama verwenden"
     },
     "notice": {
         "policyChanged": "DeepSeek-Preisrichtlinie evtl. geändert"
@@ -24,7 +26,9 @@
         "cost": "Hauptzeit = 2x Nebenzeit",
         "checked": "Geprüft",
         "drift": "Preisrichtlinie evtl. geändert — Quelle prüfen",
-        "weekendAllDay": "ganztägig Nebenzeit"
+        "weekendAllDay": "ganztägig Nebenzeit",
+        "provider": "Anbieter",
+        "holidayOffPeak": "Feiertag — ganztägig Nebenzeit"
     },
     "checked": {
         "justNow": "gerade eben",
@@ -72,11 +76,13 @@
             "description": "Überschreibt die offizielle Preisseite",
             "placeholder": "https://…"
         },
-        "weekendMode": {
-            "label": "Wochenendmodus",
-            "description": "Anker der Nebenzeit am Wochenende",
-            "beijing": "Peking (Fr 16:00 UTC – So 16:00 UTC)",
-            "utc": "UTC-Mitternacht"
+        "provider": {
+            "label": "Anbieter",
+            "description": "Welcher Tarifplan gilt"
         }
+    },
+    "provider": {
+        "deepseek": "DeepSeek",
+        "ollama": "Ollama"
     }
 }

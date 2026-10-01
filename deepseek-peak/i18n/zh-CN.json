@@ -8,7 +8,9 @@
         "driftSuffix": "计费策略可能已变更"
     },
     "menu": {
-        "settings": "组件设置"
+        "settings": "组件设置",
+        "useDeepSeek": "使用 DeepSeek",
+        "useOllama": "使用 Ollama"
     },
     "notice": {
         "policyChanged": "DeepSeek 计费策略可能已变更"
@@ -24,7 +26,9 @@
         "cost": "高峰 = 非高峰的 2 倍",
         "checked": "已检查",
         "drift": "计费策略可能已变更 — 请查看来源",
-        "weekendAllDay": "全天非高峰"
+        "weekendAllDay": "全天非高峰",
+        "provider": "服务商",
+        "holidayOffPeak": "节假日 — 全天非高峰"
     },
     "checked": {
         "justNow": "刚刚",
@@ -72,11 +76,13 @@
             "description": "覆盖官方定价页面",
             "placeholder": "https://…"
         },
-        "weekendMode": {
-            "label": "周末模式",
-            "description": "周末非高峰的基准",
-            "beijing": "北京（周五 16:00 UTC – 周日 16:00 UTC）",
-            "utc": "UTC 午夜"
+        "provider": {
+            "label": "服务商",
+            "description": "遵循哪套计费时段"
         }
+    },
+    "provider": {
+        "deepseek": "DeepSeek",
+        "ollama": "Ollama"
     }
 }

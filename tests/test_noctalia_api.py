@@ -117,9 +117,10 @@ def test_manifest_matches_registry_rules():
     assert "main" in manifest["entryPoints"], "shared state needs a main entry"
     assert manifest["tags"], "registry expects tags"
     defaults = manifest["metadata"]["defaultSettings"]
-    for key in ("displayMode", "weekendMode", "autoCheck", "checkIntervalH",
+    for key in ("provider", "displayMode", "autoCheck", "checkIntervalH",
                 "offlineOnly", "customSourceUrl", "showTooltip"):
         assert key in defaults, f"missing default for {key}"
+    assert defaults["provider"] == "deepseek"
 
 
 def test_qml_uses_translations():

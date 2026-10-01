@@ -6,8 +6,13 @@
     "author": "Alpzy",
     "license": "MIT",
     "repository": "https://github.com/noctalia-dev/noctalia-plugins",
-    "description": "Shows DeepSeek API peak/off-peak pricing in the bar: green off-peak, red peak, with a live countdown.",
-    "tags": ["Bar", "Panel", "Indicator", "Niri"],
+    "description": "Peak/off-peak rate hours for DeepSeek and Ollama in the bar: green off-peak, red peak, live countdown.",
+    "tags": [
+        "Bar",
+        "Panel",
+        "Indicator",
+        "Niri"
+    ],
     "entryPoints": {
         "main": "Main.qml",
         "barWidget": "BarWidget.qml",
@@ -24,11 +29,11 @@
             "peakColor": "#f87171",
             "driftColor": "#fbbf24",
             "showTooltip": true,
-            "weekendMode": "beijing-anchored",
             "autoCheck": true,
             "checkIntervalH": 6,
             "customSourceUrl": "",
-            "offlineOnly": false
+            "offlineOnly": false,
+            "provider": "deepseek"
         }
     }
 }

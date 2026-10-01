@@ -8,7 +8,9 @@
         "driftSuffix": "정책이 변경되었을 수 있음"
     },
     "menu": {
-        "settings": "위젯 설정"
+        "settings": "위젯 설정",
+        "useDeepSeek": "DeepSeek 사용",
+        "useOllama": "Ollama 사용"
     },
     "notice": {
         "policyChanged": "DeepSeek 요금 정책이 변경되었을 수 있음"
@@ -24,7 +26,9 @@
         "cost": "피크 = 오프피크의 2배",
         "checked": "확인함",
         "drift": "정책이 변경되었을 수 있음 — 출처 확인",
-        "weekendAllDay": "종일 오프피크"
+        "weekendAllDay": "종일 오프피크",
+        "provider": "공급자",
+        "holidayOffPeak": "공휴일 — 종일 오프피크"
     },
     "checked": {
         "justNow": "방금 전",
@@ -72,11 +76,13 @@
             "description": "공식 가격 페이지를 대체",
             "placeholder": "https://…"
         },
-        "weekendMode": {
-            "label": "주말 모드",
-            "description": "주말 오프피크 기준",
-            "beijing": "베이징 (금 16:00 UTC – 일 16:00 UTC)",
-            "utc": "UTC 자정"
+        "provider": {
+            "label": "공급자",
+            "description": "적용할 요금제"
         }
+    },
+    "provider": {
+        "deepseek": "DeepSeek",
+        "ollama": "Ollama"
     }
 }

@@ -8,7 +8,9 @@
         "driftSuffix": "dibe ku siyaset guherîbe"
     },
     "menu": {
-        "settings": "Mîhengên wîgetê"
+        "settings": "Mîhengên wîgetê",
+        "useDeepSeek": "DeepSeek bikar bîne",
+        "useOllama": "Ollama bikar bîne"
     },
     "notice": {
         "policyChanged": "Dibe ku siyasetnameya bihayê ya DeepSeek guherîbe"
@@ -24,7 +26,9 @@
         "cost": "Lutke = 2x derveyî lutke",
         "checked": "Hat kontrolkirin",
         "drift": "Dibe ku siyaset guherîbe — çavkaniyê binêre",
-        "weekendAllDay": "tewra rojê derveyî lutke"
+        "weekendAllDay": "tewra rojê derveyî lutke",
+        "provider": "Pêşkêşkar",
+        "holidayOffPeak": "Cejn — tewra rojê derveyî lutke"
     },
     "checked": {
         "justNow": "niha",
@@ -72,11 +76,13 @@
             "description": "Rûpela bihayê ya fermî diguhere",
             "placeholder": "https://…"
         },
-        "weekendMode": {
-            "label": "Moda dawiya hefteyê",
-            "description": "Bingehê derveyî-lutke yê dawiya hefteyê",
-            "beijing": "Beijing (În 16:00 UTC – Yek 16:00 UTC)",
-            "utc": "Nîvşeva UTC"
+        "provider": {
+            "label": "Pêşkêşkar",
+            "description": "Kîjan tarîfê bişopîne"
         }
+    },
+    "provider": {
+        "deepseek": "DeepSeek",
+        "ollama": "Ollama"
     }
 }

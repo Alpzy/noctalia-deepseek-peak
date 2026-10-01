@@ -8,7 +8,9 @@
         "driftSuffix": "retningslinjene kan ha endra seg"
     },
     "menu": {
-        "settings": "Innstillingar for widget"
+        "settings": "Innstillingar for widget",
+        "useDeepSeek": "Bruk DeepSeek",
+        "useOllama": "Bruk Ollama"
     },
     "notice": {
         "policyChanged": "DeepSeek-prisretningslinjene kan ha endra seg"
@@ -24,7 +26,9 @@
         "cost": "Topp = 2x off-peak",
         "checked": "Sjekka",
         "drift": "Retningslinjene kan ha endra seg — sjekk kjelda",
-        "weekendAllDay": "off-peak heile dagen"
+        "weekendAllDay": "off-peak heile dagen",
+        "provider": "Tilbydar",
+        "holidayOffPeak": "Heilagdag — off-peak heile dagen"
     },
     "checked": {
         "justNow": "nett no",
@@ -72,11 +76,13 @@
             "description": "Overstyrer den offisielle prissida",
             "placeholder": "https://…"
         },
-        "weekendMode": {
-            "label": "Helgemodus",
-            "description": "Forankring av off-peak i helga",
-            "beijing": "Beijing (fre 16:00 UTC – søn 16:00 UTC)",
-            "utc": "UTC-midnatt"
+        "provider": {
+            "label": "Tilbydar",
+            "description": "Kva tariff som skal følgjast"
         }
+    },
+    "provider": {
+        "deepseek": "DeepSeek",
+        "ollama": "Ollama"
     }
 }

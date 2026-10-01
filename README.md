@@ -1,29 +1,36 @@
 # DeepSeek Peak Hours — Noctalia Bar Widget
 
 A [Noctalia](https://github.com/noctalia-dev/noctalia) bar widget that shows
-whether the DeepSeek API is currently in **peak** (2× price) or **off-peak**
-(half price) billing, with a live countdown to the next rate flip. Built for
-Niri and any other compositor Noctalia supports.
+whether API calls are billed at **peak** (2× price) or **off-peak** (half
+price) rates, with a live countdown to the next rate flip. Works for
+**DeepSeek** and for the **DeepSeek models on Ollama Cloud**, which use
+different peak windows. Built for Niri and any other compositor Noctalia
+supports.
 
 - 🟢 **Off-peak** — cheap: green dot.
 - 🔴 **Peak** — 2× cost: red dot.
 - 🟡 **Policy drift** — the official pricing page no longer matches the bundled
   schedule: amber dot and a notice.
-- Live `HH:MM:SS` countdown to the next flip, in the bar and in the panel.
+- Live `HH:MM:SS` countdown to the next flip; right-click swaps provider.
 
 ![DeepSeek Peak Hours preview](deepseek-peak/preview.png)
 
 ## Peak windows
 
-| Window | UTC | Beijing |
+| Provider | Peak (UTC, Mon–Fri) | Off-peak |
 |---|---|---|
-| Peak 1 | 01:00–04:00 | 09:00–12:00 |
-| Peak 2 | 06:00–10:00 | 14:00–18:00 |
-| Off-peak | everything else | everything else |
+| **DeepSeek** | 01:00–04:00 and 06:00–10:00 | everything else; weekends and Chinese public holidays all day (Beijing calendar) |
+| **Ollama** (DeepSeek models) | 12:00–18:00 | everything else; weekends all day (UTC) |
 
-Peak applies Monday–Friday. Weekends are off-peak all day, anchored to the
-Beijing calendar (Friday 16:00 UTC through Sunday 16:00 UTC). Source:
-<https://api-docs.deepseek.com/quick_start/pricing/>
+Off-peak is half the peak price. Sources:
+<https://api-docs.deepseek.com/quick_start/pricing/> ·
+<https://ollama.com/pricing>
+
+Chinese public holidays are bundled from
+[NateScarlet/holiday-cn](https://github.com/NateScarlet/holiday-cn) (MIT, see
+[THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)) and refreshed yearly.
+DeepSeek's Ollama-hosted models and other Ollama models may have flat pricing;
+the widget tracks the DeepSeek rate card.
 
 ## Install (Noctalia v4)
 
@@ -48,16 +55,17 @@ Restart the shell, then:
 
 ## Configure
 
-Settings → Plugins → DeepSeek Peak Hours → Configure: display mode
-(`compact` / `icon` / `full`), colours, tooltip, weekend anchoring, and the
-optional policy check (interval, custom source, offline-only).
+Settings → Plugins → DeepSeek Peak Hours → Configure: **provider**
+(DeepSeek / Ollama), display mode (`compact` / `icon` / `full`), colours,
+tooltip, and the optional policy check (interval, custom source, offline-only).
+Right-clicking the widget swaps provider directly.
 
 ## Behaviour
 
-- **Offline-first.** The schedule is bundled; the optional online check only
+- **Offline-first.** Schedules are bundled; the optional online check only
   compares the published peak windows and warns when they change. A failed
   check leaves the last known state in place.
-- **No API key, no request metering.** It only reads the public pricing page.
+- **No API key, no request metering.** It only reads public pricing pages.
 - **23 languages**, following Noctalia's supported locale list.
 
 ## Development

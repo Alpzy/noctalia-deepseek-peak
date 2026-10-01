@@ -10,6 +10,7 @@ ColumnLayout {
     property var pluginApi: null
 
     property string editDisplayMode: (pluginApi?.pluginSettings?.displayMode || pluginApi?.manifest?.metadata?.defaultSettings?.displayMode || "compact")
+    property string editProvider: (pluginApi?.pluginSettings?.provider || pluginApi?.manifest?.metadata?.defaultSettings?.provider || "deepseek")
     property color editOffPeakColor: (pluginApi?.pluginSettings?.offPeakColor || pluginApi?.manifest?.metadata?.defaultSettings?.offPeakColor || "#4ade80")
     property color editPeakColor: (pluginApi?.pluginSettings?.peakColor || pluginApi?.manifest?.metadata?.defaultSettings?.peakColor || "#f87171")
     property color editDriftColor: (pluginApi?.pluginSettings?.driftColor || pluginApi?.manifest?.metadata?.defaultSettings?.driftColor || "#fbbf24")
@@ -18,12 +19,25 @@ ColumnLayout {
     property bool editOfflineOnly: (pluginApi?.pluginSettings?.offlineOnly ?? pluginApi?.manifest?.metadata?.defaultSettings?.offlineOnly ?? false)
     property string editCheckIntervalH: String(pluginApi?.pluginSettings?.checkIntervalH ?? pluginApi?.manifest?.metadata?.defaultSettings?.checkIntervalH ?? 6)
     property string editCustomSourceUrl: (pluginApi?.pluginSettings?.customSourceUrl ?? pluginApi?.manifest?.metadata?.defaultSettings?.customSourceUrl ?? "")
-    property string editWeekendMode: (pluginApi?.pluginSettings?.weekendMode || pluginApi?.manifest?.metadata?.defaultSettings?.weekendMode || "beijing-anchored")
 
     spacing: Style.marginM
 
     function t(key, params) {
         return (pluginApi && pluginApi.tr) ? pluginApi.tr(key, params) : key;
+    }
+
+    NLabel {
+        label: root.t("settings.provider.label")
+        description: root.t("settings.provider.description")
+    }
+    NComboBox {
+        Layout.fillWidth: true
+        model: [
+            {key: "deepseek", name: root.t("provider.deepseek")},
+            {key: "ollama", name: root.t("provider.ollama")}
+        ]
+        currentKey: root.editProvider
+        onSelected: function (key) { root.editProvider = key; }
     }
 
     NLabel {
@@ -118,24 +132,12 @@ ColumnLayout {
         onTextChanged: root.editCustomSourceUrl = text
     }
 
-    NLabel {
-        label: root.t("settings.weekendMode.label")
-        description: root.t("settings.weekendMode.description")
-    }
-    NComboBox {
-        Layout.fillWidth: true
-        model: [
-            {key: "beijing-anchored", name: root.t("settings.weekendMode.beijing")},
-            {key: "utc", name: root.t("settings.weekendMode.utc")}
-        ]
-        currentKey: root.editWeekendMode
-        onSelected: function (key) { root.editWeekendMode = key; }
-    }
 
     // Collect without persisting; the host (Settings dialog) writes the result
     // into pluginSettings itself.
     function collectSettings() {
         return {
+            provider: root.editProvider,
             displayMode: root.editDisplayMode,
             offPeakColor: root.editOffPeakColor.toString(),
             peakColor: root.editPeakColor.toString(),
@@ -145,7 +147,6 @@ ColumnLayout {
             offlineOnly: root.editOfflineOnly,
             checkIntervalH: parseInt(root.editCheckIntervalH, 10) || 6,
             customSourceUrl: root.editCustomSourceUrl,
-            weekendMode: root.editWeekendMode
         };
     }
 }

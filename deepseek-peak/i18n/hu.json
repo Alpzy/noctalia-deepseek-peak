@@ -8,7 +8,9 @@
         "driftSuffix": "a szabályzat megváltozhatott"
     },
     "menu": {
-        "settings": "Widget beállításai"
+        "settings": "Widget beállításai",
+        "useDeepSeek": "DeepSeek használata",
+        "useOllama": "Ollama használata"
     },
     "notice": {
         "policyChanged": "A DeepSeek árazási szabályzata megváltozhatott"
@@ -24,7 +26,9 @@
         "cost": "Csúcs = 2x csúcson kívül",
         "checked": "Ellenőrizve",
         "drift": "A szabályzat megváltozhatott — nézd meg a forrást",
-        "weekendAllDay": "egész nap csúcson kívül"
+        "weekendAllDay": "egész nap csúcson kívül",
+        "provider": "Szolgáltató",
+        "holidayOffPeak": "Ünnepnap — egész nap csúcson kívül"
     },
     "checked": {
         "justNow": "épp most",
@@ -72,11 +76,13 @@
             "description": "Felülírja a hivatalos árazási oldalt",
             "placeholder": "https://…"
         },
-        "weekendMode": {
-            "label": "Hétvége mód",
-            "description": "Hétvégi csúcson kívüli időszak igazítása",
-            "beijing": "Peking (P 16:00 UTC – V 16:00 UTC)",
-            "utc": "UTC éjfél"
+        "provider": {
+            "label": "Szolgáltató",
+            "description": "Melyik tarifát kövesse"
         }
+    },
+    "provider": {
+        "deepseek": "DeepSeek",
+        "ollama": "Ollama"
     }
 }

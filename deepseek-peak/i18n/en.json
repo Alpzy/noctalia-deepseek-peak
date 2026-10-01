@@ -8,7 +8,9 @@
         "driftSuffix": "policy may have changed"
     },
     "menu": {
-        "settings": "Widget settings"
+        "settings": "Widget settings",
+        "useDeepSeek": "Use DeepSeek",
+        "useOllama": "Use Ollama"
     },
     "notice": {
         "policyChanged": "DeepSeek pricing policy may have changed"
@@ -24,7 +26,9 @@
         "cost": "Peak = 2x off-peak",
         "checked": "Checked",
         "drift": "Policy may have changed — see source",
-        "weekendAllDay": "off-peak all day"
+        "weekendAllDay": "off-peak all day",
+        "provider": "Provider",
+        "holidayOffPeak": "Holiday — off-peak all day"
     },
     "checked": {
         "justNow": "just now",
@@ -72,11 +76,13 @@
             "description": "Override for the official pricing page",
             "placeholder": "https://…"
         },
-        "weekendMode": {
-            "label": "Weekend Mode",
-            "description": "Weekend off-peak anchoring",
-            "beijing": "Beijing (Fri 16:00 UTC – Sun 16:00 UTC)",
-            "utc": "UTC midnight"
+        "provider": {
+            "label": "Provider",
+            "description": "Which tariff schedule to follow"
         }
+    },
+    "provider": {
+        "deepseek": "DeepSeek",
+        "ollama": "Ollama"
     }
 }

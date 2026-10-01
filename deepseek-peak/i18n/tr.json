@@ -8,7 +8,9 @@
         "driftSuffix": "ilke değişmiş olabilir"
     },
     "menu": {
-        "settings": "Widget ayarları"
+        "settings": "Widget ayarları",
+        "useDeepSeek": "DeepSeek kullan",
+        "useOllama": "Ollama kullan"
     },
     "notice": {
         "policyChanged": "DeepSeek fiyat ilkesi değişmiş olabilir"
@@ -24,7 +26,9 @@
         "cost": "Zirve = zirve dışının 2 katı",
         "checked": "Kontrol edildi",
         "drift": "İlke değişmiş olabilir — kaynağa bakın",
-        "weekendAllDay": "tüm gün zirve dışı"
+        "weekendAllDay": "tüm gün zirve dışı",
+        "provider": "Sağlayıcı",
+        "holidayOffPeak": "Tatil — tüm gün zirve dışı"
     },
     "checked": {
         "justNow": "az önce",
@@ -72,11 +76,13 @@
             "description": "Resmî fiyat sayfasını geçersiz kılar",
             "placeholder": "https://…"
         },
-        "weekendMode": {
-            "label": "Hafta sonu modu",
-            "description": "Hafta sonu zirve dışı dayanağı",
-            "beijing": "Pekin (Cum 16:00 UTC – Paz 16:00 UTC)",
-            "utc": "UTC gece yarısı"
+        "provider": {
+            "label": "Sağlayıcı",
+            "description": "Hangi tarifenin izleneceği"
         }
+    },
+    "provider": {
+        "deepseek": "DeepSeek",
+        "ollama": "Ollama"
     }
 }

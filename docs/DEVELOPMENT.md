@@ -6,11 +6,16 @@ any other compositor Noctalia supports). AI agents should also read
 
 ## What the widget does
 
-DeepSeek bills its API at peak/off-peak rates: peak is 01:00–04:00 and
-06:00–10:00 UTC, Monday–Friday (09:00–12:00 and 14:00–18:00 Beijing), and
-off-peak is everything else at half the peak price. Weekends are off-peak all
-day, anchored to the Beijing calendar. The widget shows a coloured dot and a
-countdown; clicking opens a small info panel.
+It shows the current API rate tier for one of two providers:
+
+| Provider | Peak (UTC, Mon–Fri) | Off-peak |
+|---|---|---|
+| DeepSeek | 01:00–04:00, 06:00–10:00 | everything else; weekends and Chinese public holidays all day (Beijing calendar) |
+| Ollama (DeepSeek models) | 12:00–18:00 | everything else; weekends (UTC) all day |
+
+Off-peak is half the peak price for both. Switch providers in Settings or via
+the widget's right-click menu. The bar shows a coloured dot and a countdown;
+clicking opens a small info panel.
 
 ## Layout
 
@@ -21,13 +26,13 @@ deepseek-peak/
   Panel.qml            info-only popup (dynamic height, registry panel contract)
   Settings.qml         Plugins > Configure entry point
   SettingsControls.qml shared settings controls used by Settings.qml
-  peak.js              single source of schedule + time math
-  schedule.json        schedule data (mirrored by peak.js, checked by tests)
+  peak.js              single source of provider-aware schedule + time math
+  schedule.json        provider profiles + bundled Chinese holidays (data source)
   i18n/<lang>.json     translations loaded by v4 Noctalia
   translations/<lang>.json  generated mirror for the experimental v5 port
   plugin.toml, widget.luau, panel.luau   experimental v5 port (untested)
 tools/
-  sync_peak.py         inlines peak.js into Main.qml
+  sync_peak.py         data block from schedule.json + inline peak.js into QML
   sync_i18n.py         mirrors i18n/ into translations/
 tests/                 pytest suite + node logic tests
 ```
@@ -80,11 +85,17 @@ backend.
 
 ## Editing rules
 
-- **Schedule/time logic changes go in `peak.js` only**, then
-  `python tools/sync_peak.py` inlines it into `Main.qml`, `BarWidget.qml`
-  and `Panel.qml`. `tests/test_logic.js` fails if any inline drifts.
-  Bar and panel compute their own tier/countdown so a missing or failed
-  `Main` can never blank the UI; `Main` owns the drift checker.
+- **Schedule data changes go in `schedule.json`; logic changes in `peak.js`.**
+  `python tools/sync_peak.py` regenerates peak.js's data block and inlines the
+  whole body into `Main.qml`, `BarWidget.qml` and `Panel.qml`.
+  `tests/test_logic.js` fails if anything drifts. Bar and panel compute their
+  own tier/countdown so a missing or failed `Main` can never blank the UI;
+  `Main` owns the drift checker.
+- **Holiday data is refreshed yearly** from
+  [NateScarlet/holiday-cn](https://github.com/NateScarlet/holiday-cn) (MIT,
+  see `THIRD_PARTY_NOTICES.md`): copy the new year's `isOffDay: true` dates
+  into `schedule.json` under `holidays`. Unknown years simply have no
+  holidays (peak windows still apply).
 - **Hot reload does not re-read manifests.** Adding or removing an entry
   point, or editing `manifest.json` fields, requires a shell restart; QML/JS
   and timer edits reload fine (with debug + development mode enabled).
@@ -95,6 +106,9 @@ backend.
   to load with "value set multiple times".
 - **No `Intl`.** Qt's QML engine does not implement timezone options; do
   manual offset math (`peak.js` shows how).
+- **Provider rules differ:** DeepSeek weekends are Beijing-anchored and
+  Chinese holidays are off-peak; Ollama weekends are UTC and it has a single
+  12:00–18:00 peak window. Never merge the two profiles.
 - **Icon names must exist** in `Commons/IconsTabler.qml`; unknown names render
   the `skull` fallback glyph (`circle-filled` is the dot used here).
 - **Transient UI state must not be persisted.** `drift` and `checkedAtMs` live

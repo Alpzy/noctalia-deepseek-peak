@@ -8,7 +8,9 @@
         "driftSuffix": "料金体系が変更された可能性"
     },
     "menu": {
-        "settings": "ウィジェット設定"
+        "settings": "ウィジェット設定",
+        "useDeepSeek": "DeepSeek を使う",
+        "useOllama": "Ollama を使う"
     },
     "notice": {
         "policyChanged": "DeepSeekの料金体系が変更された可能性"
@@ -24,7 +26,9 @@
         "cost": "ピーク = オフピークの2倍",
         "checked": "確認済み",
         "drift": "料金体系が変更された可能性 — 情報源を確認",
-        "weekendAllDay": "終日オフピーク"
+        "weekendAllDay": "終日オフピーク",
+        "provider": "プロバイダー",
+        "holidayOffPeak": "祝日 — 終日オフピーク"
     },
     "checked": {
         "justNow": "たった今",
@@ -72,11 +76,13 @@
             "description": "公式料金ページを上書き",
             "placeholder": "https://…"
         },
-        "weekendMode": {
-            "label": "週末モード",
-            "description": "週末オフピークの基準",
-            "beijing": "北京（金 16:00 UTC – 日 16:00 UTC）",
-            "utc": "UTC 深夜0時"
+        "provider": {
+            "label": "プロバイダー",
+            "description": "適用する料金体系"
         }
+    },
+    "provider": {
+        "deepseek": "DeepSeek",
+        "ollama": "Ollama"
     }
 }

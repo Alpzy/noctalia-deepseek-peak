@@ -8,7 +8,9 @@
         "driftSuffix": "a política pode ter mudado"
     },
     "menu": {
-        "settings": "Configurações do widget"
+        "settings": "Configurações do widget",
+        "useDeepSeek": "Usar DeepSeek",
+        "useOllama": "Usar Ollama"
     },
     "notice": {
         "policyChanged": "A política de preços da DeepSeek pode ter mudado"
@@ -24,7 +26,9 @@
         "cost": "Pico = 2x fora de pico",
         "checked": "Verificado",
         "drift": "A política pode ter mudado — verifique a fonte",
-        "weekendAllDay": "fora de pico o dia todo"
+        "weekendAllDay": "fora de pico o dia todo",
+        "provider": "Provedor",
+        "holidayOffPeak": "Feriado — fora de pico o dia todo"
     },
     "checked": {
         "justNow": "agora mesmo",
@@ -72,11 +76,13 @@
             "description": "Substitui a página oficial de preços",
             "placeholder": "https://…"
         },
-        "weekendMode": {
-            "label": "Modo de fim de semana",
-            "description": "Ancoragem de fim de semana fora de pico",
-            "beijing": "Pequim (sex 16:00 UTC – dom 16:00 UTC)",
-            "utc": "Meia-noite UTC"
+        "provider": {
+            "label": "Provedor",
+            "description": "Qual tarifa seguir"
         }
+    },
+    "provider": {
+        "deepseek": "DeepSeek",
+        "ollama": "Ollama"
     }
 }

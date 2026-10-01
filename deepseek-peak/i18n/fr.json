@@ -8,7 +8,9 @@
         "driftSuffix": "la politique a peut-être changé"
     },
     "menu": {
-        "settings": "Paramètres du widget"
+        "settings": "Paramètres du widget",
+        "useDeepSeek": "Utiliser DeepSeek",
+        "useOllama": "Utiliser Ollama"
     },
     "notice": {
         "policyChanged": "La politique tarifaire DeepSeek a peut-être changé"
@@ -24,7 +26,9 @@
         "cost": "Pointe = 2x heures creuses",
         "checked": "Vérifié",
         "drift": "La politique a peut-être changé — voir la source",
-        "weekendAllDay": "heures creuses toute la journée"
+        "weekendAllDay": "heures creuses toute la journée",
+        "provider": "Fournisseur",
+        "holidayOffPeak": "Jour férié — heures creuses toute la journée"
     },
     "checked": {
         "justNow": "à l'instant",
@@ -72,11 +76,13 @@
             "description": "Remplace la page tarifaire officielle",
             "placeholder": "https://…"
         },
-        "weekendMode": {
-            "label": "Mode week-end",
-            "description": "Ancrage des heures creuses le week-end",
-            "beijing": "Pékin (ven 16:00 UTC – dim 16:00 UTC)",
-            "utc": "Minuit UTC"
+        "provider": {
+            "label": "Fournisseur",
+            "description": "Quel tarif suivre"
         }
+    },
+    "provider": {
+        "deepseek": "DeepSeek",
+        "ollama": "Ollama"
     }
 }

@@ -8,7 +8,9 @@
         "driftSuffix": "правила могли змінитися"
     },
     "menu": {
-        "settings": "Налаштування віджета"
+        "settings": "Налаштування віджета",
+        "useDeepSeek": "Використати DeepSeek",
+        "useOllama": "Використати Ollama"
     },
     "notice": {
         "policyChanged": "Цінова політика DeepSeek могла змінитися"
@@ -24,7 +26,9 @@
         "cost": "Пік = 2x поза піком",
         "checked": "Перевірено",
         "drift": "Правила могли змінитися — перевірте джерело",
-        "weekendAllDay": "поза піком весь день"
+        "weekendAllDay": "поза піком весь день",
+        "provider": "Провайдер",
+        "holidayOffPeak": "Свято — поза піком весь день"
     },
     "checked": {
         "justNow": "щойно",
@@ -72,11 +76,13 @@
             "description": "Замінює офіційну сторінку цін",
             "placeholder": "https://…"
         },
-        "weekendMode": {
-            "label": "Режим вихідних",
-            "description": "Прив'язка вихідних до часу поза піком",
-            "beijing": "Пекін (пт 16:00 UTC – нд 16:00 UTC)",
-            "utc": "Північ UTC"
+        "provider": {
+            "label": "Провайдер",
+            "description": "Який тариф використовувати"
         }
+    },
+    "provider": {
+        "deepseek": "DeepSeek",
+        "ollama": "Ollama"
     }
 }
