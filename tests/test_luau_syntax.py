@@ -48,3 +48,13 @@ def test_panel_uses_v5_panel_api():
     assert 'require("./lib/schedule.luau")' in text, "panel must use the shared schedule module"
     assert "panel.openContextMenu" not in text or "onRightClick" in text
     assert "provider" in text
+
+
+def test_checker_service_publishes_state_and_handles_cmd():
+    text = pathlib.Path("deepseek-peak/checker.luau").read_text()
+    assert 'noctalia.state.set("deepseek-peak.drift"' in text
+    assert 'noctalia.state.watch("deepseek-peak.cmd"' in text
+    assert "function onIpc(event" in text
+    assert "noctalia.http" in text
+    assert 'require("./lib/schedule.luau")' in text, "checker must use the shared schedule module"
+    assert "autoCheck" in text and "offlineOnly" in text
