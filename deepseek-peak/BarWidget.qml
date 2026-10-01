@@ -339,6 +339,7 @@ function holidayRangeInfo(now, provider) {
     readonly property real barFontSize: Style.getBarFontSizeForScreen(screenName)
 
     readonly property color stateColor: drift ? driftColor : (isPeak ? peakColor : offPeakColor)
+    readonly property bool gaugeVisible: displayMode !== "icon" && !isBarVertical
 
     // Content dimensions follow the bar capsule: the loader extends the
     // click area to full bar height, the visual stays at content size.
@@ -429,6 +430,7 @@ function holidayRangeInfo(now, provider) {
         RowLayout {
             id: contentRow
             anchors.centerIn: parent
+            anchors.verticalCenterOffset: root.gaugeVisible ? -Math.round(4 * Style.uiScaleRatio) : 0
             spacing: Style.marginS
 
             NIcon {
@@ -436,26 +438,27 @@ function holidayRangeInfo(now, provider) {
                 icon: "circle-filled"
                 color: root.stateColor
             }
-            ColumnLayout {
+            NText {
                 Layout.alignment: Qt.AlignVCenter
                 visible: root.displayMode !== "icon"
-                spacing: Math.max(1, Math.round(1 * Style.uiScaleRatio))
-
-                NText {
-                    Layout.alignment: Qt.AlignHCenter
-                    text: root.displayMode === "full" ? root.stateText + " " + root.countdownText : root.countdownText
-                    pointSize: root.barFontSize
-                    color: Color.mOnSurface
-                }
-                NLinearGauge {
-                    Layout.alignment: Qt.AlignHCenter
-                    orientation: Qt.Horizontal
-                    ratio: root.blockProgress
-                    fillColor: root.stateColor
-                    Layout.preferredWidth: 32 * Style.uiScaleRatio
-                    Layout.preferredHeight: Math.max(2, Math.round(3 * Style.uiScaleRatio))
-                }
+                text: root.displayMode === "full" ? root.stateText + " " + root.countdownText : root.countdownText
+                pointSize: root.barFontSize
+                color: Color.mOnSurface
             }
+        }
+
+        // Full-width progress gauge under the content, inset from the capsule
+        // edges. Hidden on vertical bars and in icon-only mode.
+        NLinearGauge {
+            visible: root.gaugeVisible
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: Math.max(2, Math.round(3 * Style.uiScaleRatio))
+            width: root.contentWidth - 2 * Style.marginS
+            height: Math.max(2, Math.round(3 * Style.uiScaleRatio))
+            orientation: Qt.Horizontal
+            ratio: root.blockProgress
+            fillColor: root.stateColor
         }
     }
 
