@@ -1,10 +1,11 @@
-[registry]
-version = 1
-
-[[plugins]]
+# Noctalia v5 plugin-source catalog. One [[plugin]] row per plugin subdirectory.
+[[plugin]]
 id = "alpzy/deepseek-peak"
 name = "DeepSeek Peak Hours"
-path = "deepseek-peak"
 version = "1.1.0"
-plugin_api = 3
+author = "Alpzy"
+license = "MIT"
+icon = "zap"
 description = "DeepSeek peak/off-peak bar widget for Noctalia."
+plugin_api = 22
+tags = ["bar", "panel", "indicator"]

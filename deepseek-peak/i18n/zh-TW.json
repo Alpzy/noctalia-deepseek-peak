@@ -83,6 +83,12 @@
         "provider": {
             "label": "服務商",
             "description": "遵循哪套計費時段"
+        },
+        "weekendMode": {
+            "label": "週末模式",
+            "description": "週末離峰時段基準",
+            "beijing": "以北京時間為準",
+            "utc": "UTC"
         }
     },
     "provider": {

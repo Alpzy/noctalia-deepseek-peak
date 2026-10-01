@@ -83,6 +83,12 @@
         "provider": {
             "label": "Anbieter",
             "description": "Welcher Tarifplan gilt"
+        },
+        "weekendMode": {
+            "label": "Wochenend-Modus",
+            "description": "Wochenend-Ankerung für Nebenzeiten",
+            "beijing": "Beijing-basiert",
+            "utc": "UTC"
         }
     },
     "provider": {

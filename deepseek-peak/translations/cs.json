@@ -83,6 +83,12 @@
         "provider": {
             "label": "Poskytovatel",
             "description": "Který tarifní plán sledovat"
+        },
+        "weekendMode": {
+            "label": "Víkendový režim",
+            "description": "Ukotvení víkendových hodin mimo špičku",
+            "beijing": "Podle Pekingu",
+            "utc": "UTC"
         }
     },
     "provider": {

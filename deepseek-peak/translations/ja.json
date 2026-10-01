@@ -83,6 +83,12 @@
         "provider": {
             "label": "プロバイダー",
             "description": "適用する料金体系"
+        },
+        "weekendMode": {
+            "label": "週末モード",
+            "description": "週末のオフピーク基準",
+            "beijing": "北京基準",
+            "utc": "UTC"
         }
     },
     "provider": {

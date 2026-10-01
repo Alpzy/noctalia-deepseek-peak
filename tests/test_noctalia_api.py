@@ -158,3 +158,35 @@ def test_main_keeps_both_provider_states():
     assert 'keys = ["deepseek", "ollama"]' in main
     assert "checkProvider(\"deepseek\"" in main and "checkProvider(\"ollama\"" in main
     assert "function refresh()" in main, "manual refresh must exist"
+
+
+def test_v5_manifest_matches_lint_schema():
+    import tomllib
+    manifest = tomllib.loads(
+        pathlib.Path("deepseek-peak/plugin.toml").read_text()
+    )
+    assert manifest["id"] == "alpzy/deepseek-peak"
+    assert manifest["version"] == "1.1.0"
+    assert manifest["plugin_api"] >= 3
+    entries = {w["id"]: w for w in manifest["widget"]}
+    assert entries["peak"]["entry"] == "widget.luau"
+    panels = {p["id"]: p for p in manifest["panel"]}
+    assert panels["panel"]["entry"] == "panel.luau"
+    keys = {s["key"] for s in manifest["setting"]}
+    assert keys == {
+        "displayMode", "provider", "weekendMode", "offPeakColor", "peakColor",
+        "driftColor", "showTooltip", "autoCheck", "offlineOnly",
+        "checkIntervalH", "customSourceUrl",
+    }
+    for setting in manifest["setting"]:
+        assert "label_key" in setting, setting["key"]
+
+
+def test_v5_catalog_row():
+    import tomllib
+    catalog = tomllib.loads(pathlib.Path("catalog.toml").read_text())
+    row = catalog["plugin"][0]
+    assert row["id"] == "alpzy/deepseek-peak"
+    assert row["version"] == "1.1.0"
+    assert row["plugin_api"] >= 3
+    assert row["tags"]

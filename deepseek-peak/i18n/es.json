@@ -83,6 +83,12 @@
         "provider": {
             "label": "Proveedor",
             "description": "Qué tarifa seguir"
+        },
+        "weekendMode": {
+            "label": "Modo fin de semana",
+            "description": "Anclaje fuera de punta en fin de semana",
+            "beijing": "Anclado a Pekín",
+            "utc": "UTC"
         }
     },
     "provider": {

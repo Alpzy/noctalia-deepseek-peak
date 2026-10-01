@@ -83,6 +83,12 @@
         "provider": {
             "label": "Leverantör",
             "description": "Vilken taxa som följs"
+        },
+        "weekendMode": {
+            "label": "Helgläge",
+            "description": "Helganknytning för låglast",
+            "beijing": "Beijing-baserad",
+            "utc": "UTC"
         }
     },
     "provider": {

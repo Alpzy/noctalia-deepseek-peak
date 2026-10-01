@@ -83,6 +83,12 @@
         "provider": {
             "label": "Aanbieder",
             "description": "Welk tarief gevolgd wordt"
+        },
+        "weekendMode": {
+            "label": "Weekendmodus",
+            "description": "Weekend-verankering voor daluren",
+            "beijing": "Op Peking gebaseerd",
+            "utc": "UTC"
         }
     },
     "provider": {

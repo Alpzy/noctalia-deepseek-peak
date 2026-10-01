@@ -1,80 +1,134 @@
-# Noctalia v5 plugin manifest.
-#
-# EXPERIMENTAL / UNTESTED: the Luau port (widget.luau, panel.luau) has not been
-# run on a real Noctalia v5 shell yet and is not published to the community
-# store. Keep the JSON v4 manifest authoritative.
-[plugin]
+# Noctalia v5 plugin manifest (current schema). EXPERIMENTAL: the Luau port has
+# not been published. The JSON v4 manifest stays authoritative for v4.
 id = "alpzy/deepseek-peak"
 name = "DeepSeek Peak Hours"
 version = "1.1.0"
-plugin_api = 3
-description = "DeepSeek peak/off-peak bar widget for Noctalia. Green off-peak, red peak."
+plugin_api = 22
 author = "Alpzy"
 license = "MIT"
-repository = "https://github.com/Alpzy/noctalia-deepseek-peak"
+icon = "zap"
+description = "DeepSeek peak/off-peak bar widget for Noctalia. Green off-peak, red peak."
+tags = ["bar", "panel", "indicator"]
 
-[entries]
-widget = "widget.luau"
-panel = "panel.luau"
-
-[settings.displayMode]
-type = "enum"
+[[setting]]
+key = "displayMode"
+type = "select"
+label_key = "settings.displayMode.label"
+description_key = "settings.displayMode.description"
 default = "compact"
-options = ["compact", "icon", "full"]
-label = "Display Mode"
-description = "How to show the widget"
 
-[settings.offPeakColor]
-type = "color"
-default = "#4ade80"
-label = "Off-peak Color"
-description = "Widget color during off-peak"
+  [[setting.options]]
+  value = "compact"
+  label_key = "settings.displayMode.compact"
 
-[settings.peakColor]
-type = "color"
-default = "#f87171"
-label = "Peak Color"
-description = "Widget color during peak"
+  [[setting.options]]
+  value = "icon"
+  label_key = "settings.displayMode.icon"
 
-[settings.driftColor]
-type = "color"
-default = "#fbbf24"
-label = "Drift Color"
-description = "Widget color when policy drift is detected"
+  [[setting.options]]
+  value = "full"
+  label_key = "settings.displayMode.full"
 
-[settings.showTooltip]
-type = "boolean"
-default = true
-label = "Show Tooltip"
-description = "Show state tooltip on hover"
-
-[settings.provider]
-type = "enum"
+[[setting]]
+key = "provider"
+type = "select"
+label_key = "settings.provider.label"
+description_key = "settings.provider.description"
 default = "deepseek"
-options = ["deepseek", "ollama"]
-label = "Provider"
-description = "Which tariff schedule to follow"
 
-[settings.autoCheck]
-type = "boolean"
+  [[setting.options]]
+  value = "deepseek"
+  label_key = "provider.deepseek"
+
+  [[setting.options]]
+  value = "ollama"
+  label_key = "provider.ollama"
+
+[[setting]]
+key = "weekendMode"
+type = "select"
+label_key = "settings.weekendMode.label"
+description_key = "settings.weekendMode.description"
+default = "beijing-anchored"
+
+  [[setting.options]]
+  value = "beijing-anchored"
+  label_key = "settings.weekendMode.beijing"
+
+  [[setting.options]]
+  value = "utc"
+  label_key = "settings.weekendMode.utc"
+
+[[setting]]
+key = "offPeakColor"
+type = "color"
+label_key = "settings.offPeakColor.label"
+description_key = "settings.offPeakColor.description"
+default = "#4ade80"
+
+[[setting]]
+key = "peakColor"
+type = "color"
+label_key = "settings.peakColor.label"
+description_key = "settings.peakColor.description"
+default = "#f87171"
+
+[[setting]]
+key = "driftColor"
+type = "color"
+label_key = "settings.driftColor.label"
+description_key = "settings.driftColor.description"
+default = "#fbbf24"
+
+[[setting]]
+key = "showTooltip"
+type = "bool"
+label_key = "settings.showTooltip.label"
+description_key = "settings.showTooltip.description"
 default = true
-label = "Auto Check"
-description = "Periodically check the official pricing page for policy drift"
 
-[settings.checkIntervalH]
-type = "integer"
-default = 6
-label = "Check Interval (hours)"
-description = "Hours between policy-drift checks"
+[[setting]]
+key = "autoCheck"
+type = "bool"
+label_key = "settings.autoCheck.label"
+description_key = "settings.autoCheck.description"
+default = true
 
-[settings.customSourceUrl]
-type = "string"
-default = ""
-label = "Custom Source URL"
-description = "Override for the official pricing page"
-
-[settings.offlineOnly]
-type = "boolean"
+[[setting]]
+key = "offlineOnly"
+type = "bool"
+label_key = "settings.offlineOnly.label"
+description_key = "settings.offlineOnly.description"
 default = false
-label = "Offline Only"
-description = "Disable network checks"
+
+[[setting]]
+key = "checkIntervalH"
+type = "int"
+label_key = "settings.checkIntervalH.label"
+description_key = "settings.checkIntervalH.description"
+default = 6
+min = 1
+max = 168
+
+[[setting]]
+key = "customSourceUrl"
+type = "string"
+label_key = "settings.customSourceUrl.label"
+description_key = "settings.customSourceUrl.description"
+default = ""
+
+[[widget]]
+id = "peak"
+entry = "widget.luau"
+
+[[panel]]
+id = "panel"
+entry = "panel.luau"
+width = 340
+height = 420
+placement = "attached"
+position = "auto"
+
+[[service]]
+id = "checker"
+entry = "checker.luau"

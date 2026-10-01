@@ -83,6 +83,12 @@
         "provider": {
             "label": "Dostawca",
             "description": "Który cennik stosować"
+        },
+        "weekendMode": {
+            "label": "Tryb weekendowy",
+            "description": "Zakotwiczenie weekendowych godzin poza szczytem",
+            "beijing": "Na bazie Pekinu",
+            "utc": "UTC"
         }
     },
     "provider": {

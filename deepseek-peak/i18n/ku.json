@@ -83,6 +83,12 @@
         "provider": {
             "label": "Pêşkêşkar",
             "description": "Kîjan tarîfê bişopîne"
+        },
+        "weekendMode": {
+            "label": "Moda dawiya hefteyê",
+            "description": "Bingehgirtina dema kêmbiha ya dawiya hefteyê",
+            "beijing": "Li gorî Beijingê",
+            "utc": "UTC"
         }
     },
     "provider": {
