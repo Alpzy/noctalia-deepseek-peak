@@ -83,12 +83,6 @@
         "provider": {
             "label": "Provider",
             "description": "Which tariff schedule to follow"
-        },
-        "weekendMode": {
-            "label": "Weekend Mode",
-            "description": "Weekend off-peak anchoring",
-            "beijing": "Beijing-anchored",
-            "utc": "UTC"
         }
     },
     "provider": {

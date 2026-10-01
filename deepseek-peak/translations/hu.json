@@ -83,12 +83,6 @@
         "provider": {
             "label": "Szolgáltató",
             "description": "Melyik tarifát kövesse"
-        },
-        "weekendMode": {
-            "label": "Hétvége mód",
-            "description": "Hétvégi csúcson kívüli időszak rögzítése",
-            "beijing": "Pekinghez igazítva",
-            "utc": "UTC"
         }
     },
     "provider": {

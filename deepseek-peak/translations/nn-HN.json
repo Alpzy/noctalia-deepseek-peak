@@ -83,12 +83,6 @@
         "provider": {
             "label": "Tilbydar",
             "description": "Kva tariff som skal fylgjast"
-        },
-        "weekendMode": {
-            "label": "Helgemodus",
-            "description": "Helgeforankring for off-peak",
-            "beijing": "Beijing-basert",
-            "utc": "UTC"
         }
     },
     "provider": {

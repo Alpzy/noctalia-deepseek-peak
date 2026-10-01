@@ -83,12 +83,6 @@
         "provider": {
             "label": "Sağlayıcı",
             "description": "Hangi tarifenin izleneceği"
-        },
-        "weekendMode": {
-            "label": "Hafta sonu modu",
-            "description": "Hafta sonu zirve dışı çapalama",
-            "beijing": "Pekin bazlı",
-            "utc": "UTC"
         }
     },
     "provider": {

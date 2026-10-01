@@ -45,21 +45,6 @@ default = "deepseek"
   label_key = "provider.ollama"
 
 [[setting]]
-key = "weekendMode"
-type = "select"
-label_key = "settings.weekendMode.label"
-description_key = "settings.weekendMode.description"
-default = "beijing-anchored"
-
-  [[setting.options]]
-  value = "beijing-anchored"
-  label_key = "settings.weekendMode.beijing"
-
-  [[setting.options]]
-  value = "utc"
-  label_key = "settings.weekendMode.utc"
-
-[[setting]]
 key = "offPeakColor"
 type = "color"
 label_key = "settings.offPeakColor.label"

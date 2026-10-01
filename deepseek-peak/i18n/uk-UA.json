@@ -83,12 +83,6 @@
         "provider": {
             "label": "Провайдер",
             "description": "Який тариф використовувати"
-        },
-        "weekendMode": {
-            "label": "Режим вихідних",
-            "description": "Прив’язка вихідних до позапікових годин",
-            "beijing": "За Пекіном",
-            "utc": "UTC"
         }
     },
     "provider": {

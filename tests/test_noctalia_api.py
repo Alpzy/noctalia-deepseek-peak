@@ -1,6 +1,8 @@
 import pathlib
 import re
 
+import pytest
+
 SETTINGS = (
     pathlib.Path("deepseek-peak/Settings.qml").read_text()
     + pathlib.Path("deepseek-peak/SettingsControls.qml").read_text()
@@ -174,7 +176,7 @@ def test_v5_manifest_matches_lint_schema():
     assert panels["panel"]["entry"] == "panel.luau"
     keys = {s["key"] for s in manifest["setting"]}
     assert keys == {
-        "displayMode", "provider", "weekendMode", "offPeakColor", "peakColor",
+        "displayMode", "provider", "offPeakColor", "peakColor",
         "driftColor", "showTooltip", "autoCheck", "offlineOnly",
         "checkIntervalH", "customSourceUrl",
     }
@@ -190,3 +192,18 @@ def test_v5_catalog_row():
     assert row["version"] == "1.1.0"
     assert row["plugin_api"] >= 3
     assert row["tags"]
+
+
+def test_plugin_lints_clean_when_noctalia_available():
+    import shutil
+    import subprocess
+
+    noctalia = shutil.which("noctalia")
+    if noctalia is None:
+        pytest.skip("noctalia binary not available")
+    result = subprocess.run(
+        [noctalia, "plugins", "lint", "deepseek-peak"],
+        capture_output=True, text=True, timeout=60,
+    )
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert "0 errors" in result.stdout

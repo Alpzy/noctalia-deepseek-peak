@@ -83,12 +83,6 @@
         "provider": {
             "label": "Fournisseur",
             "description": "Quel tarif suivre"
-        },
-        "weekendMode": {
-            "label": "Mode week-end",
-            "description": "Ancrage des heures creuses le week-end",
-            "beijing": "Ancré sur Pékin",
-            "utc": "UTC"
         }
     },
     "provider": {

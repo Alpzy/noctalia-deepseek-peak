@@ -83,12 +83,6 @@
         "provider": {
             "label": "Nhà cung cấp",
             "description": "Theo bảng giá nào"
-        },
-        "weekendMode": {
-            "label": "Chế độ cuối tuần",
-            "description": "Neo giờ thấp điểm cuối tuần",
-            "beijing": "Theo Bắc Kinh",
-            "utc": "UTC"
         }
     },
     "provider": {

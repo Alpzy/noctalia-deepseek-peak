@@ -83,12 +83,6 @@
         "provider": {
             "label": "공급자",
             "description": "적용할 요금제"
-        },
-        "weekendMode": {
-            "label": "주말 모드",
-            "description": "주말 오프피크 기준",
-            "beijing": "베이징 기준",
-            "utc": "UTC"
         }
     },
     "provider": {
