@@ -114,7 +114,7 @@ def test_manifest_matches_registry_rules():
 
     manifest = json.loads(pathlib.Path("deepseek-peak/manifest.json").read_text())
     assert manifest["id"] == "deepseek-peak"
-    assert manifest["version"] == "1.1.0"
+    assert manifest["version"] == "1.0.0"
     assert manifest["repository"] == "https://github.com/noctalia-dev/noctalia-plugins"
     assert "main" in manifest["entryPoints"], "shared state needs a main entry"
     assert manifest["tags"], "registry expects tags"
@@ -168,7 +168,7 @@ def test_v5_manifest_matches_lint_schema():
         pathlib.Path("deepseek-peak/plugin.toml").read_text()
     )
     assert manifest["id"] == "alpzy/deepseek-peak"
-    assert manifest["version"] == "1.1.0"
+    assert manifest["version"] == "1.0.0"
     assert manifest["plugin_api"] >= 3
     entries = {w["id"]: w for w in manifest["widget"]}
     assert entries["peak"]["entry"] == "widget.luau"
@@ -189,7 +189,7 @@ def test_v5_catalog_row():
     catalog = tomllib.loads(pathlib.Path("catalog.toml").read_text())
     row = catalog["plugin"][0]
     assert row["id"] == "alpzy/deepseek-peak"
-    assert row["version"] == "1.1.0"
+    assert row["version"] == "1.0.0"
     assert row["plugin_api"] >= 3
     assert row["tags"]
 

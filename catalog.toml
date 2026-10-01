@@ -2,10 +2,10 @@
 [[plugin]]
 id = "alpzy/deepseek-peak"
 name = "DeepSeek Peak Hours"
-version = "1.1.0"
+version = "1.0.0"
 author = "Alpzy"
 license = "MIT"
 icon = "zap"
-description = "DeepSeek peak/off-peak bar widget for Noctalia."
+description = "DeepSeek and Ollama Cloud peak/off-peak API rate windows with a live countdown, progress bar, and policy-drift alerts."
 plugin_api = 22
-tags = ["bar", "panel", "indicator"]
+tags = ["bar", "panel", "indicator", "ai", "countdown"]

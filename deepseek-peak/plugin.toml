@@ -2,13 +2,13 @@
 # not been published. The JSON v4 manifest stays authoritative for v4.
 id = "alpzy/deepseek-peak"
 name = "DeepSeek Peak Hours"
-version = "1.1.0"
+version = "1.0.0"
 plugin_api = 22
 author = "Alpzy"
 license = "MIT"
 icon = "zap"
-description = "DeepSeek peak/off-peak bar widget for Noctalia. Green off-peak, red peak."
-tags = ["bar", "panel", "indicator"]
+description = "DeepSeek and Ollama Cloud peak/off-peak API rate windows with a live countdown, progress bar, and policy-drift alerts."
+tags = ["bar", "panel", "indicator", "ai", "countdown"]
 dependencies = []
 
 [[setting]]
