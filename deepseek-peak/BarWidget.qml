@@ -194,11 +194,11 @@ function checkedInfo(nowMs, checkedMs) {
         return {key: "", n: 0, text: ""};
     var diff = Math.max(0, Math.floor((nowMs - checkedMs) / 1000));
     if (diff < 60)
-        return {key: "checked.justNow", n: 0, text: ""};
+        return {key: "checked.just-now", n: 0, text: ""};
     if (diff < 3600)
-        return {key: "checked.minutesAgo", n: Math.floor(diff / 60), text: ""};
+        return {key: "checked.minutes-ago", n: Math.floor(diff / 60), text: ""};
     if (diff < 86400)
-        return {key: "checked.hoursAgo", n: Math.floor(diff / 3600), text: ""};
+        return {key: "checked.hours-ago", n: Math.floor(diff / 3600), text: ""};
     var d = new Date(checkedMs);
     return {
         key: "checked.date",
@@ -357,15 +357,15 @@ function holidayRangeInfo(now, provider) {
     }
     function refreshTexts() {
         countdownText = formatHMS(secondsToNext);
-        stateText = isPeak ? t("bar.peak") : t("bar.offPeak");
-        tooltipFormat = providerName(provider) + " · " + (isPeak ? t("bar.tooltipPeak") : t("bar.tooltipOffPeak")) + " — " + t("bar.nextFlip") + " " + countdownText + (drift ? " — " + t("bar.driftSuffix") : "");
+        stateText = isPeak ? t("bar.peak") : t("bar.off-peak");
+        tooltipFormat = providerName(provider) + " · " + (isPeak ? t("bar.tooltip-peak") : t("bar.tooltip-off-peak")) + " — " + t("bar.next-flip") + " " + countdownText + (drift ? " — " + t("bar.drift-suffix") : "");
     }
     // Dual-provider tooltip grid (active provider marked with ●).
     function tooltipGrid() {
         var states = main ? main.providerStates : null;
         var rows = [];
         if (!states) {
-            rows.push(["● " + providerName(provider), isPeak ? t("bar.tooltipPeak") : t("bar.tooltipOffPeak"), countdownText]);
+            rows.push(["● " + providerName(provider), isPeak ? t("bar.tooltip-peak") : t("bar.tooltip-off-peak"), countdownText]);
             return rows;
         }
         var keys = ["deepseek", "ollama"];
@@ -376,7 +376,7 @@ function holidayRangeInfo(now, provider) {
                 continue;
             rows.push([
                 (k === provider ? "● " : "○ ") + providerName(k),
-                s.isPeak ? t("bar.tooltipPeak") : t("bar.tooltipOffPeak"),
+                s.isPeak ? t("bar.tooltip-peak") : t("bar.tooltip-off-peak"),
                 formatHMS(s.secondsToNext),
                 Math.round(s.progress * 100) + "%"
             ]);
@@ -475,12 +475,12 @@ function holidayRangeInfo(now, provider) {
         id: contextMenu
         model: [
             {
-                "label": pluginApi?.tr("menu.useDeepSeek") + (root.provider === "deepseek" ? "  ✓" : ""),
+                "label": pluginApi?.tr("menu.use-deep-seek") + (root.provider === "deepseek" ? "  ✓" : ""),
                 "action": "use-deepseek",
                 "icon": "sparkles"
             },
             {
-                "label": pluginApi?.tr("menu.useOllama") + (root.provider === "ollama" ? "  ✓" : ""),
+                "label": pluginApi?.tr("menu.use-ollama") + (root.provider === "ollama" ? "  ✓" : ""),
                 "action": "use-ollama",
                 "icon": "circle-letter-o"
             },

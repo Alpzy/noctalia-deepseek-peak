@@ -204,11 +204,11 @@ function checkedInfo(nowMs, checkedMs) {
         return {key: "", n: 0, text: ""};
     var diff = Math.max(0, Math.floor((nowMs - checkedMs) / 1000));
     if (diff < 60)
-        return {key: "checked.justNow", n: 0, text: ""};
+        return {key: "checked.just-now", n: 0, text: ""};
     if (diff < 3600)
-        return {key: "checked.minutesAgo", n: Math.floor(diff / 60), text: ""};
+        return {key: "checked.minutes-ago", n: Math.floor(diff / 60), text: ""};
     if (diff < 86400)
-        return {key: "checked.hoursAgo", n: Math.floor(diff / 3600), text: ""};
+        return {key: "checked.hours-ago", n: Math.floor(diff / 3600), text: ""};
     var d = new Date(checkedMs);
     return {
         key: "checked.date",
@@ -347,12 +347,12 @@ function holidayRangeInfo(now, provider) {
 
     function lineFor(tz) {
         var w = windowLine(root.nowDate, root.provider, tz);
-        return w === null ? t("panel.weekendAllDay") : w;
+        return w === null ? t("panel.weekend-all-day") : w;
     }
     function refreshTexts() {
         countdownHMS = formatHMS(secondsToNext);
-        panelStateText = isPeak ? t("panel.peak") : t("panel.offPeak");
-        countdownLabel = isPeak ? t("panel.offPeakIn") : t("panel.peakIn");
+        panelStateText = isPeak ? t("panel.peak") : t("panel.off-peak");
+        countdownLabel = isPeak ? t("panel.off-peak-in") : t("panel.peak-in");
         localLine = t("panel.local") + "    " + lineFor("local");
         utcLine = t("panel.utc") + "      " + lineFor("utc");
         beijingLine = t("panel.beijing") + "  " + lineFor("beijing");
@@ -426,7 +426,7 @@ function holidayRangeInfo(now, provider) {
                 if (found && !sameWindows(found, extractWindows(scheduleText(providerId)))) {
                     setCheckMeta(providerId, {drift: true, checkedAtMs: Date.now()});
                     if (providerId === provider)
-                        ToastService.showNotice(t("notice.policyChanged"), providerName(providerId) + " · " + found.join(", ") + " UTC");
+                        ToastService.showNotice(t("notice.policy-changed"), providerName(providerId) + " · " + found.join(", ") + " UTC");
                 } else if (found) {
                     // DeepSeek bundles holidays; warn if the page stops saying so.
                     setCheckMeta(providerId, {

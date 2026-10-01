@@ -1,81 +1,81 @@
 {
     "bar": {
         "peak": "PEAK 2x",
-        "offPeak": "OFF-PEAK",
-        "tooltipPeak": "PEAK (2x)",
-        "tooltipOffPeak": "OFF-PEAK",
-        "nextFlip": "próxima mudança em",
-        "driftSuffix": "a política pode ter mudado"
+        "off-peak": "OFF-PEAK",
+        "tooltip-peak": "PEAK (2x)",
+        "tooltip-off-peak": "OFF-PEAK",
+        "next-flip": "próxima mudança em",
+        "drift-suffix": "a política pode ter mudado"
     },
     "menu": {
         "settings": "Configurações do widget",
-        "useDeepSeek": "Usar DeepSeek",
-        "useOllama": "Usar Ollama",
+        "use-deep-seek": "Usar DeepSeek",
+        "use-ollama": "Usar Ollama",
         "refresh": "Atualizar agora"
     },
     "notice": {
-        "policyChanged": "A política de preços da DeepSeek pode ter mudado"
+        "policy-changed": "A política de preços da DeepSeek pode ter mudado"
     },
     "panel": {
         "peak": "PICO (2x)",
-        "offPeak": "FORA DE PICO",
-        "offPeakIn": "Fora de pico em",
-        "peakIn": "Pico em",
+        "off-peak": "FORA DE PICO",
+        "off-peak-in": "Fora de pico em",
+        "peak-in": "Pico em",
         "local": "Local",
         "utc": "UTC",
         "beijing": "Pequim",
         "checked": "Verificado",
         "drift": "A política pode ter mudado — verifique a fonte",
-        "weekendAllDay": "fora de pico o dia todo",
+        "weekend-all-day": "fora de pico o dia todo",
         "provider": "Provedor",
         "schedule": "Pico",
-        "offPeakLine": "Fora de pico: fins de semana (UTC)",
-        "offPeakLineHolidays": "Fora de pico: fins de semana + feriados chineses",
-        "holidayEnds": "Feriado termina {date}",
-        "nextHoliday": "Próximo feriado {range} · em {n} d"
+        "off-peak-line": "Fora de pico: fins de semana (UTC)",
+        "off-peak-line-holidays": "Fora de pico: fins de semana + feriados chineses",
+        "holiday-ends": "Feriado termina {date}",
+        "next-holiday": "Próximo feriado {range} · em {n} d"
     },
     "checked": {
-        "justNow": "agora mesmo",
-        "minutesAgo": "há {n} min",
-        "hoursAgo": "há {n} h"
+        "just-now": "agora mesmo",
+        "minutes-ago": "há {n} min",
+        "hours-ago": "há {n} h"
     },
     "settings": {
-        "displayMode": {
+        "display-mode": {
             "label": "Modo de exibição",
             "description": "Como mostrar o widget",
             "compact": "Compacto (ponto + contagem)",
             "icon": "Apenas ícone",
             "full": "Completo (estado + contagem)"
         },
-        "offPeakColor": {
+        "off-peak-color": {
             "label": "Cor fora de pico",
             "description": "Cor do widget fora de pico"
         },
-        "peakColor": {
+        "peak-color": {
             "label": "Cor de pico",
             "description": "Cor do widget durante o pico"
         },
-        "driftColor": {
+        "drift-color": {
             "label": "Cor de desvio",
             "description": "Cor do widget quando a política muda"
         },
-        "showTooltip": {
+        "show-tooltip": {
             "label": "Mostrar dica",
             "description": "Mostrar dica de estado ao passar o cursor"
         },
-        "autoCheck": {
+        "auto-check": {
             "label": "Verificação automática",
             "description": "Verificar periodicamente a página oficial de preços"
         },
-        "offlineOnly": {
+        "offline-only": {
             "label": "Apenas offline",
             "description": "Desativar verificações de rede"
         },
-        "checkIntervalH": {
+        "check-interval-h": {
             "label": "Intervalo de verificação (horas)",
             "description": "Horas entre verificações"
         },
-        "customSourceUrl": {
+        "custom-source-url": {
             "label": "URL de origem personalizado",
             "description": "Substitui a página oficial de preços",
             "placeholder": "https://…"

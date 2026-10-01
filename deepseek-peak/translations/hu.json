@@ -1,81 +1,81 @@
 {
     "bar": {
         "peak": "PEAK 2x",
-        "offPeak": "OFF-PEAK",
-        "tooltipPeak": "PEAK (2x)",
-        "tooltipOffPeak": "OFF-PEAK",
-        "nextFlip": "következő váltás",
-        "driftSuffix": "a szabályzat megváltozhatott"
+        "off-peak": "OFF-PEAK",
+        "tooltip-peak": "PEAK (2x)",
+        "tooltip-off-peak": "OFF-PEAK",
+        "next-flip": "következő váltás",
+        "drift-suffix": "a szabályzat megváltozhatott"
     },
     "menu": {
         "settings": "Widget beállításai",
-        "useDeepSeek": "DeepSeek használata",
-        "useOllama": "Ollama használata",
+        "use-deep-seek": "DeepSeek használata",
+        "use-ollama": "Ollama használata",
         "refresh": "Frissítés most"
     },
     "notice": {
-        "policyChanged": "A DeepSeek árazási szabályzata megváltozhatott"
+        "policy-changed": "A DeepSeek árazási szabályzata megváltozhatott"
     },
     "panel": {
         "peak": "CSÚCS (2x)",
-        "offPeak": "CSÚCSON KÍVÜL",
-        "offPeakIn": "Csúcson kívül",
-        "peakIn": "Csúcs kezdete",
+        "off-peak": "CSÚCSON KÍVÜL",
+        "off-peak-in": "Csúcson kívül",
+        "peak-in": "Csúcs kezdete",
         "local": "Helyi",
         "utc": "UTC",
         "beijing": "Peking",
         "checked": "Ellenőrizve",
         "drift": "A szabályzat megváltozhatott — nézd meg a forrást",
-        "weekendAllDay": "egész nap csúcson kívül",
+        "weekend-all-day": "egész nap csúcson kívül",
         "provider": "Szolgáltató",
         "schedule": "Csúcs",
-        "offPeakLine": "Csúcson kívül: hétvégék (UTC)",
-        "offPeakLineHolidays": "Csúcson kívül: hétvégék + kínai ünnepek",
-        "holidayEnds": "Az ünnep vége: {date}",
-        "nextHoliday": "Következő ünnep: {range} · {n} nap múlva"
+        "off-peak-line": "Csúcson kívül: hétvégék (UTC)",
+        "off-peak-line-holidays": "Csúcson kívül: hétvégék + kínai ünnepek",
+        "holiday-ends": "Az ünnep vége: {date}",
+        "next-holiday": "Következő ünnep: {range} · {n} nap múlva"
     },
     "checked": {
-        "justNow": "épp most",
-        "minutesAgo": "{n} perccel ezelőtt",
-        "hoursAgo": "{n} órával ezelőtt"
+        "just-now": "épp most",
+        "minutes-ago": "{n} perccel ezelőtt",
+        "hours-ago": "{n} órával ezelőtt"
     },
     "settings": {
-        "displayMode": {
+        "display-mode": {
             "label": "Megjelenítési mód",
             "description": "A widget megjelenítése",
             "compact": "Kompakt (pont + visszaszámlálás)",
             "icon": "Csak ikon",
             "full": "Teljes (állapot + visszaszámlálás)"
         },
-        "offPeakColor": {
+        "off-peak-color": {
             "label": "Csúcson kívüli szín",
             "description": "A widget színe csúcson kívül"
         },
-        "peakColor": {
+        "peak-color": {
             "label": "Csúcsidő színe",
             "description": "A widget színe csúcsidőben"
         },
-        "driftColor": {
+        "drift-color": {
             "label": "Eltérés színe",
             "description": "A widget színe szabályzatváltozás esetén"
         },
-        "showTooltip": {
+        "show-tooltip": {
             "label": "Tipp megjelenítése",
             "description": "Állapot tipp megjelenítése ráhúzáskor"
         },
-        "autoCheck": {
+        "auto-check": {
             "label": "Automatikus ellenőrzés",
             "description": "A hivatalos árazási oldal rendszeres ellenőrzése"
         },
-        "offlineOnly": {
+        "offline-only": {
             "label": "Csak offline",
             "description": "Hálózati ellenőrzések kikapcsolása"
         },
-        "checkIntervalH": {
+        "check-interval-h": {
             "label": "Ellenőrzési időköz (óra)",
             "description": "Órák az ellenőrzések között"
         },
-        "customSourceUrl": {
+        "custom-source-url": {
             "label": "Egyéni forrás URL",
             "description": "Felülírja a hivatalos árazási oldalt",
             "placeholder": "https://…"

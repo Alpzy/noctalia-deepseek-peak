@@ -1,81 +1,81 @@
 {
     "bar": {
         "peak": "PEAK 2x",
-        "offPeak": "OFF-PEAK",
-        "tooltipPeak": "PEAK (2x)",
-        "tooltipOffPeak": "OFF-PEAK",
-        "nextFlip": "next flip in",
-        "driftSuffix": "policy may have changed"
+        "off-peak": "OFF-PEAK",
+        "tooltip-peak": "PEAK (2x)",
+        "tooltip-off-peak": "OFF-PEAK",
+        "next-flip": "next flip in",
+        "drift-suffix": "policy may have changed"
     },
     "menu": {
         "settings": "Widget settings",
-        "useDeepSeek": "Use DeepSeek",
-        "useOllama": "Use Ollama",
+        "use-deep-seek": "Use DeepSeek",
+        "use-ollama": "Use Ollama",
         "refresh": "Refresh now"
     },
     "notice": {
-        "policyChanged": "DeepSeek pricing policy may have changed"
+        "policy-changed": "DeepSeek pricing policy may have changed"
     },
     "panel": {
         "peak": "PEAK (2x)",
-        "offPeak": "OFF-PEAK",
-        "offPeakIn": "Off-peak in",
-        "peakIn": "Peak in",
+        "off-peak": "OFF-PEAK",
+        "off-peak-in": "Off-peak in",
+        "peak-in": "Peak in",
         "local": "Local",
         "utc": "UTC",
         "beijing": "Beijing",
         "checked": "Checked",
         "drift": "Policy may have changed — check source",
-        "weekendAllDay": "off-peak all day",
+        "weekend-all-day": "off-peak all day",
         "provider": "Provider",
         "schedule": "Peak",
-        "offPeakLine": "Off-peak: weekends (UTC)",
-        "offPeakLineHolidays": "Off-peak: weekends + Chinese holidays",
-        "holidayEnds": "Holiday ends {date}",
-        "nextHoliday": "Next holiday {range} · in {n}d"
+        "off-peak-line": "Off-peak: weekends (UTC)",
+        "off-peak-line-holidays": "Off-peak: weekends + Chinese holidays",
+        "holiday-ends": "Holiday ends {date}",
+        "next-holiday": "Next holiday {range} · in {n}d"
     },
     "checked": {
-        "justNow": "just now",
-        "minutesAgo": "{n}m ago",
-        "hoursAgo": "{n}h ago"
+        "just-now": "just now",
+        "minutes-ago": "{n}m ago",
+        "hours-ago": "{n}h ago"
     },
     "settings": {
-        "displayMode": {
+        "display-mode": {
             "label": "Display Mode",
             "description": "How to show the widget",
             "compact": "Compact (dot + countdown)",
             "icon": "Icon only",
             "full": "Full (state + countdown)"
         },
-        "offPeakColor": {
+        "off-peak-color": {
             "label": "Off-peak Colour",
             "description": "Widget colour during off-peak"
         },
-        "peakColor": {
+        "peak-color": {
             "label": "Peak Colour",
             "description": "Widget colour during peak"
         },
-        "driftColor": {
+        "drift-color": {
             "label": "Drift Colour",
             "description": "Widget colour when policy drift is detected"
         },
-        "showTooltip": {
+        "show-tooltip": {
             "label": "Show Tooltip",
             "description": "Show state tooltip on hover"
         },
-        "autoCheck": {
+        "auto-check": {
             "label": "Auto Check",
             "description": "Periodically check the official pricing page for policy drift"
         },
-        "offlineOnly": {
+        "offline-only": {
             "label": "Offline Only",
             "description": "Disable network checks"
         },
-        "checkIntervalH": {
+        "check-interval-h": {
             "label": "Check Interval (hours)",
             "description": "Hours between policy-drift checks"
         },
-        "customSourceUrl": {
+        "custom-source-url": {
             "label": "Custom Source URL",
             "description": "Override for the official pricing page",
             "placeholder": "https://…"

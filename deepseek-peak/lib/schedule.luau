@@ -300,13 +300,13 @@ function M.checkedInfo(nowMs, checkedMs)
   end
   local diff = math.max(0, math.floor((nowMs - checkedMs) / 1000))
   if diff < 60 then
-    return { key = "checked.justNow", n = 0, text = "" }
+    return { key = "checked.just-now", n = 0, text = "" }
   end
   if diff < 3600 then
-    return { key = "checked.minutesAgo", n = math.floor(diff / 60), text = "" }
+    return { key = "checked.minutes-ago", n = math.floor(diff / 60), text = "" }
   end
   if diff < 86400 then
-    return { key = "checked.hoursAgo", n = math.floor(diff / 3600), text = "" }
+    return { key = "checked.hours-ago", n = math.floor(diff / 3600), text = "" }
   end
   return { key = "checked.date", n = 0, text = os.date("%m-%d %H:%M", checkedMs) }
 end
@@ -376,9 +376,9 @@ end
 -- vice versa. Mirrors v4 (isPeak ? offPeakIn : peakIn).
 function M.countdownLabelKey(isPeak)
   if isPeak then
-    return "panel.offPeakIn"
+    return "panel.off-peak-in"
   end
-  return "panel.peakIn"
+  return "panel.peak-in"
 end
 
 return M

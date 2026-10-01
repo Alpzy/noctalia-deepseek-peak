@@ -1,81 +1,81 @@
 {
     "bar": {
         "peak": "PEAK 2x",
-        "offPeak": "OFF-PEAK",
-        "tooltipPeak": "PEAK (2x)",
-        "tooltipOffPeak": "OFF-PEAK",
-        "nextFlip": "nächster Wechsel in",
-        "driftSuffix": "Preisrichtlinie evtl. geändert"
+        "off-peak": "OFF-PEAK",
+        "tooltip-peak": "PEAK (2x)",
+        "tooltip-off-peak": "OFF-PEAK",
+        "next-flip": "nächster Wechsel in",
+        "drift-suffix": "Preisrichtlinie evtl. geändert"
     },
     "menu": {
         "settings": "Widget-Einstellungen",
-        "useDeepSeek": "DeepSeek verwenden",
-        "useOllama": "Ollama verwenden",
+        "use-deep-seek": "DeepSeek verwenden",
+        "use-ollama": "Ollama verwenden",
         "refresh": "Jetzt aktualisieren"
     },
     "notice": {
-        "policyChanged": "DeepSeek-Preisrichtlinie evtl. geändert"
+        "policy-changed": "DeepSeek-Preisrichtlinie evtl. geändert"
     },
     "panel": {
         "peak": "HAUPTZEIT (2x)",
-        "offPeak": "NEBENZEIT",
-        "offPeakIn": "Nebenzeit in",
-        "peakIn": "Hauptzeit in",
+        "off-peak": "NEBENZEIT",
+        "off-peak-in": "Nebenzeit in",
+        "peak-in": "Hauptzeit in",
         "local": "Lokal",
         "utc": "UTC",
         "beijing": "Peking",
         "checked": "Geprüft",
         "drift": "Preisrichtlinie evtl. geändert — Quelle prüfen",
-        "weekendAllDay": "ganztägig Nebenzeit",
+        "weekend-all-day": "ganztägig Nebenzeit",
         "provider": "Anbieter",
         "schedule": "Hauptzeit",
-        "offPeakLine": "Nebenzeit: Wochenenden (UTC)",
-        "offPeakLineHolidays": "Nebenzeit: Wochenenden + chinesische Feiertage",
-        "holidayEnds": "Feiertag endet {date}",
-        "nextHoliday": "Nächster Feiertag {range} · in {n} T"
+        "off-peak-line": "Nebenzeit: Wochenenden (UTC)",
+        "off-peak-line-holidays": "Nebenzeit: Wochenenden + chinesische Feiertage",
+        "holiday-ends": "Feiertag endet {date}",
+        "next-holiday": "Nächster Feiertag {range} · in {n} T"
     },
     "checked": {
-        "justNow": "gerade eben",
-        "minutesAgo": "vor {n} Min.",
-        "hoursAgo": "vor {n} Std."
+        "just-now": "gerade eben",
+        "minutes-ago": "vor {n} Min.",
+        "hours-ago": "vor {n} Std."
     },
     "settings": {
-        "displayMode": {
+        "display-mode": {
             "label": "Anzeigemodus",
             "description": "Darstellung des Widgets",
             "compact": "Kompakt (Punkt + Countdown)",
             "icon": "Nur Symbol",
             "full": "Voll (Status + Countdown)"
         },
-        "offPeakColor": {
+        "off-peak-color": {
             "label": "Farbe Nebenzeit",
             "description": "Widget-Farbe außerhalb der Hauptzeit"
         },
-        "peakColor": {
+        "peak-color": {
             "label": "Farbe Hauptzeit",
             "description": "Widget-Farbe während der Hauptzeit"
         },
-        "driftColor": {
+        "drift-color": {
             "label": "Farbe Abweichung",
             "description": "Widget-Farbe bei erkannter Richtlinienabweichung"
         },
-        "showTooltip": {
+        "show-tooltip": {
             "label": "Tooltip anzeigen",
             "description": "Status-Tooltip beim Überfahren anzeigen"
         },
-        "autoCheck": {
+        "auto-check": {
             "label": "Automatische Prüfung",
             "description": "Offizielle Preisseite regelmäßig auf Änderungen prüfen"
         },
-        "offlineOnly": {
+        "offline-only": {
             "label": "Nur offline",
             "description": "Netzwerkprüfungen deaktivieren"
         },
-        "checkIntervalH": {
+        "check-interval-h": {
             "label": "Prüfintervall (Stunden)",
             "description": "Stunden zwischen Richtlinienprüfungen"
         },
-        "customSourceUrl": {
+        "custom-source-url": {
             "label": "Eigene Quell-URL",
             "description": "Überschreibt die offizielle Preisseite",
             "placeholder": "https://…"

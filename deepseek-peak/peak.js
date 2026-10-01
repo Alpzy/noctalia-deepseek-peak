@@ -147,11 +147,11 @@ function checkedInfo(nowMs, checkedMs) {
         return {key: "", n: 0, text: ""};
     var diff = Math.max(0, Math.floor((nowMs - checkedMs) / 1000));
     if (diff < 60)
-        return {key: "checked.justNow", n: 0, text: ""};
+        return {key: "checked.just-now", n: 0, text: ""};
     if (diff < 3600)
-        return {key: "checked.minutesAgo", n: Math.floor(diff / 60), text: ""};
+        return {key: "checked.minutes-ago", n: Math.floor(diff / 60), text: ""};
     if (diff < 86400)
-        return {key: "checked.hoursAgo", n: Math.floor(diff / 3600), text: ""};
+        return {key: "checked.hours-ago", n: Math.floor(diff / 3600), text: ""};
     var d = new Date(checkedMs);
     return {
         key: "checked.date",

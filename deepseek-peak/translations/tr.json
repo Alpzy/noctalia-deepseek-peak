@@ -1,81 +1,81 @@
 {
     "bar": {
         "peak": "PEAK 2x",
-        "offPeak": "OFF-PEAK",
-        "tooltipPeak": "PEAK (2x)",
-        "tooltipOffPeak": "OFF-PEAK",
-        "nextFlip": "sonraki geçiş",
-        "driftSuffix": "ilke değişmiş olabilir"
+        "off-peak": "OFF-PEAK",
+        "tooltip-peak": "PEAK (2x)",
+        "tooltip-off-peak": "OFF-PEAK",
+        "next-flip": "sonraki geçiş",
+        "drift-suffix": "ilke değişmiş olabilir"
     },
     "menu": {
         "settings": "Widget ayarları",
-        "useDeepSeek": "DeepSeek kullan",
-        "useOllama": "Ollama kullan",
+        "use-deep-seek": "DeepSeek kullan",
+        "use-ollama": "Ollama kullan",
         "refresh": "Şimdi yenile"
     },
     "notice": {
-        "policyChanged": "DeepSeek fiyat ilkesi değişmiş olabilir"
+        "policy-changed": "DeepSeek fiyat ilkesi değişmiş olabilir"
     },
     "panel": {
         "peak": "ZİRVE (2x)",
-        "offPeak": "ZİRVE DIŞI",
-        "offPeakIn": "Zirve dışına",
-        "peakIn": "Zirveye",
+        "off-peak": "ZİRVE DIŞI",
+        "off-peak-in": "Zirve dışına",
+        "peak-in": "Zirveye",
         "local": "Yerel",
         "utc": "UTC",
         "beijing": "Pekin",
         "checked": "Kontrol edildi",
         "drift": "İlke değişmiş olabilir — kaynağa bakın",
-        "weekendAllDay": "tüm gün zirve dışı",
+        "weekend-all-day": "tüm gün zirve dışı",
         "provider": "Sağlayıcı",
         "schedule": "Zirve",
-        "offPeakLine": "Zirve dışı: hafta sonları (UTC)",
-        "offPeakLineHolidays": "Zirve dışı: hafta sonları + Çin tatilleri",
-        "holidayEnds": "Tatil bitiyor {date}",
-        "nextHoliday": "Sonraki tatil {range} · {n} gün içinde"
+        "off-peak-line": "Zirve dışı: hafta sonları (UTC)",
+        "off-peak-line-holidays": "Zirve dışı: hafta sonları + Çin tatilleri",
+        "holiday-ends": "Tatil bitiyor {date}",
+        "next-holiday": "Sonraki tatil {range} · {n} gün içinde"
     },
     "checked": {
-        "justNow": "az önce",
-        "minutesAgo": "{n} dk önce",
-        "hoursAgo": "{n} sa önce"
+        "just-now": "az önce",
+        "minutes-ago": "{n} dk önce",
+        "hours-ago": "{n} sa önce"
     },
     "settings": {
-        "displayMode": {
+        "display-mode": {
             "label": "Görünüm modu",
             "description": "Widget nasıl gösterilsin",
             "compact": "Kompakt (nokta + geri sayım)",
             "icon": "Yalnızca simge",
             "full": "Tam (durum + geri sayım)"
         },
-        "offPeakColor": {
+        "off-peak-color": {
             "label": "Zirve dışı rengi",
             "description": "Zirve dışında widget rengi"
         },
-        "peakColor": {
+        "peak-color": {
             "label": "Zirve rengi",
             "description": "Zirve saatlerinde widget rengi"
         },
-        "driftColor": {
+        "drift-color": {
             "label": "Değişiklik rengi",
             "description": "İlke değişikliği algılandığında widget rengi"
         },
-        "showTooltip": {
+        "show-tooltip": {
             "label": "İpucunu göster",
             "description": "Üzerine gelince durum ipucunu göster"
         },
-        "autoCheck": {
+        "auto-check": {
             "label": "Otomatik kontrol",
             "description": "Resmî fiyat sayfasını düzenli kontrol et"
         },
-        "offlineOnly": {
+        "offline-only": {
             "label": "Yalnızca çevrimdışı",
             "description": "Ağ kontrollerini kapat"
         },
-        "checkIntervalH": {
+        "check-interval-h": {
             "label": "Kontrol aralığı (saat)",
             "description": "Kontroller arası saat"
         },
-        "customSourceUrl": {
+        "custom-source-url": {
             "label": "Özel kaynak URL",
             "description": "Resmî fiyat sayfasını geçersiz kılar",
             "placeholder": "https://…"

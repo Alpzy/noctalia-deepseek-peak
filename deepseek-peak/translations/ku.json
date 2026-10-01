@@ -1,81 +1,81 @@
 {
     "bar": {
         "peak": "PEAK 2x",
-        "offPeak": "OFF-PEAK",
-        "tooltipPeak": "PEAK (2x)",
-        "tooltipOffPeak": "OFF-PEAK",
-        "nextFlip": "guhertina din di",
-        "driftSuffix": "dibe ku siyaset guherîbe"
+        "off-peak": "OFF-PEAK",
+        "tooltip-peak": "PEAK (2x)",
+        "tooltip-off-peak": "OFF-PEAK",
+        "next-flip": "guhertina din di",
+        "drift-suffix": "dibe ku siyaset guherîbe"
     },
     "menu": {
         "settings": "Mîhengên wîgetê",
-        "useDeepSeek": "DeepSeek bikar bîne",
-        "useOllama": "Ollama bikar bîne",
+        "use-deep-seek": "DeepSeek bikar bîne",
+        "use-ollama": "Ollama bikar bîne",
         "refresh": "Niha nûve bike"
     },
     "notice": {
-        "policyChanged": "Dibe ku siyasetnameya bihayê ya DeepSeek guherîbe"
+        "policy-changed": "Dibe ku siyasetnameya bihayê ya DeepSeek guherîbe"
     },
     "panel": {
         "peak": "LUTKE (2x)",
-        "offPeak": "DERVEYÎ LUTKE",
-        "offPeakIn": "Derveya lutkeyê di",
-        "peakIn": "Lutke di",
+        "off-peak": "DERVEYÎ LUTKE",
+        "off-peak-in": "Derveya lutkeyê di",
+        "peak-in": "Lutke di",
         "local": "Herêmî",
         "utc": "UTC",
         "beijing": "Beijing",
         "checked": "Hat kontrolkirin",
         "drift": "Dibe ku siyaset guherîbe — çavkaniyê binêre",
-        "weekendAllDay": "tewra rojê derveyî lutke",
+        "weekend-all-day": "tewra rojê derveyî lutke",
         "provider": "Pêşkêşkar",
         "schedule": "Lutke",
-        "offPeakLine": "Derveyî lutke: dawiya hefteyê (UTC)",
-        "offPeakLineHolidays": "Derveyî lutke: dawiya hefteyê + cejnên Çînê",
-        "holidayEnds": "Cejn diqede {date}",
-        "nextHoliday": "Cejna bê {range} · di {n} rojan de"
+        "off-peak-line": "Derveyî lutke: dawiya hefteyê (UTC)",
+        "off-peak-line-holidays": "Derveyî lutke: dawiya hefteyê + cejnên Çînê",
+        "holiday-ends": "Cejn diqede {date}",
+        "next-holiday": "Cejna bê {range} · di {n} rojan de"
     },
     "checked": {
-        "justNow": "niha",
-        "minutesAgo": "berî {n} hûrdeman",
-        "hoursAgo": "berî {n} saetan"
+        "just-now": "niha",
+        "minutes-ago": "berî {n} hûrdeman",
+        "hours-ago": "berî {n} saetan"
     },
     "settings": {
-        "displayMode": {
+        "display-mode": {
             "label": "Moda nîşandanê",
             "description": "Wîget çawa were nîşandan",
             "compact": "Kompakt (xal + jimartin)",
             "icon": "Tenê îkon",
             "full": "Temam (rewş + jimartin)"
         },
-        "offPeakColor": {
+        "off-peak-color": {
             "label": "Rengê derveyî lutke",
             "description": "Rengê wîgetê derveyî lutkeyê"
         },
-        "peakColor": {
+        "peak-color": {
             "label": "Rengê lutkeyê",
             "description": "Rengê wîgetê di dema lutkeyê de"
         },
-        "driftColor": {
+        "drift-color": {
             "label": "Rengê guhertinê",
             "description": "Rengê wîgetê dema siyaset biguhere"
         },
-        "showTooltip": {
+        "show-tooltip": {
             "label": "Tooltip nîşan bide",
             "description": "Dema çûnê ser tooltipa rewşê nîşan bide"
         },
-        "autoCheck": {
+        "auto-check": {
             "label": "Kontrola xweber",
             "description": "Rûpela bihayê ya fermî bi rêkûpêk kontrol bike"
         },
-        "offlineOnly": {
+        "offline-only": {
             "label": "Tenê offline",
             "description": "Kontrolên torê neçalak bike"
         },
-        "checkIntervalH": {
+        "check-interval-h": {
             "label": "Navbera kontrolê (saet)",
             "description": "Saetên di navbera kontrolan de"
         },
-        "customSourceUrl": {
+        "custom-source-url": {
             "label": "URL-ya çavkaniya taybet",
             "description": "Rûpela bihayê ya fermî diguhere",
             "placeholder": "https://…"

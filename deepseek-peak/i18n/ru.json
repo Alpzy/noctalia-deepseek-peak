@@ -1,81 +1,81 @@
 {
     "bar": {
         "peak": "PEAK 2x",
-        "offPeak": "OFF-PEAK",
-        "tooltipPeak": "PEAK (2x)",
-        "tooltipOffPeak": "OFF-PEAK",
-        "nextFlip": "следующее переключение через",
-        "driftSuffix": "правила могли измениться"
+        "off-peak": "OFF-PEAK",
+        "tooltip-peak": "PEAK (2x)",
+        "tooltip-off-peak": "OFF-PEAK",
+        "next-flip": "следующее переключение через",
+        "drift-suffix": "правила могли измениться"
     },
     "menu": {
         "settings": "Настройки виджета",
-        "useDeepSeek": "Использовать DeepSeek",
-        "useOllama": "Использовать Ollama",
+        "use-deep-seek": "Использовать DeepSeek",
+        "use-ollama": "Использовать Ollama",
         "refresh": "Обновить сейчас"
     },
     "notice": {
-        "policyChanged": "Ценовая политика DeepSeek могла измениться"
+        "policy-changed": "Ценовая политика DeepSeek могла измениться"
     },
     "panel": {
         "peak": "ПИК (2x)",
-        "offPeak": "ВНЕ ПИКА",
-        "offPeakIn": "Вне пика через",
-        "peakIn": "Пик через",
+        "off-peak": "ВНЕ ПИКА",
+        "off-peak-in": "Вне пика через",
+        "peak-in": "Пик через",
         "local": "Местное",
         "utc": "UTC",
         "beijing": "Пекин",
         "checked": "Проверено",
         "drift": "Правила могли измениться — проверьте источник",
-        "weekendAllDay": "вне пика весь день",
+        "weekend-all-day": "вне пика весь день",
         "provider": "Провайдер",
         "schedule": "Пик",
-        "offPeakLine": "Вне пика: выходные (UTC)",
-        "offPeakLineHolidays": "Вне пика: выходные + китайские праздники",
-        "holidayEnds": "Праздник заканчивается {date}",
-        "nextHoliday": "Следующий праздник {range} · через {n} дн."
+        "off-peak-line": "Вне пика: выходные (UTC)",
+        "off-peak-line-holidays": "Вне пика: выходные + китайские праздники",
+        "holiday-ends": "Праздник заканчивается {date}",
+        "next-holiday": "Следующий праздник {range} · через {n} дн."
     },
     "checked": {
-        "justNow": "только что",
-        "minutesAgo": "{n} мин назад",
-        "hoursAgo": "{n} ч назад"
+        "just-now": "только что",
+        "minutes-ago": "{n} мин назад",
+        "hours-ago": "{n} ч назад"
     },
     "settings": {
-        "displayMode": {
+        "display-mode": {
             "label": "Режим отображения",
             "description": "Как показывать виджет",
             "compact": "Компактный (точка + отсчёт)",
             "icon": "Только значок",
             "full": "Полный (состояние + отсчёт)"
         },
-        "offPeakColor": {
+        "off-peak-color": {
             "label": "Цвет вне пика",
             "description": "Цвет виджета вне пика"
         },
-        "peakColor": {
+        "peak-color": {
             "label": "Цвет пика",
             "description": "Цвет виджета во время пика"
         },
-        "driftColor": {
+        "drift-color": {
             "label": "Цвет отклонения",
             "description": "Цвет виджета при изменении правил"
         },
-        "showTooltip": {
+        "show-tooltip": {
             "label": "Показывать подсказку",
             "description": "Показывать подсказку состояния при наведении"
         },
-        "autoCheck": {
+        "auto-check": {
             "label": "Автопроверка",
             "description": "Периодически проверять официальную страницу цен"
         },
-        "offlineOnly": {
+        "offline-only": {
             "label": "Только офлайн",
             "description": "Отключить сетевые проверки"
         },
-        "checkIntervalH": {
+        "check-interval-h": {
             "label": "Интервал проверки (часы)",
             "description": "Часы между проверками правил"
         },
-        "customSourceUrl": {
+        "custom-source-url": {
             "label": "Свой URL источника",
             "description": "Заменяет официальную страницу цен",
             "placeholder": "https://…"

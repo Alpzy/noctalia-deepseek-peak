@@ -1,81 +1,81 @@
 {
     "bar": {
         "peak": "PEAK 2x",
-        "offPeak": "OFF-PEAK",
-        "tooltipPeak": "PEAK (2x)",
-        "tooltipOffPeak": "OFF-PEAK",
-        "nextFlip": "距下次切換",
-        "driftSuffix": "計費策略可能已變更"
+        "off-peak": "OFF-PEAK",
+        "tooltip-peak": "PEAK (2x)",
+        "tooltip-off-peak": "OFF-PEAK",
+        "next-flip": "距下次切換",
+        "drift-suffix": "計費策略可能已變更"
     },
     "menu": {
         "settings": "元件設定",
-        "useDeepSeek": "使用 DeepSeek",
-        "useOllama": "使用 Ollama",
+        "use-deep-seek": "使用 DeepSeek",
+        "use-ollama": "使用 Ollama",
         "refresh": "立即重新整理"
     },
     "notice": {
-        "policyChanged": "DeepSeek 計費策略可能已變更"
+        "policy-changed": "DeepSeek 計費策略可能已變更"
     },
     "panel": {
         "peak": "尖峰 (2x)",
-        "offPeak": "離峰",
-        "offPeakIn": "距離峰",
-        "peakIn": "距尖峰",
+        "off-peak": "離峰",
+        "off-peak-in": "距離峰",
+        "peak-in": "距尖峰",
         "local": "本地",
         "utc": "UTC",
         "beijing": "北京",
         "checked": "已檢查",
         "drift": "計費策略可能已變更 — 請查看來源",
-        "weekendAllDay": "全天離峰",
+        "weekend-all-day": "全天離峰",
         "provider": "服務商",
         "schedule": "尖峰",
-        "offPeakLine": "離峰：週末（UTC）",
-        "offPeakLineHolidays": "離峰：週末 + 中國假日",
-        "holidayEnds": "假日結束 {date}",
-        "nextHoliday": "下個假日 {range} · {n} 天後"
+        "off-peak-line": "離峰：週末（UTC）",
+        "off-peak-line-holidays": "離峰：週末 + 中國假日",
+        "holiday-ends": "假日結束 {date}",
+        "next-holiday": "下個假日 {range} · {n} 天後"
     },
     "checked": {
-        "justNow": "剛剛",
-        "minutesAgo": "{n} 分鐘前",
-        "hoursAgo": "{n} 小時前"
+        "just-now": "剛剛",
+        "minutes-ago": "{n} 分鐘前",
+        "hours-ago": "{n} 小時前"
     },
     "settings": {
-        "displayMode": {
+        "display-mode": {
             "label": "顯示模式",
             "description": "元件的顯示方式",
             "compact": "精簡（圓點 + 倒數）",
             "icon": "僅圖示",
             "full": "完整（狀態 + 倒數）"
         },
-        "offPeakColor": {
+        "off-peak-color": {
             "label": "離峰顏色",
             "description": "離峰時的元件顏色"
         },
-        "peakColor": {
+        "peak-color": {
             "label": "尖峰顏色",
             "description": "尖峰時的元件顏色"
         },
-        "driftColor": {
+        "drift-color": {
             "label": "變更提示顏色",
             "description": "偵測到策略變更時的元件顏色"
         },
-        "showTooltip": {
+        "show-tooltip": {
             "label": "顯示提示",
             "description": "游標懸停時顯示狀態提示"
         },
-        "autoCheck": {
+        "auto-check": {
             "label": "自動檢查",
             "description": "定期檢查官方定價頁面"
         },
-        "offlineOnly": {
+        "offline-only": {
             "label": "僅離線",
             "description": "停用網路檢查"
         },
-        "checkIntervalH": {
+        "check-interval-h": {
             "label": "檢查間隔（小時）",
             "description": "兩次檢查之間的小時數"
         },
-        "customSourceUrl": {
+        "custom-source-url": {
             "label": "自訂來源 URL",
             "description": "覆寫官方定價頁面",
             "placeholder": "https://…"

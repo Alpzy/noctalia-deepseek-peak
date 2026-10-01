@@ -1,81 +1,81 @@
 {
     "bar": {
         "peak": "PEAK 2x",
-        "offPeak": "OFF-PEAK",
-        "tooltipPeak": "PEAK (2x)",
-        "tooltipOffPeak": "OFF-PEAK",
-        "nextFlip": "наступне перемикання через",
-        "driftSuffix": "правила могли змінитися"
+        "off-peak": "OFF-PEAK",
+        "tooltip-peak": "PEAK (2x)",
+        "tooltip-off-peak": "OFF-PEAK",
+        "next-flip": "наступне перемикання через",
+        "drift-suffix": "правила могли змінитися"
     },
     "menu": {
         "settings": "Налаштування віджета",
-        "useDeepSeek": "Використати DeepSeek",
-        "useOllama": "Використати Ollama",
+        "use-deep-seek": "Використати DeepSeek",
+        "use-ollama": "Використати Ollama",
         "refresh": "Оновити зараз"
     },
     "notice": {
-        "policyChanged": "Цінова політика DeepSeek могла змінитися"
+        "policy-changed": "Цінова політика DeepSeek могла змінитися"
     },
     "panel": {
         "peak": "ПІК (2x)",
-        "offPeak": "ПОЗА ПІКОМ",
-        "offPeakIn": "Поза піком через",
-        "peakIn": "Пік через",
+        "off-peak": "ПОЗА ПІКОМ",
+        "off-peak-in": "Поза піком через",
+        "peak-in": "Пік через",
         "local": "Місцевий",
         "utc": "UTC",
         "beijing": "Пекін",
         "checked": "Перевірено",
         "drift": "Правила могли змінитися — перевірте джерело",
-        "weekendAllDay": "поза піком весь день",
+        "weekend-all-day": "поза піком весь день",
         "provider": "Провайдер",
         "schedule": "Пік",
-        "offPeakLine": "Поза піком: вихідні (UTC)",
-        "offPeakLineHolidays": "Поза піком: вихідні + китайські свята",
-        "holidayEnds": "Свято закінчується {date}",
-        "nextHoliday": "Наступне свято {range} · через {n} дн."
+        "off-peak-line": "Поза піком: вихідні (UTC)",
+        "off-peak-line-holidays": "Поза піком: вихідні + китайські свята",
+        "holiday-ends": "Свято закінчується {date}",
+        "next-holiday": "Наступне свято {range} · через {n} дн."
     },
     "checked": {
-        "justNow": "щойно",
-        "minutesAgo": "{n} хв тому",
-        "hoursAgo": "{n} год тому"
+        "just-now": "щойно",
+        "minutes-ago": "{n} хв тому",
+        "hours-ago": "{n} год тому"
     },
     "settings": {
-        "displayMode": {
+        "display-mode": {
             "label": "Режим відображення",
             "description": "Як показувати віджет",
             "compact": "Компактний (крапка + відлік)",
             "icon": "Лише значок",
             "full": "Повний (стан + відлік)"
         },
-        "offPeakColor": {
+        "off-peak-color": {
             "label": "Колір поза піком",
             "description": "Колір віджета поза піком"
         },
-        "peakColor": {
+        "peak-color": {
             "label": "Колір піку",
             "description": "Колір віджета під час піку"
         },
-        "driftColor": {
+        "drift-color": {
             "label": "Колір відхилення",
             "description": "Колір віджета у разі зміни правил"
         },
-        "showTooltip": {
+        "show-tooltip": {
             "label": "Показувати підказку",
             "description": "Показувати підказку стану при наведенні"
         },
-        "autoCheck": {
+        "auto-check": {
             "label": "Автоперевірка",
             "description": "Періодично перевіряти офіційну сторінку цін"
         },
-        "offlineOnly": {
+        "offline-only": {
             "label": "Лише офлайн",
             "description": "Вимкнути мережеві перевірки"
         },
-        "checkIntervalH": {
+        "check-interval-h": {
             "label": "Інтервал перевірки (години)",
             "description": "Години між перевірками правил"
         },
-        "customSourceUrl": {
+        "custom-source-url": {
             "label": "Власний URL джерела",
             "description": "Замінює офіційну сторінку цін",
             "placeholder": "https://…"

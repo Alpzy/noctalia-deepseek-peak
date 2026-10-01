@@ -1,81 +1,81 @@
 {
     "bar": {
         "peak": "PEAK 2x",
-        "offPeak": "OFF-PEAK",
-        "tooltipPeak": "PEAK (2x)",
-        "tooltipOffPeak": "OFF-PEAK",
-        "nextFlip": "nästa växling om",
-        "driftSuffix": "policyn kan ha ändrats"
+        "off-peak": "OFF-PEAK",
+        "tooltip-peak": "PEAK (2x)",
+        "tooltip-off-peak": "OFF-PEAK",
+        "next-flip": "nästa växling om",
+        "drift-suffix": "policyn kan ha ändrats"
     },
     "menu": {
         "settings": "Widgetinställningar",
-        "useDeepSeek": "Använd DeepSeek",
-        "useOllama": "Använd Ollama",
+        "use-deep-seek": "Använd DeepSeek",
+        "use-ollama": "Använd Ollama",
         "refresh": "Uppdatera nu"
     },
     "notice": {
-        "policyChanged": "DeepSeeks prispolicy kan ha ändrats"
+        "policy-changed": "DeepSeeks prispolicy kan ha ändrats"
     },
     "panel": {
         "peak": "TOPP (2x)",
-        "offPeak": "LÅGLAST",
-        "offPeakIn": "Låglast om",
-        "peakIn": "Topp om",
+        "off-peak": "LÅGLAST",
+        "off-peak-in": "Låglast om",
+        "peak-in": "Topp om",
         "local": "Lokal",
         "utc": "UTC",
         "beijing": "Peking",
         "checked": "Kontrollerad",
         "drift": "Policyn kan ha ändrats — kontrollera källan",
-        "weekendAllDay": "låglast hela dagen",
+        "weekend-all-day": "låglast hela dagen",
         "provider": "Leverantör",
         "schedule": "Topp",
-        "offPeakLine": "Låglast: helger (UTC)",
-        "offPeakLineHolidays": "Låglast: helger + kinesiska helgdagar",
-        "holidayEnds": "Helgdagen slutar {date}",
-        "nextHoliday": "Nästa helgdag {range} · om {n} d"
+        "off-peak-line": "Låglast: helger (UTC)",
+        "off-peak-line-holidays": "Låglast: helger + kinesiska helgdagar",
+        "holiday-ends": "Helgdagen slutar {date}",
+        "next-holiday": "Nästa helgdag {range} · om {n} d"
     },
     "checked": {
-        "justNow": "nyss",
-        "minutesAgo": "{n} min sedan",
-        "hoursAgo": "{n} tim sedan"
+        "just-now": "nyss",
+        "minutes-ago": "{n} min sedan",
+        "hours-ago": "{n} tim sedan"
     },
     "settings": {
-        "displayMode": {
+        "display-mode": {
             "label": "Visningsläge",
             "description": "Hur widgeten visas",
             "compact": "Kompakt (prick + nedräkning)",
             "icon": "Endast ikon",
             "full": "Full (status + nedräkning)"
         },
-        "offPeakColor": {
+        "off-peak-color": {
             "label": "Låglastfärg",
             "description": "Widgetfärg vid låglast"
         },
-        "peakColor": {
+        "peak-color": {
             "label": "Toppfärg",
             "description": "Widgetfärg vid topplast"
         },
-        "driftColor": {
+        "drift-color": {
             "label": "Avvikelsefärg",
             "description": "Widgetfärg vid ändrad policy"
         },
-        "showTooltip": {
+        "show-tooltip": {
             "label": "Visa verktygstips",
             "description": "Visa status-tips vid hover"
         },
-        "autoCheck": {
+        "auto-check": {
             "label": "Automatisk kontroll",
             "description": "Kontrollera den officiella prissidan regelbundet"
         },
-        "offlineOnly": {
+        "offline-only": {
             "label": "Endast offline",
             "description": "Stäng av nätverkskontroller"
         },
-        "checkIntervalH": {
+        "check-interval-h": {
             "label": "Kontrollintervall (timmar)",
             "description": "Timmar mellan policykontroller"
         },
-        "customSourceUrl": {
+        "custom-source-url": {
             "label": "Egen käll-URL",
             "description": "Ersätter den officiella prissidan",
             "placeholder": "https://…"

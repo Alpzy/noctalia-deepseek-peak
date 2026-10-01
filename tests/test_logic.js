@@ -99,12 +99,12 @@ assert.strictEqual(Peak.windowLine(d("2026-08-29T12:00:00Z"), "ollama", "utc"), 
 // --- relative checked info (semantic, host translates) ---
 const checkNow = 1758000000000;
 assert.strictEqual(Peak.checkedInfo(checkNow, 0).key, "");
-assert.strictEqual(Peak.checkedInfo(checkNow, checkNow - 30 * 1000).key, "checked.justNow");
+assert.strictEqual(Peak.checkedInfo(checkNow, checkNow - 30 * 1000).key, "checked.just-now");
 const fiveMin = Peak.checkedInfo(checkNow, checkNow - 300 * 1000);
-assert.strictEqual(fiveMin.key, "checked.minutesAgo");
+assert.strictEqual(fiveMin.key, "checked.minutes-ago");
 assert.strictEqual(fiveMin.n, 5);
 const threeHours = Peak.checkedInfo(checkNow, checkNow - 3 * 3600 * 1000);
-assert.strictEqual(threeHours.key, "checked.hoursAgo");
+assert.strictEqual(threeHours.key, "checked.hours-ago");
 assert.strictEqual(threeHours.n, 3);
 const old = Peak.checkedInfo(checkNow, checkNow - 30 * 3600 * 1000);
 assert.strictEqual(old.key, "checked.date");

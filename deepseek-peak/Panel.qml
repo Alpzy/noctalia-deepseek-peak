@@ -201,11 +201,11 @@ function checkedInfo(nowMs, checkedMs) {
         return {key: "", n: 0, text: ""};
     var diff = Math.max(0, Math.floor((nowMs - checkedMs) / 1000));
     if (diff < 60)
-        return {key: "checked.justNow", n: 0, text: ""};
+        return {key: "checked.just-now", n: 0, text: ""};
     if (diff < 3600)
-        return {key: "checked.minutesAgo", n: Math.floor(diff / 60), text: ""};
+        return {key: "checked.minutes-ago", n: Math.floor(diff / 60), text: ""};
     if (diff < 86400)
-        return {key: "checked.hoursAgo", n: Math.floor(diff / 3600), text: ""};
+        return {key: "checked.hours-ago", n: Math.floor(diff / 3600), text: ""};
     var d = new Date(checkedMs);
     return {
         key: "checked.date",
@@ -349,7 +349,7 @@ function holidayRangeInfo(now, provider) {
         return dayNames[0] + "–" + dayNames[4] + "  " + scheduleText(provider);
     }
     function offPeakLineText() {
-        return getProfile(provider).holidayOffPeak ? t("panel.offPeakLineHolidays") : t("panel.offPeakLine");
+        return getProfile(provider).holidayOffPeak ? t("panel.off-peak-line-holidays") : t("panel.off-peak-line");
     }
     // Only shown when a holiday is active or starts within a week (dates only).
     function holidayLineText() {
@@ -357,21 +357,21 @@ function holidayRangeInfo(now, provider) {
         if (!info)
             return "";
         if (info.active)
-            return t("panel.holidayEnds", {date: I18n.locale.toString(new Date(info.endMs), "MMM d")});
-        return t("panel.nextHoliday", {
+            return t("panel.holiday-ends", {date: I18n.locale.toString(new Date(info.endMs), "MMM d")});
+        return t("panel.next-holiday", {
             range: I18n.locale.toString(new Date(info.startMs), "MMM d") + "–" + I18n.locale.toString(new Date(info.endMs), "MMM d"),
             n: info.inDays
         });
     }
     function lineFor(tz) {
         var w = windowLine(root.nowDate, root.provider, tz);
-        return w === null ? t("panel.weekendAllDay") : w;
+        return w === null ? t("panel.weekend-all-day") : w;
     }
     function refreshTexts() {
         countdownHMS = formatHMS(secondsToNext);
         providerText = t("panel.provider") + "  " + providerName(provider);
-        stateText = isPeak ? t("panel.peak") : t("panel.offPeak");
-        countdownLabel = isPeak ? t("panel.offPeakIn") : t("panel.peakIn");
+        stateText = isPeak ? t("panel.peak") : t("panel.off-peak");
+        countdownLabel = isPeak ? t("panel.off-peak-in") : t("panel.peak-in");
         localLine = t("panel.local") + "    " + lineFor("local");
         utcLine = t("panel.utc") + "      " + lineFor("utc");
         beijingLine = t("panel.beijing") + "  " + lineFor("beijing");

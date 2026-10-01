@@ -1,81 +1,81 @@
 {
     "bar": {
         "peak": "PEAK 2x",
-        "offPeak": "OFF-PEAK",
-        "tooltipPeak": "PEAK (2x)",
-        "tooltipOffPeak": "OFF-PEAK",
-        "nextFlip": "prossimo cambio tra",
-        "driftSuffix": "la politica potrebbe essere cambiata"
+        "off-peak": "OFF-PEAK",
+        "tooltip-peak": "PEAK (2x)",
+        "tooltip-off-peak": "OFF-PEAK",
+        "next-flip": "prossimo cambio tra",
+        "drift-suffix": "la politica potrebbe essere cambiata"
     },
     "menu": {
         "settings": "Impostazioni widget",
-        "useDeepSeek": "Usa DeepSeek",
-        "useOllama": "Usa Ollama",
+        "use-deep-seek": "Usa DeepSeek",
+        "use-ollama": "Usa Ollama",
         "refresh": "Aggiorna ora"
     },
     "notice": {
-        "policyChanged": "La politica dei prezzi DeepSeek potrebbe essere cambiata"
+        "policy-changed": "La politica dei prezzi DeepSeek potrebbe essere cambiata"
     },
     "panel": {
         "peak": "ORA DI PUNTA (2x)",
-        "offPeak": "FUORI PUNTA",
-        "offPeakIn": "Fuori punta tra",
-        "peakIn": "Ora di punta tra",
+        "off-peak": "FUORI PUNTA",
+        "off-peak-in": "Fuori punta tra",
+        "peak-in": "Ora di punta tra",
         "local": "Locale",
         "utc": "UTC",
         "beijing": "Pechino",
         "checked": "Verificato",
         "drift": "La politica potrebbe essere cambiata — controlla la fonte",
-        "weekendAllDay": "fuori punta tutto il giorno",
+        "weekend-all-day": "fuori punta tutto il giorno",
         "provider": "Provider",
         "schedule": "Punta",
-        "offPeakLine": "Fuori punta: fine settimana (UTC)",
-        "offPeakLineHolidays": "Fuori punta: fine settimana + festività cinesi",
-        "holidayEnds": "La festività termina il {date}",
-        "nextHoliday": "Prossima festività {range} · tra {n} g"
+        "off-peak-line": "Fuori punta: fine settimana (UTC)",
+        "off-peak-line-holidays": "Fuori punta: fine settimana + festività cinesi",
+        "holiday-ends": "La festività termina il {date}",
+        "next-holiday": "Prossima festività {range} · tra {n} g"
     },
     "checked": {
-        "justNow": "proprio ora",
-        "minutesAgo": "{n} min fa",
-        "hoursAgo": "{n} h fa"
+        "just-now": "proprio ora",
+        "minutes-ago": "{n} min fa",
+        "hours-ago": "{n} h fa"
     },
     "settings": {
-        "displayMode": {
+        "display-mode": {
             "label": "Modalità di visualizzazione",
             "description": "Come mostrare il widget",
             "compact": "Compatto (punto + conto alla rovescia)",
             "icon": "Solo icona",
             "full": "Completo (stato + conto alla rovescia)"
         },
-        "offPeakColor": {
+        "off-peak-color": {
             "label": "Colore fuori punta",
             "description": "Colore del widget fuori punta"
         },
-        "peakColor": {
+        "peak-color": {
             "label": "Colore ora di punta",
             "description": "Colore del widget durante l'ora di punta"
         },
-        "driftColor": {
+        "drift-color": {
             "label": "Colore deviazione",
             "description": "Colore del widget se la politica cambia"
         },
-        "showTooltip": {
+        "show-tooltip": {
             "label": "Mostra suggerimento",
             "description": "Mostra il suggerimento di stato al passaggio"
         },
-        "autoCheck": {
+        "auto-check": {
             "label": "Controllo automatico",
             "description": "Controlla periodicamente la pagina prezzi ufficiale"
         },
-        "offlineOnly": {
+        "offline-only": {
             "label": "Solo offline",
             "description": "Disattiva i controlli di rete"
         },
-        "checkIntervalH": {
+        "check-interval-h": {
             "label": "Intervallo di controllo (ore)",
             "description": "Ore tra i controlli della politica"
         },
-        "customSourceUrl": {
+        "custom-source-url": {
             "label": "URL sorgente personalizzato",
             "description": "Sostituisce la pagina prezzi ufficiale",
             "placeholder": "https://…"

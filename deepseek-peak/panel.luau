@@ -38,7 +38,7 @@ end
 local function windowLine(now, which, tz)
   local line = schedule.windowLine(now, which, tz)
   if line == nil then
-    return noctalia.tr("panel.weekendAllDay")
+    return noctalia.tr("panel.weekend-all-day")
   end
   return line
 end
@@ -49,9 +49,9 @@ local function holidayText(now, which)
     return nil
   end
   if info.active then
-    return noctalia.tr("panel.holidayEnds", { date = os.date("%b %d", info.endMs) })
+    return noctalia.tr("panel.holiday-ends", { date = os.date("%b %d", info.endMs) })
   end
-  return noctalia.tr("panel.nextHoliday", {
+  return noctalia.tr("panel.next-holiday", {
     range = os.date("%b %d", info.startMs) .. "–" .. os.date("%b %d", info.endMs),
     n = info.inDays,
   })
@@ -60,16 +60,16 @@ end
 local function offPeakLineText(which)
   -- Mirrors v4: providers with holiday off-peak mention holidays.
   if which == "deepseek" then
-    return noctalia.tr("panel.offPeakLineHolidays")
+    return noctalia.tr("panel.off-peak-line-holidays")
   end
-  return noctalia.tr("panel.offPeakLine")
+  return noctalia.tr("panel.off-peak-line")
 end
 
 local function render()
   local now = os.time()
   local which = provider()
   local peak = schedule.isPeakAt(now, which)
-  local state = peak and noctalia.tr("panel.peak") or noctalia.tr("panel.offPeak")
+  local state = peak and noctalia.tr("panel.peak") or noctalia.tr("panel.off-peak")
   local stateColor = peak and settings.get("peakColor", "#f87171")
     or settings.get("offPeakColor", "#4ade80")
   if drift then

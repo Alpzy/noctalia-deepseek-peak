@@ -1,81 +1,81 @@
 {
     "bar": {
         "peak": "PEAK 2x",
-        "offPeak": "OFF-PEAK",
-        "tooltipPeak": "PEAK (2x)",
-        "tooltipOffPeak": "OFF-PEAK",
-        "nextFlip": "prochain changement dans",
-        "driftSuffix": "la politique a peut-être changé"
+        "off-peak": "OFF-PEAK",
+        "tooltip-peak": "PEAK (2x)",
+        "tooltip-off-peak": "OFF-PEAK",
+        "next-flip": "prochain changement dans",
+        "drift-suffix": "la politique a peut-être changé"
     },
     "menu": {
         "settings": "Paramètres du widget",
-        "useDeepSeek": "Utiliser DeepSeek",
-        "useOllama": "Utiliser Ollama",
+        "use-deep-seek": "Utiliser DeepSeek",
+        "use-ollama": "Utiliser Ollama",
         "refresh": "Actualiser"
     },
     "notice": {
-        "policyChanged": "La politique tarifaire DeepSeek a peut-être changé"
+        "policy-changed": "La politique tarifaire DeepSeek a peut-être changé"
     },
     "panel": {
         "peak": "HEURE DE POINTE (2x)",
-        "offPeak": "HEURES CREUSES",
-        "offPeakIn": "Heures creuses dans",
-        "peakIn": "Heure de pointe dans",
+        "off-peak": "HEURES CREUSES",
+        "off-peak-in": "Heures creuses dans",
+        "peak-in": "Heure de pointe dans",
         "local": "Local",
         "utc": "UTC",
         "beijing": "Pékin",
         "checked": "Vérifié",
         "drift": "La politique a peut-être changé — voir la source",
-        "weekendAllDay": "heures creuses toute la journée",
+        "weekend-all-day": "heures creuses toute la journée",
         "provider": "Fournisseur",
         "schedule": "Pointe",
-        "offPeakLine": "Creuses : week-ends (UTC)",
-        "offPeakLineHolidays": "Creuses : week-ends + jours fériés chinois",
-        "holidayEnds": "Fin du jour férié {date}",
-        "nextHoliday": "Prochain jour férié {range} · dans {n} j"
+        "off-peak-line": "Creuses : week-ends (UTC)",
+        "off-peak-line-holidays": "Creuses : week-ends + jours fériés chinois",
+        "holiday-ends": "Fin du jour férié {date}",
+        "next-holiday": "Prochain jour férié {range} · dans {n} j"
     },
     "checked": {
-        "justNow": "à l'instant",
-        "minutesAgo": "il y a {n} min",
-        "hoursAgo": "il y a {n} h"
+        "just-now": "à l'instant",
+        "minutes-ago": "il y a {n} min",
+        "hours-ago": "il y a {n} h"
     },
     "settings": {
-        "displayMode": {
+        "display-mode": {
             "label": "Mode d'affichage",
             "description": "Comment afficher le widget",
             "compact": "Compact (point + compte à rebours)",
             "icon": "Icône seule",
             "full": "Complet (état + compte à rebours)"
         },
-        "offPeakColor": {
+        "off-peak-color": {
             "label": "Couleur heures creuses",
             "description": "Couleur du widget en heures creuses"
         },
-        "peakColor": {
+        "peak-color": {
             "label": "Couleur heure de pointe",
             "description": "Couleur du widget en heure de pointe"
         },
-        "driftColor": {
+        "drift-color": {
             "label": "Couleur de dérive",
             "description": "Couleur du widget si la politique change"
         },
-        "showTooltip": {
+        "show-tooltip": {
             "label": "Afficher l'infobulle",
             "description": "Afficher l'infobulle d'état au survol"
         },
-        "autoCheck": {
+        "auto-check": {
             "label": "Vérification automatique",
             "description": "Vérifier régulièrement la page tarifaire officielle"
         },
-        "offlineOnly": {
+        "offline-only": {
             "label": "Hors ligne uniquement",
             "description": "Désactiver les vérifications réseau"
         },
-        "checkIntervalH": {
+        "check-interval-h": {
             "label": "Intervalle de vérification (heures)",
             "description": "Heures entre les vérifications"
         },
-        "customSourceUrl": {
+        "custom-source-url": {
             "label": "URL source personnalisée",
             "description": "Remplace la page tarifaire officielle",
             "placeholder": "https://…"

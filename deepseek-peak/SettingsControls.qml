@@ -41,23 +41,23 @@ ColumnLayout {
     }
 
     NLabel {
-        label: root.t("settings.displayMode.label")
-        description: root.t("settings.displayMode.description")
+        label: root.t("settings.display-mode.label")
+        description: root.t("settings.display-mode.description")
     }
     NComboBox {
         Layout.fillWidth: true
         model: [
-            {key: "compact", name: root.t("settings.displayMode.compact")},
-            {key: "icon", name: root.t("settings.displayMode.icon")},
-            {key: "full", name: root.t("settings.displayMode.full")}
+            {key: "compact", name: root.t("settings.display-mode.compact")},
+            {key: "icon", name: root.t("settings.display-mode.icon")},
+            {key: "full", name: root.t("settings.display-mode.full")}
         ]
         currentKey: root.editDisplayMode
         onSelected: function (key) { root.editDisplayMode = key; }
     }
 
     NLabel {
-        label: root.t("settings.offPeakColor.label")
-        description: root.t("settings.offPeakColor.description")
+        label: root.t("settings.off-peak-color.label")
+        description: root.t("settings.off-peak-color.description")
     }
     NColorPicker {
         Layout.preferredWidth: Style.sliderWidth
@@ -69,8 +69,8 @@ ColumnLayout {
     }
 
     NLabel {
-        label: root.t("settings.peakColor.label")
-        description: root.t("settings.peakColor.description")
+        label: root.t("settings.peak-color.label")
+        description: root.t("settings.peak-color.description")
     }
     NColorPicker {
         Layout.preferredWidth: Style.sliderWidth
@@ -82,8 +82,8 @@ ColumnLayout {
     }
 
     NLabel {
-        label: root.t("settings.driftColor.label")
-        description: root.t("settings.driftColor.description")
+        label: root.t("settings.drift-color.label")
+        description: root.t("settings.drift-color.description")
     }
     NColorPicker {
         Layout.preferredWidth: Style.sliderWidth
@@ -96,38 +96,38 @@ ColumnLayout {
 
     NToggle {
         Layout.fillWidth: true
-        label: root.t("settings.showTooltip.label")
-        description: root.t("settings.showTooltip.description")
+        label: root.t("settings.show-tooltip.label")
+        description: root.t("settings.show-tooltip.description")
         checked: root.editShowTooltip
         onToggled: function (checked) { root.editShowTooltip = checked; }
     }
     NToggle {
         Layout.fillWidth: true
-        label: root.t("settings.autoCheck.label")
-        description: root.t("settings.autoCheck.description")
+        label: root.t("settings.auto-check.label")
+        description: root.t("settings.auto-check.description")
         checked: root.editAutoCheck
         onToggled: function (checked) { root.editAutoCheck = checked; }
     }
     NToggle {
         Layout.fillWidth: true
-        label: root.t("settings.offlineOnly.label")
-        description: root.t("settings.offlineOnly.description")
+        label: root.t("settings.offline-only.label")
+        description: root.t("settings.offline-only.description")
         checked: root.editOfflineOnly
         onToggled: function (checked) { root.editOfflineOnly = checked; }
     }
 
     NTextInput {
         Layout.fillWidth: true
-        label: root.t("settings.checkIntervalH.label")
-        description: root.t("settings.checkIntervalH.description")
+        label: root.t("settings.check-interval-h.label")
+        description: root.t("settings.check-interval-h.description")
         text: root.editCheckIntervalH
         onTextChanged: root.editCheckIntervalH = text
     }
     NTextInput {
         Layout.fillWidth: true
-        label: root.t("settings.customSourceUrl.label")
-        description: root.t("settings.customSourceUrl.description")
-        placeholderText: root.t("settings.customSourceUrl.placeholder")
+        label: root.t("settings.custom-source-url.label")
+        description: root.t("settings.custom-source-url.description")
+        placeholderText: root.t("settings.custom-source-url.placeholder")
         text: root.editCustomSourceUrl
         onTextChanged: root.editCustomSourceUrl = text
     }

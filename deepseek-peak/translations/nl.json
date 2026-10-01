@@ -1,81 +1,81 @@
 {
     "bar": {
         "peak": "PEAK 2x",
-        "offPeak": "OFF-PEAK",
-        "tooltipPeak": "PEAK (2x)",
-        "tooltipOffPeak": "OFF-PEAK",
-        "nextFlip": "volgende wissel over",
-        "driftSuffix": "beleid is mogelijk gewijzigd"
+        "off-peak": "OFF-PEAK",
+        "tooltip-peak": "PEAK (2x)",
+        "tooltip-off-peak": "OFF-PEAK",
+        "next-flip": "volgende wissel over",
+        "drift-suffix": "beleid is mogelijk gewijzigd"
     },
     "menu": {
         "settings": "Widgetinstellingen",
-        "useDeepSeek": "DeepSeek gebruiken",
-        "useOllama": "Ollama gebruiken",
+        "use-deep-seek": "DeepSeek gebruiken",
+        "use-ollama": "Ollama gebruiken",
         "refresh": "Nu verversen"
     },
     "notice": {
-        "policyChanged": "DeepSeek-prijsbeleid is mogelijk gewijzigd"
+        "policy-changed": "DeepSeek-prijsbeleid is mogelijk gewijzigd"
     },
     "panel": {
         "peak": "PIEK (2x)",
-        "offPeak": "DAL",
-        "offPeakIn": "Dal over",
-        "peakIn": "Piek over",
+        "off-peak": "DAL",
+        "off-peak-in": "Dal over",
+        "peak-in": "Piek over",
         "local": "Lokaal",
         "utc": "UTC",
         "beijing": "Peking",
         "checked": "Gecontroleerd",
         "drift": "Beleid is mogelijk gewijzigd — controleer de bron",
-        "weekendAllDay": "hele dag dal",
+        "weekend-all-day": "hele dag dal",
         "provider": "Aanbieder",
         "schedule": "Piek",
-        "offPeakLine": "Dal: weekend (UTC)",
-        "offPeakLineHolidays": "Dal: weekend + Chinese feestdagen",
-        "holidayEnds": "Feestdag eindigt {date}",
-        "nextHoliday": "Volgende feestdag {range} · over {n} d"
+        "off-peak-line": "Dal: weekend (UTC)",
+        "off-peak-line-holidays": "Dal: weekend + Chinese feestdagen",
+        "holiday-ends": "Feestdag eindigt {date}",
+        "next-holiday": "Volgende feestdag {range} · over {n} d"
     },
     "checked": {
-        "justNow": "zojuist",
-        "minutesAgo": "{n} min geleden",
-        "hoursAgo": "{n} uur geleden"
+        "just-now": "zojuist",
+        "minutes-ago": "{n} min geleden",
+        "hours-ago": "{n} uur geleden"
     },
     "settings": {
-        "displayMode": {
+        "display-mode": {
             "label": "Weergavemodus",
             "description": "Hoe de widget wordt weergegeven",
             "compact": "Compact (punt + aftelling)",
             "icon": "Alleen pictogram",
             "full": "Volledig (status + aftelling)"
         },
-        "offPeakColor": {
+        "off-peak-color": {
             "label": "Dalkleur",
             "description": "Widgetkleur tijdens daluren"
         },
-        "peakColor": {
+        "peak-color": {
             "label": "Piekkleur",
             "description": "Widgetkleur tijdens piekuren"
         },
-        "driftColor": {
+        "drift-color": {
             "label": "Afwijkingskleur",
             "description": "Widgetkleur bij gedetecteerde beleidswijziging"
         },
-        "showTooltip": {
+        "show-tooltip": {
             "label": "Tooltip tonen",
             "description": "Statustooltip bij hover tonen"
         },
-        "autoCheck": {
+        "auto-check": {
             "label": "Automatische controle",
             "description": "Controleer regelmatig de officiële prijspagina"
         },
-        "offlineOnly": {
+        "offline-only": {
             "label": "Alleen offline",
             "description": "Netwerkcontroles uitschakelen"
         },
-        "checkIntervalH": {
+        "check-interval-h": {
             "label": "Controle-interval (uren)",
             "description": "Uren tussen beleidscontroles"
         },
-        "customSourceUrl": {
+        "custom-source-url": {
             "label": "Eigen bron-URL",
             "description": "Vervangt de officiële prijspagina",
             "placeholder": "https://…"

@@ -33,7 +33,7 @@ local function label()
   if mode == "icon" then
     return ""
   elseif mode == "full" then
-    return (isPeakNow and noctalia.tr("bar.peak") .. " " or noctalia.tr("bar.offPeak") .. " ")
+    return (isPeakNow and noctalia.tr("bar.peak") .. " " or noctalia.tr("bar.off-peak") .. " ")
       .. countdown
   end
   return countdown
@@ -50,13 +50,13 @@ local function tooltipRows()
     local ratio = schedule.progress(now, which)
     table.insert(rows, {
       key = (active and "● " or "○ ") .. schedule.providerName(which),
-      value = (peak and noctalia.tr("bar.tooltipPeak") or noctalia.tr("bar.tooltipOffPeak"))
+      value = (peak and noctalia.tr("bar.tooltip-peak") or noctalia.tr("bar.tooltip-off-peak"))
         .. " · " .. schedule.formatHMS(secs)
         .. " · " .. tostring(math.floor(ratio * 100 + 0.5)) .. "%",
     })
   end
   if drift then
-    table.insert(rows, { key = noctalia.tr("bar.peak"), value = noctalia.tr("bar.driftSuffix") })
+    table.insert(rows, { key = noctalia.tr("bar.peak"), value = noctalia.tr("bar.drift-suffix") })
   end
   return rows
 end

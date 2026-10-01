@@ -1,81 +1,81 @@
 {
     "bar": {
         "peak": "PEAK 2x",
-        "offPeak": "OFF-PEAK",
-        "tooltipPeak": "PEAK (2x)",
-        "tooltipOffPeak": "OFF-PEAK",
-        "nextFlip": "další změna za",
-        "driftSuffix": "pravidla se možná změnila"
+        "off-peak": "OFF-PEAK",
+        "tooltip-peak": "PEAK (2x)",
+        "tooltip-off-peak": "OFF-PEAK",
+        "next-flip": "další změna za",
+        "drift-suffix": "pravidla se možná změnila"
     },
     "menu": {
         "settings": "Nastavení widgetu",
-        "useDeepSeek": "Použít DeepSeek",
-        "useOllama": "Použít Ollama",
+        "use-deep-seek": "Použít DeepSeek",
+        "use-ollama": "Použít Ollama",
         "refresh": "Obnovit nyní"
     },
     "notice": {
-        "policyChanged": "Pravidla cen DeepSeek se možná změnila"
+        "policy-changed": "Pravidla cen DeepSeek se možná změnila"
     },
     "panel": {
         "peak": "ŠPIČKA (2x)",
-        "offPeak": "MIMO ŠPIČKU",
-        "offPeakIn": "Mimo špičku za",
-        "peakIn": "Špička za",
+        "off-peak": "MIMO ŠPIČKU",
+        "off-peak-in": "Mimo špičku za",
+        "peak-in": "Špička za",
         "local": "Místní",
         "utc": "UTC",
         "beijing": "Peking",
         "checked": "Zkontrolováno",
         "drift": "Pravidla se možná změnila — zkontrolujte zdroj",
-        "weekendAllDay": "celý den mimo špičku",
+        "weekend-all-day": "celý den mimo špičku",
         "provider": "Poskytovatel",
         "schedule": "Špička",
-        "offPeakLine": "Mimo špičku: víkendy (UTC)",
-        "offPeakLineHolidays": "Mimo špičku: víkendy + čínské svátky",
-        "holidayEnds": "Svátek končí {date}",
-        "nextHoliday": "Další svátek {range} · za {n} d"
+        "off-peak-line": "Mimo špičku: víkendy (UTC)",
+        "off-peak-line-holidays": "Mimo špičku: víkendy + čínské svátky",
+        "holiday-ends": "Svátek končí {date}",
+        "next-holiday": "Další svátek {range} · za {n} d"
     },
     "checked": {
-        "justNow": "právě teď",
-        "minutesAgo": "před {n} min",
-        "hoursAgo": "před {n} h"
+        "just-now": "právě teď",
+        "minutes-ago": "před {n} min",
+        "hours-ago": "před {n} h"
     },
     "settings": {
-        "displayMode": {
+        "display-mode": {
             "label": "Režim zobrazení",
             "description": "Jak zobrazit widget",
             "compact": "Kompaktní (tečka + odpočet)",
             "icon": "Pouze ikona",
             "full": "Plný (stav + odpočet)"
         },
-        "offPeakColor": {
+        "off-peak-color": {
             "label": "Barva mimo špičku",
             "description": "Barva widgetu mimo špičku"
         },
-        "peakColor": {
+        "peak-color": {
             "label": "Barva špičky",
             "description": "Barva widgetu během špičky"
         },
-        "driftColor": {
+        "drift-color": {
             "label": "Barva odchylky",
             "description": "Barva widgetu při zjištěné změně pravidel"
         },
-        "showTooltip": {
+        "show-tooltip": {
             "label": "Zobrazit tooltip",
             "description": "Zobrazit tooltip stavu při najetí"
         },
-        "autoCheck": {
+        "auto-check": {
             "label": "Automatická kontrola",
             "description": "Pravidelně kontrolovat oficiální ceník"
         },
-        "offlineOnly": {
+        "offline-only": {
             "label": "Pouze offline",
             "description": "Vypnout síťové kontroly"
         },
-        "checkIntervalH": {
+        "check-interval-h": {
             "label": "Interval kontroly (hodiny)",
             "description": "Hodiny mezi kontrolami pravidel"
         },
-        "customSourceUrl": {
+        "custom-source-url": {
             "label": "Vlastní URL zdroje",
             "description": "Nahradí oficiální ceník",
             "placeholder": "https://…"

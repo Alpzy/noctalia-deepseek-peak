@@ -1,81 +1,81 @@
 {
     "bar": {
         "peak": "PEAK 2x",
-        "offPeak": "OFF-PEAK",
-        "tooltipPeak": "PEAK (2x)",
-        "tooltipOffPeak": "OFF-PEAK",
-        "nextFlip": "następna zmiana za",
-        "driftSuffix": "polityka mogła się zmienić"
+        "off-peak": "OFF-PEAK",
+        "tooltip-peak": "PEAK (2x)",
+        "tooltip-off-peak": "OFF-PEAK",
+        "next-flip": "następna zmiana za",
+        "drift-suffix": "polityka mogła się zmienić"
     },
     "menu": {
         "settings": "Ustawienia widżetu",
-        "useDeepSeek": "Użyj DeepSeek",
-        "useOllama": "Użyj Ollama",
+        "use-deep-seek": "Użyj DeepSeek",
+        "use-ollama": "Użyj Ollama",
         "refresh": "Odśwież teraz"
     },
     "notice": {
-        "policyChanged": "Polityka cen DeepSeek mogła się zmienić"
+        "policy-changed": "Polityka cen DeepSeek mogła się zmienić"
     },
     "panel": {
         "peak": "SZCZYT (2x)",
-        "offPeak": "POZA SZCZYTEM",
-        "offPeakIn": "Poza szczytem za",
-        "peakIn": "Szczyt za",
+        "off-peak": "POZA SZCZYTEM",
+        "off-peak-in": "Poza szczytem za",
+        "peak-in": "Szczyt za",
         "local": "Lokalny",
         "utc": "UTC",
         "beijing": "Pekin",
         "checked": "Sprawdzono",
         "drift": "Polityka mogła się zmienić — sprawdź źródło",
-        "weekendAllDay": "cały dzień poza szczytem",
+        "weekend-all-day": "cały dzień poza szczytem",
         "provider": "Dostawca",
         "schedule": "Szczyt",
-        "offPeakLine": "Poza szczytem: weekendy (UTC)",
-        "offPeakLineHolidays": "Poza szczytem: weekendy + chińskie święta",
-        "holidayEnds": "Święto kończy się {date}",
-        "nextHoliday": "Następne święto {range} · za {n} d"
+        "off-peak-line": "Poza szczytem: weekendy (UTC)",
+        "off-peak-line-holidays": "Poza szczytem: weekendy + chińskie święta",
+        "holiday-ends": "Święto kończy się {date}",
+        "next-holiday": "Następne święto {range} · za {n} d"
     },
     "checked": {
-        "justNow": "właśnie teraz",
-        "minutesAgo": "{n} min temu",
-        "hoursAgo": "{n} godz. temu"
+        "just-now": "właśnie teraz",
+        "minutes-ago": "{n} min temu",
+        "hours-ago": "{n} godz. temu"
     },
     "settings": {
-        "displayMode": {
+        "display-mode": {
             "label": "Tryb wyświetlania",
             "description": "Jak wyświetlać widget",
             "compact": "Kompaktowy (kropka + odliczanie)",
             "icon": "Tylko ikona",
             "full": "Pełny (stan + odliczanie)"
         },
-        "offPeakColor": {
+        "off-peak-color": {
             "label": "Kolor poza szczytem",
             "description": "Kolor widgetu poza szczytem"
         },
-        "peakColor": {
+        "peak-color": {
             "label": "Kolor szczytu",
             "description": "Kolor widgetu w szczycie"
         },
-        "driftColor": {
+        "drift-color": {
             "label": "Kolor odchylenia",
             "description": "Kolor widgetu przy zmianie polityki"
         },
-        "showTooltip": {
+        "show-tooltip": {
             "label": "Pokaż podpowiedź",
             "description": "Pokaż podpowiedź stanu po najechaniu"
         },
-        "autoCheck": {
+        "auto-check": {
             "label": "Automatyczne sprawdzanie",
             "description": "Regularnie sprawdzaj oficjalną stronę cen"
         },
-        "offlineOnly": {
+        "offline-only": {
             "label": "Tylko offline",
             "description": "Wyłącz sprawdzanie sieci"
         },
-        "checkIntervalH": {
+        "check-interval-h": {
             "label": "Interwał sprawdzania (godziny)",
             "description": "Godziny między sprawdzeniami"
         },
-        "customSourceUrl": {
+        "custom-source-url": {
             "label": "Własny URL źródła",
             "description": "Zastępuje oficjalną stronę cen",
             "placeholder": "https://…"

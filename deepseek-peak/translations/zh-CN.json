@@ -1,81 +1,81 @@
 {
     "bar": {
         "peak": "PEAK 2x",
-        "offPeak": "OFF-PEAK",
-        "tooltipPeak": "PEAK (2x)",
-        "tooltipOffPeak": "OFF-PEAK",
-        "nextFlip": "距下次切换",
-        "driftSuffix": "计费策略可能已变更"
+        "off-peak": "OFF-PEAK",
+        "tooltip-peak": "PEAK (2x)",
+        "tooltip-off-peak": "OFF-PEAK",
+        "next-flip": "距下次切换",
+        "drift-suffix": "计费策略可能已变更"
     },
     "menu": {
         "settings": "组件设置",
-        "useDeepSeek": "使用 DeepSeek",
-        "useOllama": "使用 Ollama",
+        "use-deep-seek": "使用 DeepSeek",
+        "use-ollama": "使用 Ollama",
         "refresh": "立即刷新"
     },
     "notice": {
-        "policyChanged": "DeepSeek 计费策略可能已变更"
+        "policy-changed": "DeepSeek 计费策略可能已变更"
     },
     "panel": {
         "peak": "高峰 (2x)",
-        "offPeak": "非高峰",
-        "offPeakIn": "距非高峰",
-        "peakIn": "距高峰",
+        "off-peak": "非高峰",
+        "off-peak-in": "距非高峰",
+        "peak-in": "距高峰",
         "local": "本地",
         "utc": "UTC",
         "beijing": "北京",
         "checked": "已检查",
         "drift": "计费策略可能已变更 — 请查看来源",
-        "weekendAllDay": "全天非高峰",
+        "weekend-all-day": "全天非高峰",
         "provider": "服务商",
         "schedule": "高峰",
-        "offPeakLine": "非高峰：周末（UTC）",
-        "offPeakLineHolidays": "非高峰：周末 + 中国节假日",
-        "holidayEnds": "节假日结束 {date}",
-        "nextHoliday": "下个节假日 {range} · {n} 天后"
+        "off-peak-line": "非高峰：周末（UTC）",
+        "off-peak-line-holidays": "非高峰：周末 + 中国节假日",
+        "holiday-ends": "节假日结束 {date}",
+        "next-holiday": "下个节假日 {range} · {n} 天后"
     },
     "checked": {
-        "justNow": "刚刚",
-        "minutesAgo": "{n} 分钟前",
-        "hoursAgo": "{n} 小时前"
+        "just-now": "刚刚",
+        "minutes-ago": "{n} 分钟前",
+        "hours-ago": "{n} 小时前"
     },
     "settings": {
-        "displayMode": {
+        "display-mode": {
             "label": "显示模式",
             "description": "组件显示方式",
             "compact": "紧凑（圆点 + 倒计时）",
             "icon": "仅图标",
             "full": "完整（状态 + 倒计时）"
         },
-        "offPeakColor": {
+        "off-peak-color": {
             "label": "非高峰颜色",
             "description": "非高峰时的组件颜色"
         },
-        "peakColor": {
+        "peak-color": {
             "label": "高峰颜色",
             "description": "高峰时的组件颜色"
         },
-        "driftColor": {
+        "drift-color": {
             "label": "变更提示颜色",
             "description": "检测到策略变更时的组件颜色"
         },
-        "showTooltip": {
+        "show-tooltip": {
             "label": "显示提示",
             "description": "悬停时显示状态提示"
         },
-        "autoCheck": {
+        "auto-check": {
             "label": "自动检查",
             "description": "定期检查官方定价页面"
         },
-        "offlineOnly": {
+        "offline-only": {
             "label": "仅离线",
             "description": "禁用网络检查"
         },
-        "checkIntervalH": {
+        "check-interval-h": {
             "label": "检查间隔（小时）",
             "description": "两次检查之间的小时数"
         },
-        "customSourceUrl": {
+        "custom-source-url": {
             "label": "自定义来源 URL",
             "description": "覆盖官方定价页面",
             "placeholder": "https://…"

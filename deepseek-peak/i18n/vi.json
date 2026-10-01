@@ -1,81 +1,81 @@
 {
     "bar": {
         "peak": "PEAK 2x",
-        "offPeak": "OFF-PEAK",
-        "tooltipPeak": "PEAK (2x)",
-        "tooltipOffPeak": "OFF-PEAK",
-        "nextFlip": "lần chuyển tiếp theo sau",
-        "driftSuffix": "chính sách có thể đã thay đổi"
+        "off-peak": "OFF-PEAK",
+        "tooltip-peak": "PEAK (2x)",
+        "tooltip-off-peak": "OFF-PEAK",
+        "next-flip": "lần chuyển tiếp theo sau",
+        "drift-suffix": "chính sách có thể đã thay đổi"
     },
     "menu": {
         "settings": "Cài đặt tiện ích",
-        "useDeepSeek": "Dùng DeepSeek",
-        "useOllama": "Dùng Ollama",
+        "use-deep-seek": "Dùng DeepSeek",
+        "use-ollama": "Dùng Ollama",
         "refresh": "Làm mới ngay"
     },
     "notice": {
-        "policyChanged": "Chính sách giá của DeepSeek có thể đã thay đổi"
+        "policy-changed": "Chính sách giá của DeepSeek có thể đã thay đổi"
     },
     "panel": {
         "peak": "CAO ĐIỂM (2x)",
-        "offPeak": "THẤP ĐIỂM",
-        "offPeakIn": "Thấp điểm sau",
-        "peakIn": "Cao điểm sau",
+        "off-peak": "THẤP ĐIỂM",
+        "off-peak-in": "Thấp điểm sau",
+        "peak-in": "Cao điểm sau",
         "local": "Cục bộ",
         "utc": "UTC",
         "beijing": "Bắc Kinh",
         "checked": "Đã kiểm tra",
         "drift": "Chính sách có thể đã thay đổi — xem nguồn",
-        "weekendAllDay": "thấp điểm cả ngày",
+        "weekend-all-day": "thấp điểm cả ngày",
         "provider": "Nhà cung cấp",
         "schedule": "Cao điểm",
-        "offPeakLine": "Thấp điểm: cuối tuần (UTC)",
-        "offPeakLineHolidays": "Thấp điểm: cuối tuần + ngày lễ Trung Quốc",
-        "holidayEnds": "Ngày lễ kết thúc {date}",
-        "nextHoliday": "Ngày lễ tới {range} · sau {n} ngày"
+        "off-peak-line": "Thấp điểm: cuối tuần (UTC)",
+        "off-peak-line-holidays": "Thấp điểm: cuối tuần + ngày lễ Trung Quốc",
+        "holiday-ends": "Ngày lễ kết thúc {date}",
+        "next-holiday": "Ngày lễ tới {range} · sau {n} ngày"
     },
     "checked": {
-        "justNow": "vừa xong",
-        "minutesAgo": "{n} phút trước",
-        "hoursAgo": "{n} giờ trước"
+        "just-now": "vừa xong",
+        "minutes-ago": "{n} phút trước",
+        "hours-ago": "{n} giờ trước"
     },
     "settings": {
-        "displayMode": {
+        "display-mode": {
             "label": "Chế độ hiển thị",
             "description": "Cách hiển thị tiện ích",
             "compact": "Gọn (chấm + đếm ngược)",
             "icon": "Chỉ biểu tượng",
             "full": "Đầy đủ (trạng thái + đếm ngược)"
         },
-        "offPeakColor": {
+        "off-peak-color": {
             "label": "Màu thấp điểm",
             "description": "Màu tiện ích ngoài cao điểm"
         },
-        "peakColor": {
+        "peak-color": {
             "label": "Màu cao điểm",
             "description": "Màu tiện ích trong cao điểm"
         },
-        "driftColor": {
+        "drift-color": {
             "label": "Màu thay đổi",
             "description": "Màu tiện ích khi phát hiện thay đổi chính sách"
         },
-        "showTooltip": {
+        "show-tooltip": {
             "label": "Hiện chú thích",
             "description": "Hiện chú thích trạng thái khi rê chuột"
         },
-        "autoCheck": {
+        "auto-check": {
             "label": "Tự động kiểm tra",
             "description": "Định kỳ kiểm tra trang giá chính thức"
         },
-        "offlineOnly": {
+        "offline-only": {
             "label": "Chỉ ngoại tuyến",
             "description": "Tắt kiểm tra mạng"
         },
-        "checkIntervalH": {
+        "check-interval-h": {
             "label": "Khoảng kiểm tra (giờ)",
             "description": "Số giờ giữa các lần kiểm tra"
         },
-        "customSourceUrl": {
+        "custom-source-url": {
             "label": "URL nguồn tùy chỉnh",
             "description": "Thay thế trang giá chính thức",
             "placeholder": "https://…"

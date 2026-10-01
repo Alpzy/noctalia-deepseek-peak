@@ -28,7 +28,7 @@ local function applyPage(text)
   end
   if not schedule.sameWindows(found, schedule.scheduleWindows(provider())) then
     publish(true)
-    noctalia.notify(noctalia.tr("notice.policyChanged"),
+    noctalia.notify(noctalia.tr("notice.policy-changed"),
       schedule.providerName(provider()) .. " · " .. table.concat(found, ", ") .. " UTC")
   else
     publish(false)

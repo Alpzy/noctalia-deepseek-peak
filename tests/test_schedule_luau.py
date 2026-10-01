@@ -87,18 +87,18 @@ check("window weekend nil", schedule.windowLine(at(2026,10,3,2,0), "deepseek", "
 -- checkedInfo: semantic relative keys for the "Checked" row.
 local nowMs = 1700000000000
 local ci = schedule.checkedInfo(nowMs, nowMs - 40000)
-check("checked just now", ci.key, "checked.justNow")
+check("checked just now", ci.key, "checked.just-now")
 ci = schedule.checkedInfo(nowMs, nowMs - 300000)
-check("checked minutes", ci.key .. ":" .. ci.n, "checked.minutesAgo:5")
+check("checked minutes", ci.key .. ":" .. ci.n, "checked.minutes-ago:5")
 ci = schedule.checkedInfo(nowMs, nowMs - 7200000)
-check("checked hours", ci.key .. ":" .. ci.n, "checked.hoursAgo:2")
+check("checked hours", ci.key .. ":" .. ci.n, "checked.hours-ago:2")
 -- holidayRangeInfo: 2026-10-01 starts a bundled range; Ollama has no holidays.
 local hr = schedule.holidayRangeInfo(at(2026,10,1,12,0), "deepseek")
 check("holiday active", hr.active, true)
 check("holiday provider none", schedule.holidayRangeInfo(at(2026,10,1,12,0), "ollama"), nil)
 -- countdown label semantics: while peak, the count shows time until off-peak.
-check("label peak", schedule.countdownLabelKey(true), "panel.offPeakIn")
-check("label off", schedule.countdownLabelKey(false), "panel.peakIn")
+check("label peak", schedule.countdownLabelKey(true), "panel.off-peak-in")
+check("label off", schedule.countdownLabelKey(false), "panel.peak-in")
 print("ALL PASS")
 """
 

@@ -1,81 +1,81 @@
 {
     "bar": {
         "peak": "PEAK 2x",
-        "offPeak": "OFF-PEAK",
-        "tooltipPeak": "PEAK (2x)",
-        "tooltipOffPeak": "OFF-PEAK",
-        "nextFlip": "neste skifte om",
-        "driftSuffix": "retningslinene kann ha vorte endra"
+        "off-peak": "OFF-PEAK",
+        "tooltip-peak": "PEAK (2x)",
+        "tooltip-off-peak": "OFF-PEAK",
+        "next-flip": "neste skifte om",
+        "drift-suffix": "retningslinene kann ha vorte endra"
     },
     "menu": {
         "settings": "Innstillingar for widget",
-        "useDeepSeek": "Bruk DeepSeek",
-        "useOllama": "Bruk Ollama",
+        "use-deep-seek": "Bruk DeepSeek",
+        "use-ollama": "Bruk Ollama",
         "refresh": "Oppdater no"
     },
     "notice": {
-        "policyChanged": "DeepSeek-prisretningslinene kann ha vorte endra"
+        "policy-changed": "DeepSeek-prisretningslinene kann ha vorte endra"
     },
     "panel": {
         "peak": "TOPP (2x)",
-        "offPeak": "OFF-PEAK",
-        "offPeakIn": "Off-peak om",
-        "peakIn": "Topp om",
+        "off-peak": "OFF-PEAK",
+        "off-peak-in": "Off-peak om",
+        "peak-in": "Topp om",
         "local": "Stadleg",
         "utc": "UTC",
         "beijing": "Beijing",
         "checked": "Kontrollert",
         "drift": "Retningslinene kann ha vorte endra — sjå kjelda",
-        "weekendAllDay": "off-peak heile dagen",
+        "weekend-all-day": "off-peak heile dagen",
         "provider": "Tilbydar",
         "schedule": "Topp",
-        "offPeakLine": "Off-peak: helgar (UTC)",
-        "offPeakLineHolidays": "Off-peak: helgar + kinesiske heilagdagar",
-        "holidayEnds": "Heilagdagen endar {date}",
-        "nextHoliday": "Neste heilagdag {range} · om {n} d"
+        "off-peak-line": "Off-peak: helgar (UTC)",
+        "off-peak-line-holidays": "Off-peak: helgar + kinesiske heilagdagar",
+        "holiday-ends": "Heilagdagen endar {date}",
+        "next-holiday": "Neste heilagdag {range} · om {n} d"
     },
     "checked": {
-        "justNow": "nett no",
-        "minutesAgo": "{n} min sidan",
-        "hoursAgo": "{n} t sidan"
+        "just-now": "nett no",
+        "minutes-ago": "{n} min sidan",
+        "hours-ago": "{n} t sidan"
     },
     "settings": {
-        "displayMode": {
+        "display-mode": {
             "label": "Visingsmåte",
             "description": "Korleis widgeten skal visast",
             "compact": "Kompakt (prikk + nedteljing)",
             "icon": "Berre ikon",
             "full": "Full (status + nedteljing)"
         },
-        "offPeakColor": {
+        "off-peak-color": {
             "label": "Off-peak-farge",
             "description": "Widgetfarge utanom topp"
         },
-        "peakColor": {
+        "peak-color": {
             "label": "Toppfarge",
             "description": "Widgetfarge i toppbolken"
         },
-        "driftColor": {
+        "drift-color": {
             "label": "Avviksfarge",
             "description": "Widgetfarge ved endra retningsliner"
         },
-        "showTooltip": {
+        "show-tooltip": {
             "label": "Vis tooltip",
             "description": "Vis status-tooltip ved hovering"
         },
-        "autoCheck": {
+        "auto-check": {
             "label": "Sjåvmåtig kontroll",
             "description": "Kontroller den offisielle prissida jamleg"
         },
-        "offlineOnly": {
+        "offline-only": {
             "label": "Berre offline",
             "description": "Slå av netverkskontrollar"
         },
-        "checkIntervalH": {
+        "check-interval-h": {
             "label": "Kontrollintervall (timar)",
             "description": "Timar mellom retningslinekontrollar"
         },
-        "customSourceUrl": {
+        "custom-source-url": {
             "label": "Eiga kjelde-URL",
             "description": "Overstyrer den offisielle prissida",
             "placeholder": "https://…"
