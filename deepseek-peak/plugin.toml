@@ -113,6 +113,7 @@ width = 340
 height = 420
 placement = "attached"
 position = "auto"
+open_near_click = true
 
 [[service]]
 id = "checker"
