@@ -102,9 +102,10 @@ end
 local function refresh()
   local now = os.time()
   local which = provider()
-  isPeakNow = schedule.isPeakAt(now, which)
-  secondsToNext = schedule.secondsUntilNext(now, which)
-  progress = schedule.progress(now, which)
+  local snap = schedule.snapshot(now, which)
+  isPeakNow = snap.isPeak
+  secondsToNext = snap.secondsToNext
+  progress = snap.progress
   render()
 end
 

@@ -75,7 +75,8 @@ local function render()
   if drift then
     stateColor = settings.get("driftColor", "#fbbf24")
   end
-  local progress = schedule.progress(now, which)
+  local snap = schedule.snapshot(now, which)
+  local progress = snap.progress
   local holiday = holidayText(now, which)
 
   panel.render(ui.column({ gap = 10, padding = 14 }, {
@@ -86,7 +87,7 @@ local function render()
     row(noctalia.tr("panel.provider"), schedule.providerName(which)),
     -- While peak, the countdown runs to off-peak and vice versa (v4 semantics).
     row(noctalia.tr(schedule.countdownLabelKey(peak)),
-        schedule.formatHMS(schedule.secondsUntilNext(now, which))),
+        schedule.formatHMS(snap.secondsToNext)),
     ui.progress({
       progress = progress,
       fill = stateColor,
