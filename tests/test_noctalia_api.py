@@ -112,7 +112,7 @@ def test_manifest_matches_registry_rules():
 
     manifest = json.loads(pathlib.Path("deepseek-peak/manifest.json").read_text())
     assert manifest["id"] == "deepseek-peak"
-    assert manifest["version"] == "1.0.0"
+    assert manifest["version"] == "1.1.0"
     assert manifest["repository"] == "https://github.com/noctalia-dev/noctalia-plugins"
     assert "main" in manifest["entryPoints"], "shared state needs a main entry"
     assert manifest["tags"], "registry expects tags"

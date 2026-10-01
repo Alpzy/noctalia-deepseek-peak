@@ -6,7 +6,7 @@
 [plugin]
 id = "alpzy/deepseek-peak"
 name = "DeepSeek Peak Hours"
-version = "1.0.0"
+version = "1.1.0"
 plugin_api = 3
 description = "DeepSeek peak/off-peak bar widget for Noctalia. Green off-peak, red peak."
 author = "Alpzy"
@@ -48,12 +48,12 @@ default = true
 label = "Show Tooltip"
 description = "Show state tooltip on hover"
 
-[settings.weekendMode]
+[settings.provider]
 type = "enum"
-default = "beijing-anchored"
-options = ["beijing-anchored", "utc"]
-label = "Weekend Mode"
-description = "Weekend off-peak anchoring"
+default = "deepseek"
+options = ["deepseek", "ollama"]
+label = "Provider"
+description = "Which tariff schedule to follow"
 
 [settings.autoCheck]
 type = "boolean"
