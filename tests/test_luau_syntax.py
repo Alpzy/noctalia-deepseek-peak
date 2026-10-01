@@ -57,4 +57,5 @@ def test_checker_service_publishes_state_and_handles_cmd():
     assert "function onIpc(event" in text
     assert "noctalia.http" in text
     assert 'require("./lib/schedule.luau")' in text, "checker must use the shared schedule module"
+    assert "schedule.windowsFromPage" in text
     assert "autoCheck" in text and "offlineOnly" in text

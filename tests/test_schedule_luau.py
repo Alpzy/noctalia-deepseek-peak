@@ -64,6 +64,16 @@ check("weekend off-peak ollama", schedule.isPeakAt(at(2026,10,3,2,0), "ollama"),
 -- Countdown: Wed 2026-09-30 00:59:30 UTC flips to peak at 01:00:00.
 check("countdown to 01:00", schedule.secondsUntilNext(at(2026,9,30,0,59,30), "deepseek"), 30)
 check("schedule text", schedule.scheduleText("ollama"), "12:00-18:00 UTC")
+
+local deepseekPage = "Peak hours are 01:00 - 04:00 and 06:00 - 10:00 UTC, Monday through Friday."
+local ollamaPage = "Off-peak pricing apply outside 12:00 and 18:00 UTC on weekdays."
+local ds = schedule.windowsFromPage(deepseekPage)
+check("deepseek page windows", table.concat(ds, ", "), "01:00-04:00, 06:00-10:00")
+local ol = schedule.windowsFromPage(ollamaPage)
+check("ollama page window", ol[1], "12:00-18:00")
+check("unknown page nil", schedule.windowsFromPage("no schedule here"), nil)
+check("sameWindows order free", schedule.sameWindows({"06:00-10:00","01:00-04:00"}, {"01:00-04:00","06:00-10:00"}), true)
+check("sameWindows mismatch", schedule.sameWindows({"01:00-04:00"}, {"12:00-18:00"}), false)
 print("ALL PASS")
 """
 

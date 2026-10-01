@@ -165,4 +165,45 @@ function M.formatHMS(s)
   return string.format("%02d:%02d:%02d", math.floor(s / 3600), math.floor((s % 3600) / 60), s % 60)
 end
 
+-- Extract canonical "HH:MM-HH:MM" windows from a pricing page.
+-- Mirrors v4 peak.js/Main.qml windowsFromPage: DeepSeek states
+-- "Peak hours are 01:00 - 04:00 ..." and Ollama states "Off-peak pricing
+-- apply outside 12:00 and 18:00 UTC on weekdays". Returns nil when no known
+-- phrasing is found (callers must not infer drift from a nil result).
+function M.windowsFromPage(text)
+  if type(text) ~= "string" then
+    return nil
+  end
+  local peak = string.match(text, "Peak hours are ([^<]+)")
+  if peak then
+    local found = {}
+    for a, b in string.gmatch(peak, "(%d%d:%d%d)%s*%-%s*(%d%d:%d%d)") do
+      table.insert(found, a .. "-" .. b)
+    end
+    if #found > 0 then
+      table.sort(found)
+      return found
+    end
+  end
+  local a, b = string.match(text, "[Oo]utside%s+(%d%d:%d%d)%s+and%s+(%d%d:%d%d)%s+UTC")
+  if a and b then
+    return { a .. "-" .. b }
+  end
+  return nil
+end
+
+-- Order-independent window-set comparison. Both sides are canonical
+-- "HH:MM-HH:MM" strings; duplicates are ignored.
+function M.sameWindows(left, right)
+  local function key(list)
+    local copy = {}
+    for _, item in ipairs(list or {}) do
+      table.insert(copy, item)
+    end
+    table.sort(copy)
+    return table.concat(copy, ",")
+  end
+  return key(left) == key(right)
+end
+
 return M
